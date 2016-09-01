@@ -25,7 +25,7 @@ class Regla {
 		wr.append(" - y aqui continua") //concatenamos en el archivo sin borrar lo existente
 		
 		        //ahora cerramos los flujos de canales de datos, al cerrarlos el archivo quedará guardado con información escrita
-
+		bw.close()
  		
 	 }
  } 
