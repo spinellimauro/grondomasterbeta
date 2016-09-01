@@ -1,7 +1,6 @@
+import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import java.util.List
-import java.util.Map
 
 @Accessors
 @Observable
@@ -15,22 +14,22 @@ class Dt {
 	List<Jugador> jugadores = newArrayList
 	int torneosDisponibles = 3
 	int slots = 30
-	
-	def void venderJugador(Jugador jugador, Double precio) {
+
+	def void venderJugador(Jugador jugador,double precio) {
 		jugador => [precioVenta = precio]
 	}
 
 	def List<Jugador> getEnVenta() {
-		jugadores.filter[precioVenta != null].toList
+		jugadores.filter[precioVenta != 0].toList
 	}
-	
-	def jugadoresConImpuesto(){
+
+	def jugadoresConImpuesto() {
 		jugadores.filter[j|j.pagaImpuesto]
 	}
-	
+
 	def void pagarImpuesto(List<Jugador> jugadoresAPagar) {
 		jugadoresAPagar.forEach[pagarJugador]
-		
+
 		var jugadoresNoPagados = jugadores
 		jugadoresNoPagados.removeAll(jugadoresAPagar)
 		jugadoresNoPagados.forEach[noSePago]
@@ -41,27 +40,27 @@ class Dt {
 		jugador.pagar
 	}
 
-	def void comprarJugadorEnVenta(Jugador jugadorSeleccionado){
+	def void comprarJugadorEnVenta(Jugador jugadorSeleccionado) {
 //		if (tieneSlots()){     SI NO TIENE SLOTS SE DESACTIVA EL BOTON COMPRAR.
-			plata -= jugadorSeleccionado.precioVenta
-			jugadores.add(jugadorSeleccionado)
+		plata -= jugadorSeleccionado.precioVenta
+		jugadores.add(jugadorSeleccionado)
 //		}
 //		else 
 //			throw new Exception
 	}
-	
-	def void venderJugadorEnVenta(Jugador jugadorVendido){
+
+	def void venderJugadorEnVenta(Jugador jugadorVendido) {
 		jugadores.remove(jugadorVendido)
 		plata += jugadorVendido.precioVenta
 	}
-	
-	def comprarSlot(){
+
+	def comprarSlot() {
 		slots++
 		plata -= reglas.valorSlot
 	}
-	
-	def boolean tieneSlots(){
+
+	def boolean tieneSlots() {
 		slots > jugadores.size()
 	}
-		
+
 }

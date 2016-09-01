@@ -17,7 +17,6 @@ final class SoFifa {
 	}
 
 	def List<Jugador> getJugadores(String string) {
-
 		val Document document = Jsoup.connect("http://2016.sofifa.com/players?keyword=" + string).userAgent("Mozilla").
 			post
 
