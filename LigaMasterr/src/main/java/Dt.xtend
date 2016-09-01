@@ -6,6 +6,7 @@ import java.util.Map
 @Accessors
 @Observable
 class Dt {
+	Regla reglas
 	String nombreDt
 	String equipo
 	double plata
@@ -41,12 +42,12 @@ class Dt {
 	}
 
 	def void comprarJugadorEnVenta(Jugador jugadorSeleccionado){
-		if (tieneSlots()){
+//		if (tieneSlots()){     SI NO TIENE SLOTS SE DESACTIVA EL BOTON COMPRAR.
 			plata -= jugadorSeleccionado.precioVenta
 			jugadores.add(jugadorSeleccionado)
-		}
-		else 
-			throw new Exception
+//		}
+//		else 
+//			throw new Exception
 	}
 	
 	def void venderJugadorEnVenta(Jugador jugadorVendido){
@@ -56,7 +57,7 @@ class Dt {
 	
 	def comprarSlot(){
 		slots++
-		plata -= 10000
+		plata -= reglas.valorSlot
 	}
 	
 	def boolean tieneSlots(){

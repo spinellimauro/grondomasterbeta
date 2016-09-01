@@ -2,6 +2,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class Jugador {
+	String nombre
 	int nivel
 	Double precioVenta = null
 	int vecesNoPagadas = 0
