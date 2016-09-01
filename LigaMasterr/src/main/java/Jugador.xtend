@@ -6,8 +6,15 @@ import org.uqbar.commons.utils.Observable
 @Observable
 @Accessors
 class Jugador {
+	int id
 	Double precioVenta = null
 	int vecesNoPagadas = 0
+	Document instance
+
+	new(int integer) {
+		id = integer
+		instance = Jsoup.connect("http://2016.sofifa.com/player/" + id).userAgent("Mozilla").post
+	}
 
 	def double getPrecioMaquina() {
 		nivel * 10000
@@ -28,19 +35,13 @@ class Jugador {
 	def void pagar() {
 		vecesNoPagadas = 0
 	}
-	
+
 	def pagaImpuesto() {
 		nivel > 82
 	}
-	
-		int id
-
-	def Document getInstance() {
-		Jsoup.connect("http://2016.sofifa.com/player/" + id).userAgent("Mozilla").post
-	}
 
 	def String getNombre() {
-		instance.select("div.header").text.replaceAll("[(ID:\\d+)]", "").toString
+		instance.select("div.header").text.replaceAll("[(\\d+.*)]", "").replace("ID:", "").toString
 	}
 
 	def int getNivel() {
@@ -50,5 +51,9 @@ class Jugador {
 	def int getPotencial() {
 		Integer.parseInt(instance.select("span.p").get(1).text.toString)
 	}
-	
+
+	override toString() {
+		id + ";" + nombre + ";" + nivel + ";" + potencial + "\n"
+	}
+
 }
