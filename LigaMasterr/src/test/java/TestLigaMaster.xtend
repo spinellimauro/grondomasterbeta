@@ -2,9 +2,11 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.Assert
 
-//class TestLigaMaster {
-//	
-//	LigaMaster grondomaster
+class TestLigaMaster {
+	
+	LigaMaster grondomaster
+	Regla regla
+
 //	Dt mauro
 //	Dt nicoR
 //	Dt ale
@@ -17,9 +19,9 @@ import org.junit.Assert
 //	Nivel80 n80
 //	
 //	
-//	@Before
-//	def void init() {
-//		
+	@Before
+	def void init() {
+		
 //		n78 = new Nivel78
 //		n79 = new Nivel79
 //		n80 = new Nivel80
@@ -65,16 +67,22 @@ import org.junit.Assert
 //			jugadores.add(martial)
 //		]
 //		
-//		
-//		grondomaster = new LigaMaster =>[
+		regla = new Regla
+		grondomaster = new LigaMaster =>[
 //			dts.addAll(#{mauro,ale,nicoR})
-//		]
-//		
+			
+		]
+		
 //		ale.ponerEnVentaUnJugador(mustafi,10000)
 //		mauro.ponerEnVentaUnJugador(rulli,5000)		
 //		
-//	}
-//
+	}
+
+	@Test
+	def void escribirTXT(){
+		regla.escribir()
+//		Assert.assertTrue(ale.jugadores.size > 0 )	
+	}
 //	@Test
 //	def void verificarJugadorEnVentaDT(){
 //		Assert.assertTrue(ale.jugadores.size > 0 )	
@@ -88,5 +96,5 @@ import org.junit.Assert
 //		Assert.assertEquals(2,grondomaster.jugadoresVendiendose.size)
 //	}
 //	
-//}
+}
 
