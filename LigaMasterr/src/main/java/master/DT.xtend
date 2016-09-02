@@ -67,5 +67,12 @@ class DT {
 		nombreDT + ";" + nombreEquipo + ";" + plata + ";" + torneosDisponibles + ";" + slots + ";" 
 		+ jugadores.fold("")[ acum , jugador | acum + jugador.id + "-" ]
 	}
-
+	
+	def empato(){
+		plata += 1000
+	}
+	
+	def gano(Integer diferenciaGol){
+		plata += 2000 + (diferenciaGol * 1000)
+	}
 }

@@ -6,6 +6,7 @@ import master.DT
 import master.Jugador
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import master.LigaMaster
 
 @Observable
 @Accessors
@@ -14,9 +15,11 @@ class BuscadorModel {
 	String valorBuscado = ""
 	Jugador jugadorElegido
 	List<Jugador> resultados
-
-	new(DT dt) {
+	LigaMaster grondoMaster 
+	
+	new(DT dt,LigaMaster _grondoMaster) {
 		dtElegido = dt
+		grondoMaster = _grondoMaster
 	}
 
 	def void buscar() {
@@ -25,5 +28,6 @@ class BuscadorModel {
 	
 	def void addJugador() {
 		dtElegido.jugadores.add(jugadorElegido)
+		grondoMaster.guardarBase
 	}
 }

@@ -87,4 +87,17 @@ class Torneo {
 class Partido {
 	DT dtLocal
 	DT dtVisitante
+	int golLocal
+	int golVisitante
+	
+	
+	def void jugarPartido(){
+		if (golLocal > golVisitante){dtLocal.gano(golLocal - golVisitante)}
+		else if (golLocal < golVisitante){dtVisitante.gano(golVisitante-golLocal)}
+		else {
+			dtLocal.empato
+			dtVisitante.empato
+		}	
+	}
 }
+

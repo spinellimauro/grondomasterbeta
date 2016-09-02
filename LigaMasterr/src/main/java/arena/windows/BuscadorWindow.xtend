@@ -11,10 +11,13 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import master.DT
+import master.LigaMaster
+import arena.models.EquipoModel
 
 class BuscadorWindow extends SimpleWindow<BuscadorModel> {
-	new(WindowOwner owner, DT model) {
-		super(owner, new BuscadorModel(model))
+	new(WindowOwner owner, EquipoModel model) {
+		super(owner, new BuscadorModel(model.dtElegido,model.grondomaster))
+		
 	}
 
 	override createFormPanel(Panel panel) {

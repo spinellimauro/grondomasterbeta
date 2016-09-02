@@ -16,4 +16,6 @@ class EquipoModel {
 	def void removeJugador() {
 		dtElegido.jugadores.remove(jugadorElegido)
 	}
+	
+	
 }

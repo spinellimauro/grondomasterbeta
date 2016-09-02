@@ -13,24 +13,23 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import arena.models.VentaJugadores
 
-class EquipoWindow extends SimpleWindow<EquipoModel> {
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+
+class VentaJugadoresWindow extends SimpleWindow<VentaJugadores> {
 
 	new(WindowOwner owner) {
-		super(owner, new EquipoModel)
-		title = "Armado de Equipos"
+		super(owner, new VentaJugadores)
+		title = "Venta Jugadores"
+		modelObject.jugadoresEnVenta
 	}
 
 	override createFormPanel(Panel panel) {
-		new Selector(panel) => [
-			bindItemsToProperty("grondomaster.dts").adapter = new PropertyAdapter(DT, "nombreDT")
-			bindValueToProperty("dtElegido")
-			
-		]
 
 		new Table(panel, Jugador) => [
-			bindItemsToProperty("dtElegido.jugadores")
-			bindValueToProperty("jugadorElegido")
+			items <=> "jugadores"
+			value <=> "jugadorSeleccionado"
 			numberVisibleRows = 8
 
 			new Column(it) => [
@@ -53,31 +52,14 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 				bindContentsToProperty("precioVenta")
 				fixedSize = 100
 			]
+			
 		]
 
 	}
 
 	override addActions(Panel panel) {
-		new Label(panel) => [
-			text = "Precio de Venta"
-			fontSize = 12
-
-		]
-		new NumericField(panel) => [
-			bindValueToProperty("jugadorElegido.precioVenta")
-			width = 100
-			fontSize = 12
-		]
-
 		new Button(panel) => [
-			caption = "Agregar"
-			onClick[|new BuscadorWindow(this, modelObject).open]
-			fontSize = 10
-		]
-
-		new Button(panel) => [
-			caption = "Eliminar"
-			onClick[|modelObject.removeJugador]
+			caption = "Comprar"
 			fontSize = 10
 		]
 		

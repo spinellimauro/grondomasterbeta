@@ -4,6 +4,8 @@
 215316;Gerónimo Rulli  ;79;85;5000.0;0
 192985;Kevin De Bruyne  ;86;89;0.0;0
 178562;Éver Banega  ;81;81;0.0;0
+197853;Serge Aurier  ;81;86;0.0;0
+184881;Sofiane Feghouli  ;81;83;0.0;0
 192227;Shkodran Mustafi  ;82;87;10000.0;0
 193301;Alexandre Lacazette  ;83;87;0.0;0
 219998;José Mauri  ;72;82;0.0;0
