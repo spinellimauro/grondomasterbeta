@@ -16,7 +16,8 @@ final class DTAdapter {
 			plata = Double.parseDouble(textoDT.next)
 			torneosDisponibles = Integer.parseInt(textoDT.next)
 			slots = Integer.parseInt(textoDT.next)
-			jugadores = textoDT.next.split("-").map[id|JugadorAdapter.instance.getJugador(Integer.parseInt(id))].toList
+			jugadores.addAll(
+				textoDT.next.split("-").map[id|JugadorAdapter.instance.getJugador(Integer.parseInt(id))].toList)
 		]
 	}
 }
@@ -27,7 +28,7 @@ final class JugadorAdapter {
 
 	private new() {
 		val readerJugadores = new FileReader("src/main/java/datos/txts/jugadores.txt").readLines
-		listaJugadores = readerJugadores.map[toJugador]
+		listaJugadores.addAll(readerJugadores.map[toJugador])
 	}
 
 	def Jugador toJugador(String string) {

@@ -14,6 +14,10 @@ import static extension datos.adapters.DTAdapter.*
 class LigaMaster {
 	List<DT> dts = newArrayList
 
+	new() {
+		leerBase
+	}
+
 	def List<Jugador> getJugadores() {
 		dts.fold(newArrayList) [ lista, dt |
 			lista.addAll(dt.jugadores)
@@ -24,31 +28,31 @@ class LigaMaster {
 	def List<Jugador> getTransferibles() {
 		jugadores.filter[precioVenta != 0].toList
 	}
-	
-	def void leerBase(){
+
+	def void leerBase() {
 		val readerDts = new FileReader("src/main/java/datos/txts/dts.txt").readLines
-		dts = readerDts.map[ toDT ].toList
+		dts.addAll( readerDts.map[toDT])
 	}
-	
+
 	def void guardarBase() {
-		val PrintWriter writerJugadores = new PrintWriter("src/main/java/datos/txts/jugadores.txt", "UTF-8")
-		jugadores.forEach[writerJugadores.println(toString)]
-		writerJugadores.close
-				
 		val PrintWriter writerDTs = new PrintWriter("src/main/java/datos/txts/dts.txt", "UTF-8")
 		dts.forEach[writerDTs.println(toString)]
 		writerDTs.close
+
+		val PrintWriter writerJugadores = new PrintWriter("src/main/java/datos/txts/jugadores.txt", "UTF-8")
+		jugadores.forEach[writerJugadores.println(toString)]
+		writerJugadores.close
 	}
 
-	def getDTsQuePagan() {
-		dts.filter[torneosDisponibles == 0]
+	def List<DT> getDTsQuePagan() {
+		dts.filter[torneosDisponibles == 0].toList
 	}
 
 }
 
 @Accessors
 class Torneo {
-	//	List<Fecha> listaFechas
+	// List<Fecha> listaFechas
 	List<Partido> partidos = newArrayList
 	String nombreLiga
 	List<Double> premios
@@ -68,18 +72,17 @@ class Torneo {
 
 		}
 	}
-	
+
 	def hayMasDe1Jugador() {
-		jugadores.size > 1 
+		jugadores.size > 1
 	}
-	
+
 }
 
 //@Accessors
 //class Fecha {
 //	List<Partido> listaPartidos
 //}
-
 @Accessors
 class Partido {
 	DT dtLocal

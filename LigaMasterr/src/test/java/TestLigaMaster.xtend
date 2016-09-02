@@ -1,22 +1,22 @@
 import master.DT
 import master.LigaMaster
+import master.Torneo
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import master.Jugador
-import master.Torneo
 
 class TestLigaMaster {
-	LigaMaster grondomaster 
+	LigaMaster grondomaster
 
 	DT mauro
 	DT nicoR
 	DT ale
-	Jugador mustafi
-	Jugador lacazette
-	Jugador rulli
-	Jugador martial
+//	Jugador mustafi
+//	Jugador lacazette
+//	Jugador rulli
+//	Jugador martial
 	Torneo torneo
+
 	@Before
 	def void init() {
 		grondomaster = new LigaMaster
@@ -25,7 +25,6 @@ class TestLigaMaster {
 //		lacazette = new Jugador(193301)
 //		rulli = new Jugador(215316)
 //		martial = new Jugador(211300)
-
 		ale = new DT => [
 			nombreDT = "Alejandro"
 			nombreEquipo = "Dortmund"
@@ -54,27 +53,24 @@ class TestLigaMaster {
 //
 //		ale.venderJugador(mustafi, 10000)
 //		mauro.venderJugador(rulli, 5000)
-		
-		
 		grondomaster.leerBase
-		
+
 	}
 
 //	@Test
 //	def void verificarJugadorEnVentaDT() {
 //		Assert.assertTrue(ale.jugadores.size > 0)
 //	}
-
 	@Test
 	def void verificarDTS() {
 		Assert.assertEquals(3, grondomaster.dts.size)
 	}
-	
+
 	@Test
 	def void verificarJugadores() {
 		Assert.assertEquals(4, grondomaster.jugadores.size)
 	}
-	
+
 	@Test
 	def void verificarJugadoresEnVenta() {
 		Assert.assertEquals(2, grondomaster.transferibles.size)
@@ -93,14 +89,13 @@ class TestLigaMaster {
 		torneo.agregarJugador(mauro)
 		torneo.agregarJugador(nicoR)
 		torneo.agregarJugador(ale)
-		Assert.assertEquals(3,torneo.partidos.size())
+		Assert.assertEquals(3, torneo.partidos.size())
 		Assert.assertTrue(torneo.partidos.get(0).dtLocal == nicoR)
 		Assert.assertTrue(torneo.partidos.get(0).dtVisitante == mauro)
-		
+
 		Assert.assertTrue(torneo.partidos.get(1).dtLocal == ale)
 		Assert.assertTrue(torneo.partidos.get(1).dtVisitante == nicoR)
-		
-		
+
 		Assert.assertTrue(torneo.partidos.get(2).dtLocal == ale)
 		Assert.assertTrue(torneo.partidos.get(2).dtVisitante == mauro)
 	}

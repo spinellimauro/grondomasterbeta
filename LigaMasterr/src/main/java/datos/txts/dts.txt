@@ -1,3 +1,3 @@
-NicoR;Rotterham;0.0;3;30;211300
-Mauro;Bourdeaux;0.0;3;30;215316
-Alejandro;Dortmund;0.0;3;30;192227-193301
+NicoR;Rotterham;0.0;3;30;211300-231443-228080-
+Mauro;Bourdeaux;0.0;3;30;215316-192985-178562-
+Alejandro;Dortmund;0.0;3;30;192227-193301-219998-

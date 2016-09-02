@@ -8,14 +8,16 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
-import org.uqbar.arena.windows.MainWindow
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
+import master.DT
 
-class BuscadorWindow extends MainWindow<BuscadorModel> {
-	new() {
-		super(new BuscadorModel)
+class BuscadorWindow extends SimpleWindow<BuscadorModel> {
+	new(WindowOwner owner, DT model) {
+		super(owner, new BuscadorModel(model))
 	}
 
-	override createContents(Panel panel) {
+	override createFormPanel(Panel panel) {
 		val horizontal = new Panel(panel).layout = new HorizontalLayout
 
 		new TextBox(horizontal) => [
@@ -33,6 +35,7 @@ class BuscadorWindow extends MainWindow<BuscadorModel> {
 
 		new Table(panel, Jugador) => [
 			bindItemsToProperty("resultados")
+			bindValueToProperty("jugadorElegido")
 			numberVisibleRows = 18
 
 			new Column(it) => [
@@ -55,8 +58,17 @@ class BuscadorWindow extends MainWindow<BuscadorModel> {
 		]
 	}
 
-	def static main(String[] args) {
-		new BuscadorWindow().startApplication
-	}
+	override protected addActions(Panel actionsPanel) {
+		new Button(actionsPanel) => [
+			caption = "Agregar a Plantilla"
+			onClick[modelObject.addJugador]
+			fontSize = 10
+		]
 
+		new Button(actionsPanel) => [
+			caption = "Salir"
+			onClick[close]
+			fontSize = 10
+		]
+	}
 }

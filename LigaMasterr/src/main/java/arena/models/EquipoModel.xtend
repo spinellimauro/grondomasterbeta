@@ -8,12 +8,12 @@ import org.uqbar.commons.utils.Observable
 
 @Observable
 @Accessors
-class PlantillaModel {
+class EquipoModel {
 	Jugador jugadorElegido = new Jugador
 	DT dtElegido = new DT
 	LigaMaster grondomaster = new LigaMaster
 
-	new() {
-		grondomaster.leerBase
+	def void removeJugador() {
+		dtElegido.jugadores.remove(jugadorElegido)
 	}
 }
