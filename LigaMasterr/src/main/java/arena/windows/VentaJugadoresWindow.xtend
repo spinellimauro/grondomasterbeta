@@ -26,7 +26,13 @@ class VentaJugadoresWindow extends SimpleWindow<VentaJugadores> {
 	}
 
 	override createFormPanel(Panel panel) {
-
+		
+		new Selector(panel) => [
+			bindItemsToProperty("grondomaster.dts").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindValueToProperty("dtElegido")
+			
+		]
+		
 		new Table(panel, Jugador) => [
 			items <=> "jugadores"
 			value <=> "jugadorSeleccionado"
@@ -53,6 +59,12 @@ class VentaJugadoresWindow extends SimpleWindow<VentaJugadores> {
 				fixedSize = 100
 			]
 			
+//			new Column(it) => [
+//				title = "Dueño"
+////				bindContentsToProperty("modelObject.dtJugador")
+//				fixedSize = 100
+//			]
+//			
 		]
 
 	}
@@ -61,6 +73,7 @@ class VentaJugadoresWindow extends SimpleWindow<VentaJugadores> {
 		new Button(panel) => [
 			caption = "Comprar"
 			fontSize = 10
+			onClick[modelObject.comprarJugador()]
 		]
 		
 		new Button(panel) => [

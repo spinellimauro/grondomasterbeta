@@ -14,6 +14,9 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+
+
 class EquipoWindow extends SimpleWindow<EquipoModel> {
 
 	new(WindowOwner owner) {
@@ -68,7 +71,19 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			width = 100
 			fontSize = 12
 		]
+		
+		new Label(panel) => [
+			text = "Plata"
+			fontSize = 12
 
+		]
+		
+		new Label(panel) => [
+			value <=> "dtElegido.plata"
+			fontSize = 12
+			width = 80
+
+		]
 		new Button(panel) => [
 			caption = "Agregar"
 			onClick[|new BuscadorWindow(this, modelObject).open]

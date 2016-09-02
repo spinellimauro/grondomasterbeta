@@ -40,19 +40,18 @@ class DT {
 		jugador.pagar
 	}
 
-	def void comprarJugadorEnVenta(Jugador jugadorSeleccionado) {
+	def void comprarJugadorEnVenta(Jugador jugadorSeleccionado,DT dueño) {
 //		if (tieneSlots()){     SI NO TIENE SLOTS SE DESACTIVA EL BOTON COMPRAR.
 		plata -= jugadorSeleccionado.precioVenta
 		jugadores.add(jugadorSeleccionado)
+		dueño.jugadores.remove(jugadorSeleccionado)
+		dueño.plata += jugadorSeleccionado.precioVenta
+		jugadorSeleccionado.precioVenta = 0
 //		}
 //		else 
 //			throw new Exception
 	}
 
-	def void venderJugadorEnVenta(Jugador jugadorVendido) {
-		jugadores.remove(jugadorVendido)
-		plata += jugadorVendido.precioVenta
-	}
 
 	def void comprarSlot() {
 		slots++
