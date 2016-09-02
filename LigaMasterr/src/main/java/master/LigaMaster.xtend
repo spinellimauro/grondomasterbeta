@@ -48,15 +48,37 @@ class LigaMaster {
 
 @Accessors
 class Torneo {
-	List<Fecha> listaFechas
+	//	List<Fecha> listaFechas
+	List<Partido> partidos = newArrayList
 	String nombreLiga
 	List<Double> premios
+	List<DT> jugadores = newArrayList
+
+	int i
+
+	def void agregarJugador(DT jugador) {
+		jugadores.add(jugador)
+		if (hayMasDe1Jugador) {
+			for (i = jugadores.size - 2; i >= 0; i--) {
+				partidos.add(new Partido => [
+					dtLocal = jugadores.get(jugadores.size - 1)
+					dtVisitante = jugadores.get(i)
+				])
+			}
+
+		}
+	}
+	
+	def hayMasDe1Jugador() {
+		jugadores.size > 1 
+	}
+	
 }
 
-@Accessors
-class Fecha {
-	List<Partido> listaPartidos
-}
+//@Accessors
+//class Fecha {
+//	List<Partido> listaPartidos
+//}
 
 @Accessors
 class Partido {
