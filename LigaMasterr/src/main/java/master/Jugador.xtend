@@ -1,14 +1,17 @@
+package master
+
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.jsoup.Jsoup
 import org.uqbar.commons.utils.Observable
+import datos.Precios
 
 @Observable
 @Accessors
 class Jugador {
 	int id
+	String nombre
 	int nivel
 	int potencial
-	String nombre
 
 	double precioVenta = 0
 	int vecesNoPagadas = 0
@@ -17,9 +20,11 @@ class Jugador {
 		id = integer
 		update
 	}
+	
+	new() {}
 
 	def double getImpuesto() {
-		PreciosNivel.instance.getPrecio(this) * 0.10
+		Precios.instance.getPrecio(this) * 0.10
 	}
 
 	def void noSePago() {
@@ -42,6 +47,6 @@ class Jugador {
 	}
 
 	override toString() {
-		id + ";" + nombre + ";" + nivel + ";" + potencial + "\n"
+		id + ";" + nombre + ";" + nivel + ";" + potencial+ ";" + precioVenta + ";" + vecesNoPagadas
 	}
 }

@@ -1,15 +1,13 @@
+package arena.windows
 
-
-import org.uqbar.arena.windows.MainWindow
-import org.uqbar.arena.widgets.Panel
+import master.LigaMaster
+import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.TextBox
-
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.Selector
+import org.uqbar.arena.windows.MainWindow
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.layout.VerticalLayout
-import org.uqbar.arena.widgets.Selector
 
 class EjemploWindow extends MainWindow<LigaMaster>{
 	new() {

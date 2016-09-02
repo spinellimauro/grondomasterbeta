@@ -1,5 +1,7 @@
-import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
+package arena.windows
+
+import arena.models.BuscadorModel
+import master.Jugador
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
@@ -7,11 +9,10 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.MainWindow
-import org.uqbar.commons.utils.Observable
 
-class TestArena extends MainWindow<Buscador> {
+class BuscadorWindow extends MainWindow<BuscadorModel> {
 	new() {
-		super(new Buscador)
+		super(new BuscadorModel)
 	}
 
 	override createContents(Panel panel) {
@@ -55,18 +56,7 @@ class TestArena extends MainWindow<Buscador> {
 	}
 
 	def static main(String[] args) {
-		new TestArena().startApplication
+		new BuscadorWindow().startApplication
 	}
 
-}
-
-@Observable
-@Accessors
-class Buscador {
-	String valorBuscado = ""
-	List<Jugador> resultados
-
-	def void buscar() {
-		resultados = SoFifa.instance.getJugadores(valorBuscado)
-	}
 }

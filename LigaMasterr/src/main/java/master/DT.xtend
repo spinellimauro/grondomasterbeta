@@ -1,21 +1,21 @@
+package master
+
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import datos.Precios
 
-@Accessors
 @Observable
-class Dt {
-	Regla reglas
-	String nombreDt
-	String equipo
+@Accessors
+class DT {
+	String nombreDT
+	String nombreEquipo
 	double plata
-	double valor
-	Jugador jugador
-	List<Jugador> jugadores = newArrayList
 	int torneosDisponibles = 3
 	int slots = 30
+	List<Jugador> jugadores = newArrayList
 
-	def void venderJugador(Jugador jugador,double precio) {
+	def void venderJugador(Jugador jugador, double precio) {
 		jugador => [precioVenta = precio]
 	}
 
@@ -24,7 +24,7 @@ class Dt {
 	}
 
 	def jugadoresConImpuesto() {
-		jugadores.filter[j|j.pagaImpuesto]
+		jugadores.filter[pagaImpuesto]
 	}
 
 	def void pagarImpuesto(List<Jugador> jugadoresAPagar) {
@@ -54,13 +54,18 @@ class Dt {
 		plata += jugadorVendido.precioVenta
 	}
 
-	def comprarSlot() {
+	def void comprarSlot() {
 		slots++
-		plata -= reglas.valorSlot
+		plata -= Precios.instance.getPrecio("Slot")
 	}
 
-	def boolean tieneSlots() {
+	def boolean getTieneSlots() {
 		slots > jugadores.size()
+	}
+
+	override toString() {
+		nombreDT + ";" + nombreEquipo + ";" + plata + ";" + torneosDisponibles + ";" + slots + ";" 
+		+ jugadores.fold("")[ acum , jugador | acum + jugador.id + "-" ]
 	}
 
 }
