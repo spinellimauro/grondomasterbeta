@@ -27,7 +27,11 @@ final class Precios {
 	)
 
 	Map<String, Double> mapaPrecios = newHashMap(
-		"Slot" -> 10000.0
+		"Slot" -> 10000.0,
+		"Gano" -> 2000.0,
+		"PlataPorGol" -> 1000.0,
+		"Empato" -> 1000.0,
+		"PorcentajeImpuesto" -> 10.0
 	)
 
 	def double getPrecio(Jugador jugador) {

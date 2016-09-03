@@ -58,10 +58,10 @@ class DT {
 	}
 
 	def empato() {
-		plata += 1000
+		plata += Precios.instance.getPrecio("Empato")
 	}
 
 	def gano(Integer diferenciaGol) {
-		plata += 2000 + (diferenciaGol * 1000)
+		plata += Precios.instance.getPrecio("Gano") + (diferenciaGol * Precios.instance.getPrecio("PlataPorGol"))
 	}
 }

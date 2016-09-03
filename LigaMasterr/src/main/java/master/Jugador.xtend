@@ -20,11 +20,12 @@ class Jugador {
 		id = integer
 		update
 	}
-	
-	new() {}
+
+	new() {
+	}
 
 	def double getImpuesto() {
-		Precios.instance.getPrecio(this) * 0.10
+		Precios.instance.getPrecio(this) * (Precios.instance.getPrecio("PorcentajeImpuesto") / 100)
 	}
 
 	def void noSePago() {
@@ -41,12 +42,13 @@ class Jugador {
 
 	def void update() {
 		val instance = Jsoup.connect("http://2016.sofifa.com/player/" + id).userAgent("Mozilla").post
-		nombre = instance.select("div.header").text.replaceAll("[(\\d+.*)]", "").replace("ID:", "").replace("  ","").toString
+		nombre = instance.select("div.header").text.replaceAll("[(\\d+.*)]", "").replace("ID:", "").replace("  ", "").
+			toString
 		nivel = Integer.parseInt(instance.select("span.p").get(0).text.toString)
 		potencial = Integer.parseInt(instance.select("span.p").get(1).text.toString)
 	}
 
 	override toString() {
-		id + ";" + nombre + ";" + nivel + ";" + potencial+ ";" + precioVenta + ";" + vecesNoPagadas
+		id + ";" + nombre + ";" + nivel + ";" + potencial + ";" + precioVenta + ";" + vecesNoPagadas
 	}
 }
