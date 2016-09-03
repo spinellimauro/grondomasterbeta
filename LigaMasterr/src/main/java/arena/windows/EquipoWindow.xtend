@@ -67,7 +67,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 
 		]
 		new NumericField(panel) => [
-			bindValueToProperty("jugadorElegido.precioVenta")
+			bindValueToProperty("precio")
 			width = 100
 			fontSize = 12
 		]
@@ -99,6 +99,18 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 		new Button(panel) => [
 			caption = "Salir"
 			onClick[close]
+			fontSize = 10
+		]
+		
+		new Button(panel) => [
+			caption = "Poner En Venta"
+			onClick[modelObject.ponerEnVenta(modelObject.jugadorElegido,modelObject.precio)]
+			fontSize = 10
+		]
+		
+		new Button(panel) => [
+			caption = "Mercado"
+			onClick[new VentaJugadoresWindow(this).open]
 			fontSize = 10
 		]
 	}

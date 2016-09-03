@@ -12,10 +12,13 @@ class EquipoModel {
 	Jugador jugadorElegido = new Jugador
 	DT dtElegido = new DT
 	LigaMaster grondomaster = new LigaMaster
+	Integer precio
 
 	def void removeJugador() {
 		dtElegido.jugadores.remove(jugadorElegido)
 	}
 	
-	
+	def ponerEnVenta(Jugador jugadorElegido,Integer precio){
+		jugadorElegido.precioVenta = precio
+	}
 }

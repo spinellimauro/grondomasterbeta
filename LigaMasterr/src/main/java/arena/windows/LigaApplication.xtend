@@ -10,8 +10,8 @@ class LigaApplication extends Application {
 	}
 
 	override protected Window<?> createMainWindow() {
-//		new EquipoWindow(this)
-		new VentaJugadoresWindow(this)
+		new EquipoWindow(this)
+//		new VentaJugadoresWindow(this)
 	}
 
 }
