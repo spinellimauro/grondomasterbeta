@@ -15,22 +15,41 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-
+import org.uqbar.arena.layout.HorizontalLayout
+import arena.models.TorneoModel
 
 class EquipoWindow extends SimpleWindow<EquipoModel> {
 
-	new(WindowOwner owner) {
-		super(owner, new EquipoModel)
+	new(WindowOwner owner, TorneoModel model) {
+		super(owner, new EquipoModel(model))
 		title = "Armado de Equipos"
 	}
 
 	override createFormPanel(Panel panel) {
+		createDTPanel(panel)
+		createEquipoPanel(panel)
+	}
+
+	def void createDTPanel(Panel panel) {
 		new Selector(panel) => [
-			bindItemsToProperty("grondomaster.dts").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindItemsToProperty("grondomaster.listaDTs").adapter = new PropertyAdapter(DT, "nombreDT")
 			bindValueToProperty("dtElegido")
-			
 		]
 
+		val panelHorizontal = new Panel(panel).layout = new HorizontalLayout
+		new Label(panelHorizontal) => [
+			text = "Plata"
+			fontSize = 12
+
+		]
+
+		new Label(panelHorizontal) => [
+			value <=> "dtElegido.plata"
+			fontSize = 12
+		]
+	}
+
+	def void createEquipoPanel(Panel panel) {
 		new Table(panel, Jugador) => [
 			bindItemsToProperty("dtElegido.jugadores")
 			bindValueToProperty("jugadorElegido")
@@ -57,60 +76,41 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 				fixedSize = 100
 			]
 		]
-
 	}
 
 	override addActions(Panel panel) {
 		new Label(panel) => [
 			text = "Precio de Venta"
 			fontSize = 12
-
 		]
+		
 		new NumericField(panel) => [
 			bindValueToProperty("precio")
 			width = 100
 			fontSize = 12
 		]
 		
-		new Label(panel) => [
-			text = "Plata"
-			fontSize = 12
-
-		]
-		
-		new Label(panel) => [
-			value <=> "dtElegido.plata"
-			fontSize = 12
-			width = 80
-
-		]
 		new Button(panel) => [
-			caption = "Agregar"
-			onClick[|new BuscadorWindow(this, modelObject).open]
+			caption = "Poner En Venta"
+			onClick[modelObject.ponerEnVenta]
 			fontSize = 10
 		]
 
 		new Button(panel) => [
-			caption = "Eliminar"
+			caption = "+"
+			onClick[|new BuscadorWindow(this, modelObject.dtElegido).open]
+			fontSize = 10
+		]
+
+		new Button(panel) => [
+			caption = "-"
 			onClick[|modelObject.removeJugador]
 			fontSize = 10
 		]
-		
-		new Button(panel) => [
-			caption = "Salir"
-			onClick[close]
-			fontSize = 10
-		]
-		
-		new Button(panel) => [
-			caption = "Poner En Venta"
-			onClick[modelObject.ponerEnVenta(modelObject.jugadorElegido,modelObject.precio)]
-			fontSize = 10
-		]
-		
+
 		new Button(panel) => [
 			caption = "Mercado"
-			onClick[new VentaJugadoresWindow(this).open]
+			onClick[new TransferiblesWindow(this, modelObject).open]
 			fontSize = 10
 		]
 	}

@@ -15,16 +15,15 @@ class DT {
 	int slots = 30
 	List<Jugador> jugadores = newArrayList
 
-	def void venderJugador(Jugador jugador, double precio) {
-		jugador => [precioVenta = precio]
+	def void venderJugador(Jugador jugador) {
+		plata += jugador.precioVenta
+		jugadores.remove(jugador)
 	}
 
-	def List<Jugador> getEnVenta() {
-		jugadores.filter[precioVenta != 0].toList
-	}
-
-	def jugadoresConImpuesto() {
-		jugadores.filter[pagaImpuesto]
+	def void comprarJugador(Jugador jugador) {
+		plata -= jugador.precioVenta
+		jugadores.add(jugador)
+		jugador.precioVenta = 0
 	}
 
 	def void pagarImpuesto(List<Jugador> jugadoresAPagar) {
@@ -40,38 +39,29 @@ class DT {
 		jugador.pagar
 	}
 
-	def void comprarJugadorEnVenta(Jugador jugadorSeleccionado,DT dueño) {
-//		if (tieneSlots()){     SI NO TIENE SLOTS SE DESACTIVA EL BOTON COMPRAR.
-		plata -= jugadorSeleccionado.precioVenta
-		jugadores.add(jugadorSeleccionado)
-		dueño.jugadores.remove(jugadorSeleccionado)
-		dueño.plata += jugadorSeleccionado.precioVenta
-		jugadorSeleccionado.precioVenta = 0
-//		}
-//		else 
-//			throw new Exception
-	}
-
-
 	def void comprarSlot() {
 		slots++
 		plata -= Precios.instance.getPrecio("Slot")
 	}
 
 	def boolean getTieneSlots() {
-		slots > jugadores.size()
+		slots > jugadores.size
+	}
+
+	def getJugadoresConImpuesto() {
+		jugadores.filter[pagaImpuesto]
 	}
 
 	override toString() {
-		nombreDT + ";" + nombreEquipo + ";" + plata + ";" + torneosDisponibles + ";" + slots + ";" 
-		+ jugadores.fold("")[ acum , jugador | acum + jugador.id + "-" ]
+		nombreDT + ";" + nombreEquipo + ";" + plata + ";" + torneosDisponibles + ";" + slots + ";"
+		+ jugadores.fold("") [ acum , jugador |	acum + jugador.id + "-" ]
 	}
-	
-	def empato(){
+
+	def empato() {
 		plata += 1000
 	}
-	
-	def gano(Integer diferenciaGol){
+
+	def gano(Integer diferenciaGol) {
 		plata += 2000 + (diferenciaGol * 1000)
 	}
 }

@@ -1,6 +1,7 @@
 package arena.windows
 
 import arena.models.BuscadorModel
+import master.DT
 import master.Jugador
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
@@ -10,14 +11,10 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import master.DT
-import master.LigaMaster
-import arena.models.EquipoModel
 
 class BuscadorWindow extends SimpleWindow<BuscadorModel> {
-	new(WindowOwner owner, EquipoModel model) {
-		super(owner, new BuscadorModel(model.dtElegido,model.grondomaster))
-		
+	new(WindowOwner owner, DT model) {
+		super(owner, new BuscadorModel(model))
 	}
 
 	override createFormPanel(Panel panel) {

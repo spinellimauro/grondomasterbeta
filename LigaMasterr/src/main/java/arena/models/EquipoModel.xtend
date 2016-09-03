@@ -11,14 +11,18 @@ import org.uqbar.commons.utils.Observable
 class EquipoModel {
 	Jugador jugadorElegido = new Jugador
 	DT dtElegido = new DT
-	LigaMaster grondomaster = new LigaMaster
+	LigaMaster grondomaster
 	Integer precio
+
+	new(TorneoModel model) {
+		grondomaster = model.grondomaster
+	}
 
 	def void removeJugador() {
 		dtElegido.jugadores.remove(jugadorElegido)
 	}
-	
-	def ponerEnVenta(Jugador jugadorElegido,Integer precio){
+
+	def ponerEnVenta() {
 		jugadorElegido.precioVenta = precio
 	}
 }

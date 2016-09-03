@@ -1,40 +1,27 @@
 package arena.windows
 
 import arena.models.EquipoModel
-import master.DT
-import master.Jugador
-import org.uqbar.arena.bindings.PropertyAdapter
+import arena.models.TransferiblesModel
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.NumericField
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import arena.models.VentaJugadores
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import master.Jugador
 
-class VentaJugadoresWindow extends SimpleWindow<VentaJugadores> {
+class TransferiblesWindow extends SimpleWindow<TransferiblesModel> {
 
-	new(WindowOwner owner) {
-		super(owner, new VentaJugadores)
+	new(WindowOwner owner, EquipoModel model) {
+		super(owner, new TransferiblesModel(model))
 		title = "Venta Jugadores"
-		modelObject.jugadoresEnVenta
 	}
 
 	override createFormPanel(Panel panel) {
-		
-		new Selector(panel) => [
-			bindItemsToProperty("grondomaster.dts").adapter = new PropertyAdapter(DT, "nombreDT")
-			bindValueToProperty("dtElegido")
-			
-		]
-		
 		new Table(panel, Jugador) => [
-			items <=> "jugadores"
+			items <=> "listaTransferibles"
 			value <=> "jugadorSeleccionado"
 			numberVisibleRows = 8
 
@@ -58,15 +45,7 @@ class VentaJugadoresWindow extends SimpleWindow<VentaJugadores> {
 				bindContentsToProperty("precioVenta")
 				fixedSize = 100
 			]
-			
-//			new Column(it) => [
-//				title = "Dueño"
-////				bindContentsToProperty("modelObject.dtJugador")
-//				fixedSize = 100
-//			]
-//			
 		]
-
 	}
 
 	override addActions(Panel panel) {
@@ -74,12 +53,6 @@ class VentaJugadoresWindow extends SimpleWindow<VentaJugadores> {
 			caption = "Comprar"
 			fontSize = 10
 			onClick[modelObject.comprarJugador()]
-		]
-		
-		new Button(panel) => [
-			caption = "Salir"
-			onClick[close]
-			fontSize = 10
 		]
 	}
 }
