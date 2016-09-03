@@ -14,6 +14,7 @@ class DT {
 	int torneosDisponibles = 3
 	int slots = 30
 	List<Jugador> jugadores = newArrayList
+	List<Oferta> ofertasRecibidas = newArrayList
 
 	def void venderJugador(Jugador jugador) {
 		plata += jugador.precioVenta
@@ -63,5 +64,29 @@ class DT {
 
 	def gano(Integer diferenciaGol) {
 		plata += Precios.instance.getPrecio("Gano") + (diferenciaGol * Precios.instance.getPrecio("PlataPorGol"))
+	}
+	
+	def ofertar(Jugador jugadorSeleccionado,Double precioOferta){
+		new Oferta =>[
+			dtOfertante = this
+//			dtReceptor = DT DEL JUGADORSELECCIONADO
+			monto = precioOferta
+			jugadorAComprar = jugadorSeleccionado
+		]
+	}
+	
+	def aceptarOferta(Oferta oferta){
+		oferta.dtOfertante.agregarJugador(oferta.jugadorAComprar)
+		oferta.dtReceptor.sacarJugador(oferta.jugadorAComprar)
+		oferta.dtOfertante.plata -= oferta.monto
+		oferta.dtReceptor.plata += oferta.monto
+	}
+	
+	def sacarJugador(Jugador jugador){
+		jugadores.remove(jugador)
+	}
+	
+	def agregarJugador(Jugador jugador){
+		jugadores.add(jugador)
 	}
 }

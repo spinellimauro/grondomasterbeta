@@ -1,9 +1,9 @@
 package master
 
+import datos.Precios
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.jsoup.Jsoup
 import org.uqbar.commons.utils.Observable
-import datos.Precios
 
 @Observable
 @Accessors
@@ -12,10 +12,12 @@ class Jugador {
 	String nombre
 	int nivel
 	int potencial
-
+	
 	double precioVenta = 0
 	int vecesNoPagadas = 0
+	
 
+	
 	new(int integer) {
 		id = integer
 		update
@@ -51,4 +53,6 @@ class Jugador {
 	override toString() {
 		id + ";" + nombre + ";" + nivel + ";" + potencial + ";" + precioVenta + ";" + vecesNoPagadas
 	}
+	
+	
 }
