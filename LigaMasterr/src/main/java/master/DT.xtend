@@ -4,6 +4,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import datos.Precios
+import java.util.Set
 
 @Observable
 @Accessors
@@ -11,9 +12,10 @@ class DT {
 	String nombreDT
 	String nombreEquipo
 	double plata
+	Torneo torneo
 	int torneosDisponibles = 3
 	int slots = 30
-	List<Jugador> jugadores = newArrayList
+	Set<Jugador> jugadores = newHashSet
 	List<Oferta> ofertasRecibidas = newArrayList
 
 	def void venderJugador(Jugador jugador) {
@@ -88,5 +90,9 @@ class DT {
 	
 	def agregarJugador(Jugador jugador){
 		jugadores.add(jugador)
+	}
+	
+	def int getPuntos(){
+		torneo.getPuntos(this)
 	}
 }

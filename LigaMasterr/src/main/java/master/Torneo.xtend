@@ -8,40 +8,66 @@ import java.util.Collections
 @Observable
 @Accessors
 class Torneo {
-	String nombreTorneo
+	String nombreTorneo = ""
 	List<DT> listaParticipantes = newArrayList
 	List<Partido> listaPartidos = newArrayList
 
 	def void sortearFechas() {
-		val nuevaLista = newArrayList
+		listaPartidos.clear
 		Collections.shuffle(listaParticipantes)
-		var int round
-		var int match
-		val int rounds_count = listaParticipantes.size - 1
-		val int matches_per_round = (listaParticipantes.size) / 2
-		val int teams_count = listaParticipantes.size
+		var int fecha
+		var int partido
 
-		for (round = 0; round < rounds_count; round++)
-			for (match = 0; match < matches_per_round; match++) {
-				var int home = (round + match) % (teams_count - 1)
-				var int away = if(match == 0) teams_count - 1 else (teams_count - 1 - match + round) % (teams_count - 1)
+		for (fecha = 0; fecha < numeroFechas; fecha++) {
 
-				val partido = new Partido
-				partido.numeroFecha = round + 1
-				partido.dtLocal = listaParticipantes.get(home)
-				partido.dtVisitante = listaParticipantes.get(away)
-				nuevaLista.add(partido)
+			for (partido = 0; partido < (listaParticipantes.size) / 2; partido++) {
+
+				var int local = (fecha + partido) % (listaParticipantes.size - 1)
+				var int visitante = if(partido == 0) numeroFechas else (numeroFechas - partido + fecha) % numeroFechas
+
+				val partidoNuevo = new Partido
+				partidoNuevo.numeroFecha = fecha + 1
+				partidoNuevo.dtLocal = listaParticipantes.get(local)
+				partidoNuevo.dtVisitante = listaParticipantes.get(visitante)
+				listaPartidos.add(partidoNuevo)
+
 			}
-		listaPartidos = nuevaLista
+		}
 	}
 
 	def List<Partido> getFecha(int entero) {
 		listaPartidos.filter[numeroFecha == entero].toList
 	}
 
+	def Integer getNumeroFechas() {
+		listaParticipantes.size - 1
+	}
+
+	def List<Jugador> getListaGoleadores() {
+		listaParticipantes.fold(newArrayList)[lista, dt|lista.addAll(dt.jugadores) lista]
+		.filter[goles != 0].sortBy [goles].reverse.toList
+	}
+
+	def List<DT> getListaPosiciones() {
+		listaParticipantes.sortBy[puntos].reverse
+	}
+
+	def int getPuntos(DT dt) {
+		listaPartidos.filter[getJugoPartido(dt)].fold(0)[acum, partido|acum + partido.getPuntos(dt)]
+	}
+
+	def int getGoles(Jugador jugador) {
+		val listaGoles = listaPartidos.fold(newArrayList) [ lista, partido |
+			lista.addAll(partido.golesLocal)
+			lista.addAll(partido.golesVisitante)
+			lista
+		]
+
+		listaGoles.filter[equals(jugador)].size
+	}
+
 	override toString() {
-		nombreTorneo + ";" 
-		+ listaParticipantes.fold("")[acum, dt|acum + dt.nombreDT + "-"]+ ";" 
-		+ listaPartidos.fold("")[acum, partido|acum + partido + "-"]
+		nombreTorneo + ";" + listaParticipantes.fold("")[acum, dt|acum + dt.nombreDT + "-"] + ";" +
+			listaPartidos.fold("")[acum, partido|acum + partido + "-"]
 	}
 }

@@ -1,1 +1,1 @@
-torneoTest;Alejandro-Latta-Mauro-NicoR-;1,Alejandro,NicoR,:,:-1,Latta,Mauro,:,:-2,Latta,NicoR,:,:-2,Mauro,Alejandro,:,:-3,Mauro,NicoR,:,:-3,Alejandro,Latta,:,:-
+torneoTest;Alejandro-Latta-Mauro-NicoR-;1,Alejandro,NicoR,:193301:193301:193301:193301:,:231443:231443:-1,Latta,Mauro,:211300:211300:200145:,:178562:192985:-2,Latta,NicoR,:211300:211300:,:228080:192227:-2,Mauro,Alejandro,:192985:178562:,:193301:-3,Mauro,NicoR,:197853:192985:203486:,:231443:231443:-3,Alejandro,Latta,:193301:193301:,:-

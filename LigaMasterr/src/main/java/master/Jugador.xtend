@@ -12,12 +12,10 @@ class Jugador {
 	String nombre
 	int nivel
 	int potencial
-	
+	Torneo torneo
 	double precioVenta = 0
 	int vecesNoPagadas = 0
-	
 
-	
 	new(int integer) {
 		id = integer
 		update
@@ -42,6 +40,10 @@ class Jugador {
 		nivel > 82
 	}
 
+	def int getGoles() {
+		torneo.getGoles(this)
+	}
+
 	def void update() {
 		val instance = Jsoup.connect("http://2016.sofifa.com/player/" + id).userAgent("Mozilla").post
 		nombre = instance.select("div.header").text.replaceAll("[(\\d+.*)]", "").replace("ID:", "").replace("  ", "").
@@ -53,6 +55,14 @@ class Jugador {
 	override toString() {
 		id + ";" + nombre + ";" + nivel + ";" + potencial + ";" + precioVenta + ";" + vecesNoPagadas
 	}
-	
-	
+
+	override equals(Object obj) {
+		if(obj == null) return false
+		if(!Jugador.isAssignableFrom(obj.class)) return false
+
+		val otroJugador = obj as Jugador
+		if(id != otroJugador.id) return false else true
+	}
+
+	override hashCode() { id }
 }

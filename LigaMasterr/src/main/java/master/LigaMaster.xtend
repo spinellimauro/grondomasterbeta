@@ -13,6 +13,7 @@ import static extension com.google.common.io.CharStreams.*
 @Accessors
 class LigaMaster {
 	String nombreLiga
+	List<Jugador> listaJugadores = newArrayList
 	List<DT> listaDTs = newArrayList
 	List<Torneo> listaTorneos = newArrayList
 	String dirDTs
@@ -24,13 +25,6 @@ class LigaMaster {
 		dirDTs = "data/" + nombreLiga + ".dts.txt"
 		dirJugadores = "data/" + nombreLiga + ".jugadores.txt"
 		dirTorneos = "data/" + nombreLiga + ".torneos.txt"
-	}
-
-	def List<Jugador> getListaJugadores() {
-		listaDTs.fold(newArrayList) [ lista, dt |
-			lista.addAll(dt.jugadores)
-			lista
-		]
 	}
 
 	def List<Jugador> getListaTransferibles() {
@@ -48,6 +42,9 @@ class LigaMaster {
 	}
 
 	def void leerBase() {
+		val readerJugadores = new FileReader(dirJugadores).readLines
+		listaJugadores.addAll( readerJugadores.map[toJugador])
+		
 		val readerDts = new FileReader(dirDTs).readLines
 		listaDTs.addAll( readerDts.map[toDT])
 
@@ -77,7 +74,7 @@ class LigaMaster {
 			plata = Double.parseDouble(textoDT.next)
 			torneosDisponibles = Integer.parseInt(textoDT.next)
 			slots = Integer.parseInt(textoDT.next)
-			jugadores.addAll(textoDT.next.split("-").map[getJugador].toList)
+			textoDT.next.split("-").forEach[s|if(s != null) jugadores.add(getJugador(s))]
 		]
 	}
 
@@ -95,8 +92,7 @@ class LigaMaster {
 
 	def Jugador getJugador(String idText) {
 		val idInt = Integer.parseInt(idText)
-		val readerJugadores = new FileReader(dirJugadores).readLines
-		readerJugadores.map[toJugador].findFirst[id == idInt]
+		listaJugadores.findFirst[id == idInt]
 	}
 
 	def Torneo toTorneo(String string) {
@@ -115,8 +111,8 @@ class LigaMaster {
 			numeroFecha = Integer.parseInt(readerPartido.next)
 			dtLocal = getDT(readerPartido.next)
 			dtVisitante = getDT(readerPartido.next)
-			golesLocal = readerPartido.next.split(":").map[getJugador]
-			golesVisitante = readerPartido.next.split(":").map[getJugador]
+			readerPartido.next.split(":").forEach[s|if(s != "") golesLocal.add(getJugador(s))]
+			readerPartido.next.split(":").forEach[s|if(s != "") golesVisitante.add(getJugador(s))]
 		]
 	}
 

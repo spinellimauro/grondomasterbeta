@@ -16,7 +16,8 @@ class TransferiblesWindow extends SimpleWindow<TransferiblesModel> {
 
 	new(WindowOwner owner, EquipoModel model) {
 		super(owner, new TransferiblesModel(model))
-		title = "Venta Jugadores"
+		title = "Jugadores en Venta"
+		taskDescription = ""
 	}
 
 	override createFormPanel(Panel panel) {
