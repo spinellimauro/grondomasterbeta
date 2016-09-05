@@ -11,6 +11,7 @@ class Jugador {
 	String nombre
 	int nivel
 	int potencial
+
 	Torneo torneo
 	double precioVenta = 0
 	int vecesNoPagadas = 0
@@ -19,8 +20,9 @@ class Jugador {
 		id = integer
 		update
 	}
-	
-	new(){}
+
+	new() {
+	}
 
 	def double getImpuesto() {
 		val precios = torneo.precios
@@ -41,6 +43,11 @@ class Jugador {
 
 	def int getGoles() {
 		torneo.getGoles(this)
+	}
+
+	def String getPropietario() {
+		val propietario = torneo.getPropietario(this)
+		propietario.nombreDT + " (" + propietario.nombreEquipo + ")"
 	}
 
 	def void update() {

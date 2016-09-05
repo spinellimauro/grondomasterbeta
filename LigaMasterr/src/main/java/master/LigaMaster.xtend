@@ -28,9 +28,7 @@ class LigaMaster {
 		dirTorneos = "data/" + nombreLiga + ".torneos.txt"
 	}
 
-	def List<Jugador> getListaTransferibles() {
-		listaJugadores.filter[precioVenta != 0].toList
-	}
+
 
 	def List<DT> getDTsQuePagan() {
 		listaDTs.filter[fechasDisponibles == 0].toList
@@ -95,11 +93,13 @@ class LigaMaster {
 	def Torneo toTorneo(String string) {
 		val readerTorneo = string.split(";").iterator
 
-		val torneo = new Torneo
-		torneo.nombreTorneo = readerTorneo.next
-		torneo.listaParticipantes.addAll( readerTorneo.next.split("-").map[getDT])
-		torneo.listaPartidos.addAll(readerTorneo.next.split("-").map[toPartido])
-		torneo
+		val torneoNuevo = new Torneo
+		torneoNuevo.nombreTorneo = readerTorneo.next
+		torneoNuevo.listaParticipantes.addAll( readerTorneo.next.split("-").map[getDT])
+		torneoNuevo.listaParticipantes.forEach[torneo = torneoNuevo]
+		torneoNuevo.listaJugadores.forEach[torneo = torneoNuevo]
+		torneoNuevo.listaPartidos.addAll(readerTorneo.next.split("-").map[toPartido])
+		torneoNuevo
 	}
 
 	def Partido toPartido(String string) {

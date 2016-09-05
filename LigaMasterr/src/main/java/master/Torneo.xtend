@@ -41,13 +41,17 @@ class Torneo {
 		listaParticipantes.remove(libre)
 	}
 
+	def List<Jugador> getListaTransferibles() {
+		listaJugadores.filter[precioVenta != 0].toList
+	}
+
 	def List<Partido> getFecha(int entero) {
 		listaPartidos.filter[numeroFecha == entero].toList
 	}
 
 	def Integer getNumeroFechas() {
 		val nroDts = listaParticipantes.size
-		if (nroDts % 2 == 0) nroDts - 1 else nroDts
+		if(nroDts % 2 == 0) nroDts - 1 else nroDts
 	}
 
 	def List<Jugador> getListaJugadores() {
@@ -80,4 +84,9 @@ class Torneo {
 		nombreTorneo + ";" + listaParticipantes.fold("")[acum, dt|acum + dt.nombreDT + "-"] + ";" +
 			listaPartidos.fold("")[acum, partido|acum + partido + "-"]
 	}
+
+	def DT getPropietario(Jugador jugador) {
+		listaParticipantes.findFirst[jugadores.contains(jugador)]
+	}
+
 }

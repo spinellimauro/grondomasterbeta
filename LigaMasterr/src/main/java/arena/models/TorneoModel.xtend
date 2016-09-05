@@ -22,13 +22,9 @@ class TorneoModel {
 		grondomaster = new LigaMaster("test")
 		grondomaster.leerBase
 		torneoSeleccionado = grondomaster.listaTorneos.get(0)
-		torneoSeleccionado.listaJugadores.forEach[torneo = torneoSeleccionado]
-		torneoSeleccionado.listaParticipantes.forEach[torneo = torneoSeleccionado]
 	}
 
 	def void setTorneoSeleccionado(Torneo otroTorneo) {
-		otroTorneo.listaJugadores.forEach[torneo = otroTorneo]
-		otroTorneo.listaParticipantes.forEach[torneo = otroTorneo]
 		fechaSeleccionada = 1
 		torneoSeleccionado = otroTorneo
 		ObservableUtils.firePropertyChanged(this, "listaFechas")
@@ -53,8 +49,6 @@ class TorneoModel {
 	def void crearTorneo() {
 		val torneoNuevo = new Torneo
 		torneoNuevo.nombreTorneo = nombreIngresado
-		torneoNuevo.listaParticipantes.forEach[jugadores.forEach[torneo = torneoNuevo]]
-
 		grondomaster.listaTorneos.add(torneoNuevo)
 	}
 

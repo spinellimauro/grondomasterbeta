@@ -22,21 +22,18 @@ class EquipoModel {
 	List<Jugador> listaExterior = newArrayList
 
 	new(TorneoModel model) {
-		grondomaster = model.grondomaster
 		torneo = model.torneoSeleccionado
 		dtElegido = torneo.listaParticipantes.get(0)
 	}
 
 	def void addJugador() {
-		grondomaster.listaJugadores.add(jugadorElegido)
 		dtElegido.addJugador(jugadorElegido)
 		listaExterior.remove(jugadorElegido)
 	}
 
 	def void removeJugador() {
 		listaExterior.add(jugadorElegido)
-		grondomaster.listaJugadores.remove(jugadorElegido)
-		dtElegido.jugadores.remove(jugadorElegido)
+		dtElegido.removeJugador(jugadorElegido)
 	}
 
 	def void buscar() {

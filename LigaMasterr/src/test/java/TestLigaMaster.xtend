@@ -22,10 +22,4 @@ class TestLigaMaster {
 	def void verificarJugadores() {
 		Assert.assertEquals(14, grondomaster.listaJugadores.size)
 	}
-
-	@Test
-	def void verificarJugadoresEnVenta() {
-		Assert.assertEquals(2, grondomaster.listaTransferibles.size)
-	}
-
 }

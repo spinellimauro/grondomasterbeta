@@ -29,25 +29,31 @@ class MercadoWindow extends SimpleWindow<MercadoModel> {
 			new Column(it) => [
 				title = "Nombre"
 				bindContentsToProperty("nombre")
-				fixedSize = 200
+				fixedSize = 150
 			]
 			new Column(it) => [
 				title = "Nivel"
 				bindContentsToProperty("nivel")
-				fixedSize = 80
+				fixedSize = 45
 			]
 			new Column(it) => [
 				title = "Potencial"
 				bindContentsToProperty("potencial")
-				fixedSize = 90
+				fixedSize = 65
 			]
 			new Column(it) => [
 				title = "Precio"
 				bindContentsToProperty("precioVenta")
-				fixedSize = 100
+				fixedSize = 70
+			]
+
+			new Column(it) => [
+				title = "Propietario"
+				bindContentsToProperty("propietario")
+				fixedSize = 150
 			]
 		]
-		
+
 		new Button(panel) => [
 			caption = "Comprar"
 			fontSize = 10
@@ -56,9 +62,9 @@ class MercadoWindow extends SimpleWindow<MercadoModel> {
 	}
 
 	override addActions(Panel panel) {}
-	
+
 	override protected createFormPanel(Panel mainPanel) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
-	
+
 }

@@ -88,7 +88,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			new Column(it) => [
 				title = "Precio"
 				bindContentsToProperty("precioVenta")
-				fixedSize = 65
+				fixedSize = 70
 			]
 		]
 
