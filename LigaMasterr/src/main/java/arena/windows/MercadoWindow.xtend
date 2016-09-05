@@ -1,7 +1,7 @@
 package arena.windows
 
 import arena.models.EquipoModel
-import arena.models.TransferiblesModel
+import master.Jugador
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.tables.Column
@@ -10,17 +10,17 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import master.Jugador
+import arena.models.MercadoModel
 
-class TransferiblesWindow extends SimpleWindow<TransferiblesModel> {
+class MercadoWindow extends SimpleWindow<MercadoModel> {
 
 	new(WindowOwner owner, EquipoModel model) {
-		super(owner, new TransferiblesModel(model))
-		title = "Jugadores en Venta"
+		super(owner, new MercadoModel(model))
+		title = "Mercado"
 		taskDescription = ""
 	}
 
-	override createFormPanel(Panel panel) {
+	override createMainTemplate(Panel panel) {
 		new Table(panel, Jugador) => [
 			items <=> "listaTransferibles"
 			value <=> "jugadorSeleccionado"
@@ -47,13 +47,18 @@ class TransferiblesWindow extends SimpleWindow<TransferiblesModel> {
 				fixedSize = 100
 			]
 		]
-	}
-
-	override addActions(Panel panel) {
+		
 		new Button(panel) => [
 			caption = "Comprar"
 			fontSize = 10
-			onClick[modelObject.comprarJugador()]
+			onClick[modelObject.comprarJugador]
 		]
 	}
+
+	override addActions(Panel panel) {}
+	
+	override protected createFormPanel(Panel mainPanel) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

@@ -8,12 +8,13 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 
 import static extension com.google.common.io.CharStreams.*
+import java.util.Set
 
 @Observable
 @Accessors
 class LigaMaster {
 	String nombreLiga
-	List<Jugador> listaJugadores = newArrayList
+	Set<Jugador> listaJugadores = newHashSet
 	List<DT> listaDTs = newArrayList
 	List<Torneo> listaTorneos = newArrayList
 	String dirDTs
@@ -32,7 +33,7 @@ class LigaMaster {
 	}
 
 	def List<DT> getDTsQuePagan() {
-		listaDTs.filter[torneosDisponibles == 0].toList
+		listaDTs.filter[fechasDisponibles == 0].toList
 	}
 
 	def void crearBase() {
@@ -43,8 +44,8 @@ class LigaMaster {
 
 	def void leerBase() {
 		val readerJugadores = new FileReader(dirJugadores).readLines
-		listaJugadores.addAll( readerJugadores.map[toJugador])
-		
+		listaJugadores.addAll( readerJugadores.filter[!nullOrEmpty].map[toJugador])
+
 		val readerDts = new FileReader(dirDTs).readLines
 		listaDTs.addAll( readerDts.map[toDT])
 
@@ -53,29 +54,18 @@ class LigaMaster {
 	}
 
 	def void guardarBase() {
-		val PrintWriter writerDTs = new PrintWriter(dirDTs, "UTF-8")
-		listaDTs.forEach[writerDTs.println(toString)]
+		crearBase
+		val PrintWriter writerDTs = new PrintWriter(dirDTs)
+		listaTorneos.forEach[listaParticipantes.forEach[writerDTs.println(toString)]]
 		writerDTs.close
 
-		val PrintWriter writerJugadores = new PrintWriter(dirJugadores, "UTF-8")
-		listaJugadores.forEach[writerJugadores.println(toString)]
+		val PrintWriter writerJugadores = new PrintWriter(dirJugadores)
+		listaTorneos.forEach[ t | t.listaJugadores.forEach[writerJugadores.println(toString)]]
 		writerJugadores.close
 
-		val PrintWriter writerTorneo = new PrintWriter(dirTorneos, "UTF-8")
+		val PrintWriter writerTorneo = new PrintWriter(dirTorneos)
 		listaTorneos.forEach[writerTorneo.println(toString)]
 		writerTorneo.close
-	}
-
-	def DT toDT(String string) {
-		val textoDT = string.split(";").iterator
-		new DT => [
-			nombreDT = textoDT.next
-			nombreEquipo = textoDT.next
-			plata = Double.parseDouble(textoDT.next)
-			torneosDisponibles = Integer.parseInt(textoDT.next)
-			slots = Integer.parseInt(textoDT.next)
-			textoDT.next.split("-").forEach[s|if(s != null) jugadores.add(getJugador(s))]
-		]
 	}
 
 	def Jugador toJugador(String string) {
@@ -90,9 +80,16 @@ class LigaMaster {
 		]
 	}
 
-	def Jugador getJugador(String idText) {
-		val idInt = Integer.parseInt(idText)
-		listaJugadores.findFirst[id == idInt]
+	def DT toDT(String string) {
+		val textoDT = string.split(";").iterator
+		new DT => [
+			nombreDT = textoDT.next
+			nombreEquipo = textoDT.next
+			plata = Double.parseDouble(textoDT.next)
+			fechasDisponibles = Integer.parseInt(textoDT.next)
+			slots = Integer.parseInt(textoDT.next)
+			jugadores.addAll(textoDT.next.split("-").filter[!nullOrEmpty].map[getJugador])
+		]
 	}
 
 	def Torneo toTorneo(String string) {
@@ -114,6 +111,11 @@ class LigaMaster {
 			readerPartido.next.split(":").forEach[s|if(s != "") golesLocal.add(getJugador(s))]
 			readerPartido.next.split(":").forEach[s|if(s != "") golesVisitante.add(getJugador(s))]
 		]
+	}
+
+	def Jugador getJugador(String idText) {
+		val idInt = Integer.parseInt(idText)
+		listaJugadores.findFirst[id == idInt]
 	}
 
 	def DT getDT(String string) {

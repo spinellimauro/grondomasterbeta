@@ -20,7 +20,7 @@ class TestLigaMaster {
 
 	@Test
 	def void verificarJugadores() {
-		Assert.assertEquals(12, grondomaster.listaJugadores.size)
+		Assert.assertEquals(14, grondomaster.listaJugadores.size)
 	}
 
 	@Test

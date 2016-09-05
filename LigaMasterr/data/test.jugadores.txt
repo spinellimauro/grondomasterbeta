@@ -1,13 +1,14 @@
-228080;Felix Passlack;62;81;0.0;0
 192227;Shkodran Mustafi;82;87;0.0;0
-231443;Ousmane Dembelé;76;89;0.0;0
-192985;Kevin De Bruyne;86;89;150000.0;0
-178562;Éver Banega;81;81;0.0;0
-197853;Serge Aurier;81;86;0.0;0
-203486;Thorgan Hazard;78;83;0.0;0
-184881;Sofiane Feghouli;81;83;20000.0;0
-215316;Gerónimo Rulli;79;85;0.0;0
+161648;Hatem Ben Arfa;82;82;0.0;0
+228080;Felix Passlack;62;81;0.0;0
+216594;Nabil Fekir;79;85;0.0;0
+179944;David Luiz Moreira Marinho;83;83;0.0;0
 193301;Alexandre Lacazette;83;87;0.0;0
-219998;José Mauri;72;82;0.0;0
-211300;Anthony Martial;78;86;0.0;0
+207494;Jesse Lingard;76;82;0.0;0
 200145;Carlos Henrique Venancio Casimiro;79;83;0.0;0
+211300;Anthony Martial;78;86;0.0;0
+178562;Éver Banega;81;81;0.0;0
+192985;Kevin De Bruyne;86;89;150000.0;0
+184881;Sofiane Feghouli;81;83;20000.0;0
+197853;Serge Aurier;81;86;0.0;0
+231677;Marcus Rashford;69;85;0.0;0

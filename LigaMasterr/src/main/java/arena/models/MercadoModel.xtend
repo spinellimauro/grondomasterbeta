@@ -10,7 +10,7 @@ import java.util.List
 
 @Accessors
 @Observable
-class TransferiblesModel {
+class MercadoModel {
 	Jugador jugadorSeleccionado
 	DT dtElegido
 	LigaMaster grondomaster
@@ -30,6 +30,7 @@ class TransferiblesModel {
 		val dueño = grondomaster.listaDTs.findFirst[jugadores.contains(jugadorSeleccionado)]
 		dueño.venderJugador(jugadorSeleccionado)
 		dtElegido.comprarJugador(jugadorSeleccionado)
-		ObservableUtils.firePropertyChanged(this, "grondomaster", getGrondomaster())
+		ObservableUtils.firePropertyChanged(this, "listaTransferibles")
+		ObservableUtils.firePropertyChanged(this, "dtElegido")
 	}
 }

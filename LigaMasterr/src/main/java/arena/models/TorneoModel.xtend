@@ -22,16 +22,18 @@ class TorneoModel {
 		grondomaster = new LigaMaster("test")
 		grondomaster.leerBase
 		torneoSeleccionado = grondomaster.listaTorneos.get(0)
-		torneoSeleccionado.listaParticipantes.forEach[jugadores.forEach[torneo = torneoSeleccionado]]
+		torneoSeleccionado.listaJugadores.forEach[torneo = torneoSeleccionado]
 		torneoSeleccionado.listaParticipantes.forEach[torneo = torneoSeleccionado]
 	}
 
-	def void setTorneoSeleccionado(Torneo torneo) {
+	def void setTorneoSeleccionado(Torneo otroTorneo) {
+		otroTorneo.listaJugadores.forEach[torneo = otroTorneo]
+		otroTorneo.listaParticipantes.forEach[torneo = otroTorneo]
 		fechaSeleccionada = 1
-		torneoSeleccionado = torneo
+		torneoSeleccionado = otroTorneo
 		ObservableUtils.firePropertyChanged(this, "listaFechas")
 	}
-	
+
 	@Dependencies("fechaSeleccionada")
 	def List<Partido> getFecha() {
 		torneoSeleccionado.getFecha(fechaSeleccionada)
@@ -42,8 +44,10 @@ class TorneoModel {
 	}
 
 	def void sortearFixture() {
+		fechaSeleccionada = 1
 		torneoSeleccionado.sortearFechas
 		ObservableUtils.firePropertyChanged(this, "fecha")
+		ObservableUtils.firePropertyChanged(this, "listaFechas")
 	}
 
 	def void crearTorneo() {

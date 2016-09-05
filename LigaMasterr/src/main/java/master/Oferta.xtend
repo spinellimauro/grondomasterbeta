@@ -7,5 +7,17 @@ class Oferta {
 	DT dtOfertante
 	DT dtReceptor
 	Double monto
-	Jugador jugadorAComprar
+	Jugador jugadorOfertado
+	
+	def void aceptar(){
+		dtOfertante.addJugador(jugadorOfertado)
+		dtOfertante.decPlata(monto)
+
+		dtReceptor.removeJugador(jugadorOfertado)
+		dtReceptor.incPlata(monto)
+	}
+	
+	def void rechazar(){
+		dtReceptor.ofertasRecibidas.remove(this)
+	}
 }

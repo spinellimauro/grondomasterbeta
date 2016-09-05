@@ -1,19 +1,19 @@
 package arena.windows
 
-import org.uqbar.arena.windows.SimpleWindow
 import arena.models.PartidoModel
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.windows.WindowOwner
-import arena.models.TorneoModel
+import master.Jugador
+import master.Partido
+import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.bindings.PropertyAdapter
-import master.Jugador
+import org.uqbar.arena.widgets.List
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
 
 class PartidoWindow extends SimpleWindow<PartidoModel> {
-	new(WindowOwner parent, TorneoModel model) {
+	new(WindowOwner parent, Partido model) {
 		super(parent, new PartidoModel(model))
 	}
 
@@ -25,6 +25,10 @@ class PartidoWindow extends SimpleWindow<PartidoModel> {
 	}
 
 	def createLocalPanel(Panel panel) {
+		new Label(panel) => [
+			bindValueToProperty("partido.dtLocal.nombreDT")
+			fontSize = 12
+		]
 		new List(panel) => [
 			bindItemsToProperty("partido.dtLocal.jugadores").adapter = new PropertyAdapter(Jugador, "nombre")
 			bindValueToProperty("jugadorSeleccionado")
@@ -35,23 +39,27 @@ class PartidoWindow extends SimpleWindow<PartidoModel> {
 		val buttonPanel = new Panel(panel).layout = new HorizontalLayout
 		new Button(buttonPanel) => [
 			caption = "+"
-			onClick[modelObject.addGolLocal]
-			fontSize = 10
+			onClick[modelObject.addGol]
+			height = 30
 			width = 30
-			fontSize = 10
 		]
 		new Button(buttonPanel) => [
 			caption = "-"
-			onClick[|modelObject.removeGolLocal]
-			fontSize = 10
+			onClick[|modelObject.removeGol]
+			height = 30
 			width = 30
 		]
 	}
 
 	def createPartidoPanel(Panel panel) {
 		new Label(panel) => [
-			bindValueToProperty("marcador")
+			bindValueToProperty("partido.score")
 			fontSize = 30
+		]
+		
+		new Label(panel) => [
+			text = "Goles"
+			fontSize = 10
 		]
 
 		val golesPanel = new Panel(panel).layout = new HorizontalLayout
@@ -71,6 +79,10 @@ class PartidoWindow extends SimpleWindow<PartidoModel> {
 	}
 
 	def createVisitantePanel(Panel panel) {
+		new Label(panel) => [
+			bindValueToProperty("partido.dtVisitante.nombreDT")
+			fontSize = 12
+		]
 		new List(panel) => [
 			bindItemsToProperty("partido.dtVisitante.jugadores").adapter = new PropertyAdapter(Jugador, "nombre")
 			bindValueToProperty("jugadorSeleccionado")
@@ -81,15 +93,14 @@ class PartidoWindow extends SimpleWindow<PartidoModel> {
 		val buttonPanel = new Panel(panel).layout = new HorizontalLayout
 		new Button(buttonPanel) => [
 			caption = "+"
-			onClick[modelObject.addGolVisitante]
-			fontSize = 10
+			onClick[modelObject.addGol]
+			height = 30
 			width = 30
-			fontSize = 10
 		]
 		new Button(buttonPanel) => [
 			caption = "-"
-			onClick[|modelObject.removeGolVisitante]
-			fontSize = 10
+			onClick[|modelObject.removeGol]
+			height = 30
 			width = 30
 		]
 

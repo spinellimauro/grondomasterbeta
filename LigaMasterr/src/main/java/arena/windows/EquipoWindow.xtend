@@ -1,5 +1,7 @@
 package arena.windows
 
+import arena.components.LabeledNumericField
+import arena.components.LabeledTextBox
 import arena.models.EquipoModel
 import arena.models.TorneoModel
 import master.DT
@@ -8,7 +10,6 @@ import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.NumericField
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.TextBox
@@ -17,95 +18,48 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-
 class EquipoWindow extends SimpleWindow<EquipoModel> {
-
 	new(WindowOwner owner, TorneoModel model) {
 		super(owner, new EquipoModel(model))
-		title = "Manejo de Equipos"
-		taskDescription = ""
+		title = "Equipos"
 	}
 
 	override createMainTemplate(Panel panel) {
 		panel.layout = new HorizontalLayout
-
-		val panelIzquierdo = new Panel(panel)
-		createDTPanel(panelIzquierdo)
-
-		val panelCentral = new Panel(panel)
-		createEquipoPanel(panelCentral)
-		createButtonPanel(panelCentral)
-
-		val buttonPanel = new Panel(panel)
-		createTransferPanel(buttonPanel)
-
-		val panelDerecho = new Panel(panel)
-		createBuscadorPanel(panelDerecho)
+		createDTPanel(new Panel(panel))
+		createEquipoPanel(new Panel(panel))
+		createTransferPanel(new Panel(panel))
+		createBuscadorPanel(new Panel(panel))
 	}
 
 	def void createDTPanel(Panel panel) {
-		val panelNombre = new Panel(panel).layout = new HorizontalLayout
-		new Label(panelNombre) => [
-			text = "Nombre: "
-			fontSize = 12
-		]
-		new TextBox(panelNombre) => [
-			value <=> "dtElegido.nombreDT"
-			fontSize = 10
-			width = 70
-		]
-
-		val panelEquipo = new Panel(panel).layout = new HorizontalLayout
-		new Label(panelEquipo) => [
-			text = "Equipo :"
-			fontSize = 12
-		]
-		new TextBox(panelEquipo) => [
-			value <=> "dtElegido.nombreEquipo"
-			fontSize = 10
-			width = 80
-		]
-
-		val panelPlata = new Panel(panel).layout = new HorizontalLayout
-		new Label(panelPlata) => [
-			text = "Plata: "
-			fontSize = 12
-		]
-		new NumericField(panelPlata) => [
-			value <=> "dtElegido.plata"
-			fontSize = 10
-			width = 95
-		]
-
 		new Selector(panel) => [
-			bindItemsToProperty("grondomaster.listaDTs").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindItemsToProperty("torneo.listaParticipantes").adapter = new PropertyAdapter(DT, "nombreDT")
 			bindValueToProperty("dtElegido")
 			height = 80
 		]
 
-		val panelNuevo = new Panel(panel).layout = new HorizontalLayout
-		new TextBox(panelNuevo) => [
-			value <=> "nombreIngresado"
-			fontSize = 12
+		new LabeledTextBox(panel) => [
+			text = "Nombre: "
+			bindValueToProperty("dtElegido.nombreDT")
+			width = 70
+		]
+
+		new LabeledTextBox(panel) => [
+			text = "Equipo: "
+			bindValueToProperty("dtElegido.nombreEquipo")
 			width = 80
 		]
-		new Button(panelNuevo) => [
-			caption = "+"
-			onClick[modelObject.addDT]
-			fontSize = 10
-			width = 30
-			fontSize = 10
+
+		new LabeledTextBox(panel) => [
+			text = "Plata: "
+			bindValueToProperty("dtElegido.plata")
+			width = 95
 		]
-		new Button(panelNuevo) => [
-			caption = "-"
-			onClick[|modelObject.removeDT]
-			fontSize = 10
-			width = 30
-		]
+
 		new Button(panel) => [
 			caption = "Mercado"
-			onClick[new TransferiblesWindow(this, modelObject).open]
+			onClick[new MercadoWindow(this, modelObject).open]
 			fontSize = 10
 		]
 	}
@@ -114,7 +68,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 		new Table(panel, Jugador) => [
 			bindItemsToProperty("dtElegido.jugadores")
 			bindValueToProperty("jugadorElegido")
-			numberVisibleRows = 11
+			numberVisibleRows = 8
 
 			new Column(it) => [
 				title = "Nombre"
@@ -137,28 +91,16 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 				fixedSize = 65
 			]
 		]
-	}
 
-	def void createButtonPanel(Panel panel) {
-		val panelHorizontal = new Panel(panel).layout = new HorizontalLayout
-		new Label(panelHorizontal) => [
-			text = "Precio de Venta"
-			fontSize = 12
-		]
-		new NumericField(panelHorizontal) => [
-			bindValueToProperty("precioIngresado")
+		new LabeledNumericField(panel) => [
+			text = "Precio: "
+			bindValueToProperty("jugadorElegido.precioVenta")
 			width = 100
-			fontSize = 12
-		]
-		new Button(panelHorizontal) => [
-			caption = "Poner En Venta"
-			onClick[modelObject.ponerEnVenta]
-			fontSize = 10
 		]
 	}
 
 	def createTransferPanel(Panel panel) {
-		new Label(panel).text = "\n\n\n\n\n"
+		new Label(panel).text = "\n\n\n"
 		new Button(panel) => [
 			caption = "<="
 			onClick[modelObject.addJugador]
@@ -175,9 +117,9 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 
 	def void createBuscadorPanel(Panel panel) {
 		new Table(panel, Jugador) => [
-			bindItemsToProperty("resultados")
+			bindItemsToProperty("listaExterior")
 			bindValueToProperty("jugadorElegido")
-			numberVisibleRows = 11
+			numberVisibleRows = 8
 
 			new Column(it) => [
 				title = "Nombre"

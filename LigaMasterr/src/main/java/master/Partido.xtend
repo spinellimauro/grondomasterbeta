@@ -3,6 +3,7 @@ package master
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.ObservableUtils
 
 @Observable
 @Accessors
@@ -21,18 +22,28 @@ class Partido {
 
 	def int getPuntos(DT dt) {
 		if (dt.equals(dtLocal)) {
-			if (golesLocal.size > golesVisitante.size)	3
-			else if(golesLocal.size < golesVisitante.size) 0
-			else 1
+			if (golesLocal.size > golesVisitante.size)
+				3
+			else if(golesLocal.size < golesVisitante.size) 0 else 1
 		} else {
-			if (golesLocal.size < golesVisitante.size)3
-			else if(golesLocal.size > golesVisitante.size) 0
-			else 1
+			if (golesLocal.size < golesVisitante.size)
+				3
+			else if(golesLocal.size > golesVisitante.size) 0 else 1
 		}
 	}
 
 	def boolean getJugoPartido(DT dt) {
 		dtLocal.equals(dt) || dtVisitante.equals(dt)
+	}
+
+	def void addGol(Jugador jugador) {
+		if(dtLocal.jugadores.contains(jugador)) golesLocal.add(jugador) else golesVisitante.add(jugador)
+		ObservableUtils.firePropertyChanged(this, "score")
+	}
+	
+	def void removeGol(Jugador jugador) {
+		if(dtLocal.jugadores.contains(jugador)) golesLocal.remove(jugador) else golesVisitante.remove(jugador)
+		ObservableUtils.firePropertyChanged(this, "score")
 	}
 
 	def String getScore() {

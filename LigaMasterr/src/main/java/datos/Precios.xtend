@@ -4,7 +4,6 @@ import java.util.Map
 import master.Jugador
 
 final class Precios {
-	static Precios instance = new Precios
 	Map<Integer, Double> mapaNiveles = newHashMap(
 		77 -> 10000.0,
 		78 -> 20000.0,
@@ -28,10 +27,10 @@ final class Precios {
 
 	Map<String, Double> mapaPrecios = newHashMap(
 		"Slot" -> 10000.0,
-		"Gano" -> 2000.0,
-		"PlataPorGol" -> 1000.0,
-		"Empato" -> 1000.0,
-		"PorcentajeImpuesto" -> 10.0
+		"Victoria" -> 2000.0,
+		"Gol" -> 1000.0,
+		"Empate" -> 1000.0,
+		"Impuesto" -> 10.0
 	)
 
 	def double getPrecio(Jugador jugador) {
@@ -40,9 +39,5 @@ final class Precios {
 
 	def double getPrecio(String string) {
 		mapaPrecios.get(string)
-	}
-
-	def static getInstance() {
-		instance
 	}
 }

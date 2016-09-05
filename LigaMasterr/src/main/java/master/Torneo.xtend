@@ -1,38 +1,44 @@
 package master
 
-import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.List
-import org.uqbar.commons.utils.Observable
+import datos.Precios
 import java.util.Collections
+import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
 @Observable
 @Accessors
 class Torneo {
 	String nombreTorneo = ""
+	Precios precios = new Precios
 	List<DT> listaParticipantes = newArrayList
 	List<Partido> listaPartidos = newArrayList
 
 	def void sortearFechas() {
 		listaPartidos.clear
-		Collections.shuffle(listaParticipantes)
-		var int fecha
-		var int partido
+		var listaMezclada = listaParticipantes
+		Collections.shuffle(listaMezclada)
+		val libre = new DT
 
-		for (fecha = 0; fecha < numeroFechas; fecha++) {
+		if(listaParticipantes.size % 2 != 0) listaParticipantes.add(libre)
 
-			for (partido = 0; partido < (listaParticipantes.size) / 2; partido++) {
+		for (var fecha = 0; fecha < numeroFechas; fecha++) {
 
-				var int local = (fecha + partido) % (listaParticipantes.size - 1)
+			for (var partido = 0; partido < (listaParticipantes.size) / 2; partido++) {
+
+				var int local = (fecha + partido) % numeroFechas
 				var int visitante = if(partido == 0) numeroFechas else (numeroFechas - partido + fecha) % numeroFechas
 
 				val partidoNuevo = new Partido
 				partidoNuevo.numeroFecha = fecha + 1
-				partidoNuevo.dtLocal = listaParticipantes.get(local)
-				partidoNuevo.dtVisitante = listaParticipantes.get(visitante)
-				listaPartidos.add(partidoNuevo)
+				partidoNuevo.dtLocal = listaMezclada.get(local)
+				partidoNuevo.dtVisitante = listaMezclada.get(visitante)
+				if(!partidoNuevo.getJugoPartido(libre)) listaPartidos.add(partidoNuevo)
 
 			}
 		}
+
+		listaParticipantes.remove(libre)
 	}
 
 	def List<Partido> getFecha(int entero) {
@@ -40,12 +46,16 @@ class Torneo {
 	}
 
 	def Integer getNumeroFechas() {
-		listaParticipantes.size - 1
+		val nroDts = listaParticipantes.size
+		if (nroDts % 2 == 0) nroDts - 1 else nroDts
+	}
+
+	def List<Jugador> getListaJugadores() {
+		listaParticipantes.fold(newArrayList)[lista, dt|lista.addAll(dt.jugadores) lista].toList
 	}
 
 	def List<Jugador> getListaGoleadores() {
-		listaParticipantes.fold(newArrayList)[lista, dt|lista.addAll(dt.jugadores) lista]
-		.filter[goles != 0].sortBy [goles].reverse.toList
+		listaJugadores.filter[goles != 0].sortBy[goles].reverse
 	}
 
 	def List<DT> getListaPosiciones() {
