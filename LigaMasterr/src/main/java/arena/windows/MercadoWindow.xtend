@@ -11,6 +11,7 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import arena.models.MercadoModel
+import master.DT
 
 class MercadoWindow extends SimpleWindow<MercadoModel> {
 
@@ -49,7 +50,7 @@ class MercadoWindow extends SimpleWindow<MercadoModel> {
 
 			new Column(it) => [
 				title = "Propietario"
-				bindContentsToProperty("propietario")
+				bindContentsToProperty("propietario").transformer = [ DT dt | dt.nombreDT ]
 				fixedSize = 150
 			]
 		]
@@ -61,10 +62,7 @@ class MercadoWindow extends SimpleWindow<MercadoModel> {
 		]
 	}
 
-	override addActions(Panel panel) {}
-
-	override protected createFormPanel(Panel mainPanel) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
+	override protected createFormPanel(Panel mainPanel) {}
+	
+	override protected addActions(Panel actionsPanel) {}
 }

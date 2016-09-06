@@ -58,7 +58,6 @@ class DT {
 		decPlata(torneo.precios.getPrecio("Slot"))
 	}
 
-
 	def void incPlata(Double monto) {
 		plata += monto
 	}
@@ -68,36 +67,38 @@ class DT {
 	}
 
 	def void addJugador(Jugador jugador) {
+		jugador.torneo = torneo
 		jugadores.add(jugador)
 	}
 
 	def void removeJugador(Jugador jugador) {
+		ofertasRecibidas.removeAll(getOfertas(jugador))
 		jugadores.remove(jugador)
 	}
 
 	def int getPuntos() {
 		torneo.getPuntos(this)
 	}
-	
-	def void ofertar(Jugador _jugadorOfertado , Double valorOfertado){
-		_jugadorOfertado.dueño.ofertasRecibidas.add(
-			new Oferta =>[
+
+	def void ofertar(Jugador _jugadorOfertado, Double valorOfertado) {
+		_jugadorOfertado.propietario.ofertasRecibidas.add(
+			new Oferta => [
 				dtOfertante = this
-				dtReceptor = _jugadorOfertado.dueño
+				dtReceptor = _jugadorOfertado.propietario
 				monto = valorOfertado
 				jugadorOfertado = _jugadorOfertado
 			]
 		)
 	}
-	
+
 	override toString() {
 		nombreDT + ";" + nombreEquipo + ";" + plata + ";" + fechasDisponibles + ";" + slots + ";" + jugadores.fold("-") [ acum, jugador |
 			acum + jugador.id + "-"
 		]
 	}
-	
-	def getOfertas(Jugador jugador) {
-		ofertasRecibidas.filter[o|o.jugadorOfertado == jugador]
+
+	def List<Oferta> getOfertas(Jugador jugador) {
+		ofertasRecibidas.filter[jugadorOfertado.equals(jugador)].toList
 	}
-	
+
 }
