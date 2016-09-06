@@ -136,6 +136,13 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 				bindContentsToProperty("potencial")
 				fixedSize = 65
 			]
+			
+			new Column(it) => [
+				title = "Precio"
+				bindContentsToProperty("precioMaquina")
+				fixedSize = 65
+			]
+	
 		]
 
 		val panelHorizontal = new Panel(panel).layout = new HorizontalLayout
@@ -149,6 +156,14 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			onClick[modelObject.buscar]
 			fontSize = 10
 		]
+		
+		new Button(panelHorizontal) => [
+			caption = "Comprar a La Maquina"
+			onClick[modelObject.comprarJugadorALaMaquina]
+			fontSize = 10
+		]
+		
+		
 	}
 
 	override protected addActions(Panel actionsPanel) {}

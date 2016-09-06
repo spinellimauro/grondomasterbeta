@@ -3,6 +3,7 @@ package master
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.jsoup.Jsoup
 import org.uqbar.commons.utils.Observable
+import datos.Precios
 
 @Observable
 @Accessors
@@ -27,6 +28,10 @@ class Jugador {
 	def double getImpuesto() {
 		val precios = torneo.precios
 		precios.getPrecio(this) * (precios.getPrecio("Impuesto") / 100)
+	}
+	
+	def getPrecioMaquina(){
+		Precios.instance.getPrecio(this)
 	}
 
 	def void noSePago() {

@@ -8,6 +8,7 @@ import org.uqbar.commons.utils.Observable
 import java.util.List
 import datos.SoFifa
 import master.Torneo
+import org.uqbar.commons.model.UserException
 
 @Observable
 @Accessors
@@ -41,4 +42,16 @@ class EquipoModel {
 		listaExterior.addAll(SoFifa.instance.getJugadores(valorIngresado))
 		listaExterior.removeAll(torneo.listaJugadores)
 	}
+	
+	def void comprarJugadorALaMaquina() {
+		if (dtElegido.plata >= jugadorElegido.precioMaquina){	
+			dtElegido.decPlata(jugadorElegido.precioMaquina)
+			dtElegido.addJugador(jugadorElegido)
+			listaExterior.remove(jugadorElegido)
+		}else{
+			throw new UserException("Dinero Insuficiente")
+		}
+	}
+
+	
 }
