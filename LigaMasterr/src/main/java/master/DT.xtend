@@ -95,4 +95,9 @@ class DT {
 			acum + jugador.id + "-"
 		]
 	}
+	
+	def getOfertas(Jugador jugador) {
+		ofertasRecibidas.filter[o|o.jugadorOfertado == jugador]
+	}
+	
 }

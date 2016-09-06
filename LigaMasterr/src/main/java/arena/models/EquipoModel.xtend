@@ -11,6 +11,7 @@ import master.Torneo
 import org.uqbar.commons.model.UserException
 import master.Oferta
 import org.uqbar.commons.utils.Dependencies
+import org.uqbar.commons.model.ObservableUtils
 
 @Observable
 @Accessors
@@ -60,11 +61,49 @@ class EquipoModel {
 	}
 
 	def ofertar(){
+		validar
 		dtUsuarioActivo.ofertar(jugadorElegidoPlantel,getMontoOfertado)
+		ObservableUtils.firePropertyChanged(this, "ofertas")
 	}
 	
 	def getOfertas(){
 		dtElegido.ofertasRecibidas
+		
+	}
+	
+	def aceptarOferta(){
+//		if (validarOferta){
+			ofertaElegida.aceptar
+//			dtElegido.ofertasRecibidas.removeAll(dtElegido.getOfertas(jugadorElegidoPlantel))  // TODO : borre todas las ofertas del jugador que ya se fue del equipo
+			ObservableUtils.firePropertyChanged(this, "ofertas")
+//		}
+//		else{
+//			
+//			ofertaElegida.rechazar
+//			ObservableUtils.firePropertyChanged(this, "ofertas")
+//			throw new UserException("No tenes ese jugador")
+//		}
+			
+	}
+	
+	def rechazarOferta(){
+		ofertaElegida.rechazar
+		ObservableUtils.firePropertyChanged(this, "ofertas")
+	}
+	
+//	def validarOferta(){
+//		dtElegido.jugadores.contains(ofertaElegida.jugadorOfertado)
+//	}
+	
+	def validar(){
+		if (dtUsuarioActivo == null){
+			throw new UserException("Debe seleccionar un usuario")
+		}
+		
+		if (jugadorElegidoPlantel == null){
+			throw new UserException("Debe seleccionar un jugador")
+		}
+		
 	}
 	
 }

@@ -209,6 +209,18 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 	
 		]
 		
+		new Button(panel) => [
+			caption = "Aceptar"
+			onClick[modelObject.aceptarOferta]
+			fontSize = 10
+		]
+		
+		new Button(panel) => [
+			caption = "Rechazar"
+			onClick[modelObject.rechazarOferta]
+			fontSize = 10
+		]
+		
 //		new Button(panelHorizontal) => [
 //			caption = "Aceptar Oferta"
 //			onClick[modelObject.aceptarOferta]

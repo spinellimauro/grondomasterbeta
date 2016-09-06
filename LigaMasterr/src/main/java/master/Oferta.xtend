@@ -17,6 +17,7 @@ class Oferta {
 
 		dtReceptor.removeJugador(jugadorOfertado)
 		dtReceptor.incPlata(monto)
+		rechazar
 	}
 	
 	def void rechazar(){
