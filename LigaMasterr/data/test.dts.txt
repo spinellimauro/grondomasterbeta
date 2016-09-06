@@ -1,4 +1,4 @@
-NicoR;Rotterham;310000.0;3;30;-192227-161648-228080-
-Alejandro;Dortmund;655000.0;3;30;-216594-179944-193301-
-Latta;Palermo;655000.0;3;30;-207494-200145-211300-
-Mauro;Bourdeaux;105000.0;3;30;-178562-192985-184881-197853-231677-
+{"nombre":"NicoR","equipo":"Rotterham","plata":310000,"slots":30,"jugadores":[192227,161648,228080],"fechas":3}
+{"nombre":"Alejandro","equipo":"Dortmund","plata":655000,"slots":30,"jugadores":[216594,179944,193301],"fechas":3}
+{"nombre":"Latta","equipo":"Palermo","plata":655000,"slots":30,"jugadores":[207494,200145,211300],"fechas":3}
+{"nombre":"Mauro","equipo":"Bourdeaux","plata":105000,"slots":30,"jugadores":[178562,192985,184881,197853,231677],"fechas":3}

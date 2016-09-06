@@ -55,7 +55,7 @@ class Torneo {
 	}
 
 	def List<Jugador> getListaJugadores() {
-		listaParticipantes.fold(newArrayList)[lista, dt|lista.addAll(dt.jugadores) lista].toList
+		listaParticipantes.map[jugadores].flatten.toList
 	}
 
 	def List<Jugador> getListaGoleadores() {
@@ -65,7 +65,7 @@ class Torneo {
 	def List<DT> getListaPosiciones() {
 		listaParticipantes.sortBy[puntos].reverse
 	}
-
+	
 	def int getPuntos(DT dt) {
 		listaPartidos.filter[getJugoPartido(dt)].fold(0)[acum, partido|acum + partido.getPuntos(dt)]
 	}
@@ -80,13 +80,18 @@ class Torneo {
 		listaGoles.filter[equals(jugador)].size
 	}
 
-	override toString() {
-		nombreTorneo + ";" + listaParticipantes.fold("")[acum, dt|acum + dt.nombreDT + "-"] + ";" +
-			listaPartidos.fold("")[acum, partido|acum + partido + "-"]
-	}
-
 	def DT getPropietario(Jugador jugador) {
 		listaParticipantes.findFirst[jugadores.contains(jugador)]
+	}
+	
+	def void addDT(DT dt){
+		dt.torneo = this
+		listaParticipantes.add(dt)
+	}
+	
+	def void configTorneo(){
+		listaParticipantes.forEach[ torneo = this ]
+		listaJugadores.forEach[torneo = this]
 	}
 
 }

@@ -17,8 +17,7 @@ class TorneoConfigModel {
 
 	def void addDT() {
 		val dtNuevo = new DT => [nombreDT = nombreIngresado]
-		torneo.grondomaster.listaDTs.add(dtNuevo)
-		torneo.torneoSeleccionado.listaParticipantes.add(dtNuevo)
+		torneo.torneoSeleccionado.addDT(dtNuevo)
 	}
 
 	def void getRemoveDT() {
