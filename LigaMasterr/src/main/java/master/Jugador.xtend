@@ -22,8 +22,7 @@ class Jugador {
 		update
 	}
 
-	new() {
-	}
+	new() {}
 
 	def double getImpuesto() {
 		val precios = torneo.precios

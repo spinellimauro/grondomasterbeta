@@ -12,13 +12,17 @@ class DT {
 	String nombreEquipo
 	double plata
 	int slots = 30
-	Set<Jugador> jugadores = newHashSet
+	Set<Jugador> listaJugadores = newHashSet
 	List<Oferta> ofertasRecibidas = newArrayList
 
 	Torneo torneo
 
 	int fechasDisponibles = 3
-
+	
+	def Set<Jugador> getJugadores(){
+		listaJugadores.filter[!torneo.estaSuspendido(it) ].toSet
+	}
+	
 	def void venderJugador(Jugador jugador) {
 		incPlata(jugador.precioVenta)
 		removeJugador(jugador)
@@ -33,7 +37,7 @@ class DT {
 	def void pagarImpuesto(List<Jugador> jugadoresAPagar) {
 		jugadoresAPagar.forEach[pagarImpuesto]
 
-		var jugadoresNoPagados = jugadores
+		var jugadoresNoPagados = listaJugadores
 		jugadoresNoPagados.removeAll(jugadoresAPagar)
 		jugadoresNoPagados.forEach[noSePago]
 
@@ -46,11 +50,11 @@ class DT {
 	}
 
 	def getJugadoresConImpuesto() {
-		jugadores.filter[pagaImpuesto]
+		listaJugadores.filter[pagaImpuesto]
 	}
 
 	def boolean getTieneSlots() {
-		slots > jugadores.size
+		slots > listaJugadores.size
 	}
 
 	def void comprarSlot() {
@@ -68,12 +72,12 @@ class DT {
 
 	def void addJugador(Jugador jugador) {
 		jugador.torneo = torneo
-		jugadores.add(jugador)
+		listaJugadores.add(jugador)
 	}
 
 	def void removeJugador(Jugador jugador) {
 		ofertasRecibidas.removeAll(getOfertas(jugador))
-		jugadores.remove(jugador)
+		listaJugadores.remove(jugador)
 	}
 
 	def int getPuntos() {
@@ -81,11 +85,11 @@ class DT {
 	}
 
 	def int getAmarillas() {
-		jugadores.fold(0)[acum, jugador|acum + jugador.amarillas]
+		listaJugadores.fold(0)[acum, jugador|acum + jugador.amarillas]
 	}
 
 	def int getRojas() {
-		jugadores.fold(0)[acum, jugador|acum + jugador.rojas]
+		listaJugadores.fold(0)[acum, jugador|acum + jugador.rojas]
 	}
 	
 	def int getPuntosFairPlay(){
@@ -104,7 +108,7 @@ class DT {
 	}
 
 	override toString() {
-		nombreDT + ";" + nombreEquipo + ";" + plata + ";" + fechasDisponibles + ";" + slots + ";" + jugadores.fold("-") [ acum, jugador |
+		nombreDT + ";" + nombreEquipo + ";" + plata + ";" + fechasDisponibles + ";" + slots + ";" + listaJugadores.fold("-") [ acum, jugador |
 			acum + jugador.id + "-"
 		]
 	}

@@ -22,7 +22,7 @@ class MercadoModel {
 
 	def List<Jugador> getListaTransferibles() {
 		val listaCompleta = torneo.listaTransferibles
-		listaCompleta.removeAll(dtElegido.jugadores)
+		listaCompleta.removeAll(dtElegido.getListaJugadores)
 		listaCompleta
 	}
 

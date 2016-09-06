@@ -41,6 +41,10 @@ class Torneo {
 		listaParticipantes.remove(libre)
 	}
 
+	def int getFechaActual() {
+		listaPartidos.filter[!terminado].minBy[numeroFecha].numeroFecha
+	}
+
 	def Integer getNumeroFechas() {
 		val nroDts = listaParticipantes.size
 		if(nroDts % 2 == 0) nroDts - 1 else nroDts
@@ -51,7 +55,7 @@ class Torneo {
 	}
 
 	def List<Jugador> getListaJugadores() {
-		listaParticipantes.map[jugadores].flatten.toList
+		listaParticipantes.map[getListaJugadores].flatten.toList
 	}
 
 	def List<Jugador> getListaTransferibles() {
@@ -85,12 +89,16 @@ class Torneo {
 		Collections.frequency(listaRojas, jugador)
 	}
 
+	def boolean estaSuspendido(Jugador jugador) {
+		getFecha(fechaActual - 1).exists[fueExpulsado(jugador)]
+	}
+
 	def int getPuntos(DT dt) {
 		listaPartidos.filter[getJugoPartido(dt)].fold(0)[acum, partido|acum + partido.getPuntos(dt)]
 	}
 
 	def DT getPropietario(Jugador jugador) {
-		listaParticipantes.findFirst[jugadores.contains(jugador)]
+		listaParticipantes.findFirst[getListaJugadores.contains(jugador)]
 	}
 
 	def void addDT(DT dt) {

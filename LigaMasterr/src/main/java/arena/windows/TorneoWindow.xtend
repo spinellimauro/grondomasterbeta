@@ -14,6 +14,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.arena.widgets.CheckBox
 
 class TorneoWindow extends SimpleWindow<TorneoModel> {
 
@@ -56,8 +57,19 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 				fixedSize = 80
 			]
 		]
-
-		new Button(panel) => [
+		
+		val buttonPanel = new Panel(panel).layout = new HorizontalLayout
+		new Label(buttonPanel) => [
+			text = "Terminado"
+			fontSize = 12
+		]
+		new CheckBox(buttonPanel) => [
+			bindValueToProperty("partido.terminado")
+			height = 25
+			width = 15
+		]
+		
+		new Button(buttonPanel) => [
 			caption = "Editar Partido"
 			onClick[new PartidoWindow(this, modelObject.partido).open]
 			fontSize = 10

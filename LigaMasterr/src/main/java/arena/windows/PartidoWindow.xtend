@@ -36,6 +36,7 @@ class PartidoWindow extends SimpleWindow<PartidoModel> {
 			bindValueToProperty("jugadorSeleccionado")
 			height = 215
 			width = 85
+			
 		]
 	}
 

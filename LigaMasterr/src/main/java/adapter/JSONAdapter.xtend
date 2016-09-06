@@ -65,6 +65,9 @@ final class JSONAdapter {
 			dtVisitante = getDT(jsonPartido.get("visitante").asString)
 			golesLocal.addAll( jsonPartido.get("golesLocal").asArray.map[getJugador(asInt)])
 			golesVisitante.addAll( jsonPartido.get("golesVisitante").asArray.map[getJugador(asInt)])
+			listaAmarillas.addAll(jsonPartido.get("amarillas").asArray.map[getJugador(asInt)] )
+			listaRojas.addAll(jsonPartido.get("rojas").asArray.map[getJugador(asInt)] )
+			terminado = jsonPartido.get("terminado").asBoolean
 		]
 	}
 

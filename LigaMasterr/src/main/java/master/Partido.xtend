@@ -10,8 +10,9 @@ import java.util.Collections
 @Accessors
 class Partido {
 	int numeroFecha = 0
-	DT dtLocal = new DT
-	DT dtVisitante = new DT
+	DT dtLocal
+	DT dtVisitante
+	boolean terminado = true
 	List<Jugador> golesLocal = newArrayList
 	List<Jugador> golesVisitante = newArrayList
 	List<Jugador> listaAmarillas = newArrayList
@@ -33,20 +34,34 @@ class Partido {
 		dtLocal.equals(dt) || dtVisitante.equals(dt)
 	}
 
+	def String getScore() {
+		golesLocal.size + " - " + golesVisitante.size
+	}
+
+	def int getGoles(Jugador jugador) {
+		Collections.frequency((golesLocal + golesVisitante).toList, jugador)
+	}
+
 	def void addGol(Jugador jugador) {
-		if(dtLocal.jugadores.contains(jugador)) golesLocal.add(jugador) else golesVisitante.add(jugador)
+		if(dtLocal.getListaJugadores.contains(jugador)) golesLocal.add(jugador) else golesVisitante.add(jugador)
 		ObservableUtils.firePropertyChanged(this, "score")
 	}
 
 	def void removeGol(Jugador jugador) {
-		if(dtLocal.jugadores.contains(jugador)) golesLocal.remove(jugador) else golesVisitante.remove(jugador)
+		if(dtLocal.getListaJugadores.contains(jugador)) golesLocal.remove(jugador) else golesVisitante.remove(jugador)
 		ObservableUtils.firePropertyChanged(this, "score")
 	}
 
+	def int getAmarillas(Jugador jugador) {
+		Collections.frequency(listaAmarillas, jugador)
+	}
+
+	def int getRojas(Jugador jugador) {
+		Collections.frequency(listaRojas, jugador)
+	}
+
 	def void addAmarilla(Jugador jugador) {
-		val nroTarjetasAmarillas = Collections.frequency(listaAmarillas, jugador)
-		val nroTarjetasRojas = Collections.frequency(listaRojas, jugador)
-		if(nroTarjetasAmarillas < 2 && nroTarjetasRojas < 1) listaAmarillas.add(jugador)
+		if(getAmarillas(jugador) < 2 && getRojas(jugador) < 1) listaAmarillas.add(jugador)
 	}
 
 	def void removeAmarilla(Jugador jugador) {
@@ -54,16 +69,18 @@ class Partido {
 	}
 
 	def void addRoja(Jugador jugador) {
-		val nroTarjetasAmarillas = Collections.frequency(listaAmarillas, jugador)
-		val nroTarjetasRojas = Collections.frequency(listaRojas, jugador)
-		if(nroTarjetasRojas < 1 && nroTarjetasAmarillas < 2) listaRojas.add(jugador)
+		if(getRojas(jugador) < 1 && getAmarillas(jugador) < 2) listaRojas.add(jugador)
 	}
 
 	def void removeRoja(Jugador jugador) {
 		listaRojas.remove(jugador)
 	}
 
-	def String getScore() {
-		golesLocal.size + " - " + golesVisitante.size
+	def boolean fueAmonestado(Jugador jugador) {
+		getAmarillas(jugador) == 1
+	}
+
+	def boolean fueExpulsado(Jugador jugador) {
+		getAmarillas(jugador) == 2 || getRojas(jugador) == 1
 	}
 }

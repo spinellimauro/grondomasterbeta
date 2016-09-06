@@ -27,7 +27,7 @@ final class JSONTransformer {
 			add("equipo", dt.nombreEquipo)
 			add("plata", dt.plata)
 			add("slots", dt.slots)
-			add("jugadores", new JsonArray => [dt.jugadores.forEach[jugador|add(jugador.id)]])
+			add("jugadores", new JsonArray => [dt.getListaJugadores.forEach[jugador|add(jugador.id)]])
 			add("fechas", dt.fechasDisponibles)
 		]
 
@@ -51,6 +51,9 @@ final class JSONTransformer {
 			add("visitante", partido.dtVisitante.nombreDT)
 			add("golesLocal", new JsonArray => [partido.golesLocal.forEach[jugador|add(jugador.id)]])
 			add("golesVisitante", new JsonArray => [partido.golesVisitante.forEach[jugador|add(jugador.id)]])
+			add("amarillas",new JsonArray => [partido.listaAmarillas.forEach[jugador|add(jugador.id)]] )
+			add("rojas",new JsonArray => [partido.listaRojas.forEach[jugador|add(jugador.id)]] )
+			add("terminado", partido.terminado)
 		]
 
 		json.toString
