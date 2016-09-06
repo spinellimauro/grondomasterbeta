@@ -79,6 +79,17 @@ class DT {
 		torneo.getPuntos(this)
 	}
 	
+	def void ofertar(Jugador _jugadorOfertado , Double valorOfertado){
+		_jugadorOfertado.dueño.ofertasRecibidas.add(
+			new Oferta =>[
+				dtOfertante = this
+				dtReceptor = _jugadorOfertado.dueño
+				monto = valorOfertado
+				jugadorOfertado = _jugadorOfertado
+			]
+		)
+	}
+	
 	override toString() {
 		nombreDT + ";" + nombreEquipo + ";" + plata + ";" + fechasDisponibles + ";" + slots + ";" + jugadores.fold("-") [ acum, jugador |
 			acum + jugador.id + "-"

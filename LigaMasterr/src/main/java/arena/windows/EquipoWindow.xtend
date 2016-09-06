@@ -17,6 +17,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import master.Oferta
 
 class EquipoWindow extends SimpleWindow<EquipoModel> {
 	new(WindowOwner owner, TorneoModel model) {
@@ -67,7 +68,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 	def void createEquipoPanel(Panel panel) {
 		new Table(panel, Jugador) => [
 			bindItemsToProperty("dtElegido.jugadores")
-			bindValueToProperty("jugadorElegido")
+			bindValueToProperty("jugadorElegidoPlantel")
 			numberVisibleRows = 8
 
 			new Column(it) => [
@@ -91,11 +92,33 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 				fixedSize = 70
 			]
 		]
-
+		
 		new LabeledNumericField(panel) => [
 			text = "Precio: "
 			bindValueToProperty("jugadorElegido.precioVenta")
 			width = 100
+		]
+		
+			new Label(panel).text = "\n\n"
+		
+		new Selector(panel) => [
+			bindItemsToProperty("torneo.listaParticipantes").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindValueToProperty("dtUsuarioActivo")
+			height = 80
+		]
+		
+		new Label(panel).text = "Monto A Ofertar"
+		
+		new TextBox(panel) => [
+			bindValueToProperty("montoOfertado")
+			width = 180
+			fontSize = 12
+		]
+		
+		new Button(panel) => [
+			caption = "Ofertar"
+			onClick[modelObject.ofertar]
+			fontSize = 10
 		]
 	}
 
@@ -144,7 +167,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			]
 	
 		]
-
+		
 		val panelHorizontal = new Panel(panel).layout = new HorizontalLayout
 		new TextBox(panelHorizontal) => [
 			bindValueToProperty("valorIngresado")
@@ -162,6 +185,35 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			onClick[modelObject.comprarJugadorALaMaquina]
 			fontSize = 10
 		]
+		
+		new Table(panel, Oferta) => [
+			bindItemsToProperty("ofertas")
+			bindValueToProperty("ofertaElegida")
+			numberVisibleRows = 8
+
+			new Column(it) => [
+				title = "Ofertante"
+				bindContentsToProperty("dtOfertante.nombreDT")
+				fixedSize = 150
+			]
+			new Column(it) => [
+				title = "Oferta"
+				bindContentsToProperty("monto")
+				fixedSize = 100
+			]
+			new Column(it) => [
+				title = "Jugador Ofertado"
+				bindContentsToProperty("jugadorOfertado.nombre")
+				fixedSize = 150
+			]
+	
+		]
+		
+//		new Button(panelHorizontal) => [
+//			caption = "Aceptar Oferta"
+//			onClick[modelObject.aceptarOferta]
+//			fontSize = 10
+//		]
 		
 		
 	}

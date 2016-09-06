@@ -1,7 +1,9 @@
 package master
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class Oferta {
 	DT dtOfertante

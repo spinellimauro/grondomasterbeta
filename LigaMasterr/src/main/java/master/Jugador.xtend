@@ -54,6 +54,10 @@ class Jugador {
 		val propietario = torneo.getPropietario(this)
 		propietario.nombreDT + " (" + propietario.nombreEquipo + ")"
 	}
+	
+	def DT getDueño() {
+		torneo.getPropietario(this)
+	}
 
 	def void update() {
 		val instance = Jsoup.connect("http://2016.sofifa.com/player/" + id).userAgent("Mozilla").get

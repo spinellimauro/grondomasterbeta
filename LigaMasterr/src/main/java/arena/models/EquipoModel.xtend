@@ -9,6 +9,8 @@ import java.util.List
 import datos.SoFifa
 import master.Torneo
 import org.uqbar.commons.model.UserException
+import master.Oferta
+import org.uqbar.commons.utils.Dependencies
 
 @Observable
 @Accessors
@@ -16,10 +18,14 @@ class EquipoModel {
 	LigaMaster grondomaster
 	Torneo torneo
 	
+	DT dtUsuarioActivo
 	DT dtElegido
+	Jugador jugadorElegidoPlantel
 	Jugador jugadorElegido
 	String valorIngresado
-
+	Double montoOfertado
+	Oferta ofertaElegida
+	
 	List<Jugador> listaExterior = newArrayList
 
 	new(TorneoModel model) {
@@ -53,5 +59,12 @@ class EquipoModel {
 		}
 	}
 
+	def ofertar(){
+		dtUsuarioActivo.ofertar(jugadorElegidoPlantel,getMontoOfertado)
+	}
+	
+	def getOfertas(){
+		dtElegido.ofertasRecibidas
+	}
 	
 }
