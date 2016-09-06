@@ -4,13 +4,13 @@ import java.io.File
 import java.io.FileReader
 import java.io.PrintWriter
 import java.util.List
+import java.util.Set
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 
-import static extension com.google.common.io.CharStreams.*
-import static extension adapter.JSONTransformer.*
 import static extension adapter.JSONAdapter.*
-import java.util.Set
+import static extension adapter.JSONTransformer.*
+import static extension com.google.common.io.CharStreams.*
 
 @Observable
 @Accessors
@@ -37,7 +37,7 @@ class LigaMaster {
 	}
 
 	def Set<Jugador> getListaJugadores() {
-		listaDTs.map[jugadores].flatten.toSet
+		listaTorneos.map[listaJugadores].flatten.toSet
 	}
 
 	def void crearBase() {
@@ -50,17 +50,16 @@ class LigaMaster {
 		setListaJugador(new FileReader(dirJugadores).readLines)
 		setListaDT(new FileReader(dirDTs).readLines)
 		listaTorneos.addAll( new FileReader(dirTorneos).readLines.map[toTorneo])
-
 	}
 
 	def void guardarBase() {
 		crearBase
 		val PrintWriter writerDTs = new PrintWriter(dirDTs)
-		listaTorneos.forEach[listaParticipantes.forEach[writerDTs.println(toJSON)]]
+		listaDTs.forEach[writerDTs.println(toJSON)]
 		writerDTs.close
 
 		val PrintWriter writerJugadores = new PrintWriter(dirJugadores)
-		listaTorneos.forEach[t|t.listaJugadores.forEach[writerJugadores.println(toJSON)]]
+		listaJugadores.forEach[writerJugadores.println(toJSON)]
 		writerJugadores.close
 
 		val PrintWriter writerTorneo = new PrintWriter(dirTorneos)

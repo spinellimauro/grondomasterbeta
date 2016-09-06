@@ -80,6 +80,18 @@ class DT {
 		torneo.getPuntos(this)
 	}
 
+	def int getAmarillas() {
+		jugadores.fold(0)[acum, jugador|acum + jugador.amarillas]
+	}
+
+	def int getRojas() {
+		jugadores.fold(0)[acum, jugador|acum + jugador.rojas]
+	}
+	
+	def int getPuntosFairPlay(){
+		amarillas * 4 + rojas * 12
+	}
+
 	def void ofertar(Jugador _jugadorOfertado, Double valorOfertado) {
 		_jugadorOfertado.propietario.ofertasRecibidas.add(
 			new Oferta => [

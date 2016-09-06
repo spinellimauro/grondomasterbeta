@@ -29,8 +29,8 @@ class Jugador {
 		val precios = torneo.precios
 		precios.getPrecio(this) * (precios.getPrecio("Impuesto") / 100)
 	}
-	
-	def getPrecioMaquina(){
+
+	def getPrecioMaquina() {
 		Precios.instance.getPrecio(this)
 	}
 
@@ -46,6 +46,14 @@ class Jugador {
 		nivel > 82
 	}
 
+	def int getAmarillas() {
+		torneo.getAmarillas(this)
+	}
+
+	def int getRojas() {
+		torneo.getRojas(this)
+	}
+
 	def int getGoles() {
 		torneo.getGoles(this)
 	}
@@ -53,7 +61,7 @@ class Jugador {
 	def DT getPropietario() {
 		torneo.getPropietario(this)
 	}
-	
+
 	def void update() {
 		val instance = Jsoup.connect("http://2016.sofifa.com/player/" + id).userAgent("Mozilla").get
 		nombre = instance.select("div.header").text.replaceAll("[(\\d+.*)]", "").replace("ID:", "").replace("  ", "")
@@ -61,17 +69,20 @@ class Jugador {
 		potencial = Integer.parseInt(instance.select("span.p").get(1).text)
 	}
 
-	override toString() {
-		id + ";" + nombre + ";" + nivel + ";" + potencial + ";" + precioVenta + ";" + vecesNoPagadas
-	}
-
 	override equals(Object obj) {
-		if(obj == null) return false
-		if(!Jugador.isAssignableFrom(obj.class)) return false
+		if (obj == null)
+			return false
+		if (!Jugador.isAssignableFrom(obj.class))
+			return false
 
 		val otroJugador = obj as Jugador
-		if(id != otroJugador.id) return false else true
+		if (id != otroJugador.id)
+			return false
+		else
+			true
 	}
 
-	override hashCode() { id }
+	override hashCode() {
+		id
+	}
 }

@@ -16,7 +16,7 @@ class Torneo {
 
 	def void sortearFechas() {
 		listaPartidos.clear
-		var listaMezclada = listaParticipantes
+		var listaMezclada = listaParticipantes.clone
 		Collections.shuffle(listaMezclada)
 		val libre = new DT
 
@@ -41,56 +41,65 @@ class Torneo {
 		listaParticipantes.remove(libre)
 	}
 
-	def List<Jugador> getListaTransferibles() {
-		listaJugadores.filter[precioVenta != 0].toList
+	def Integer getNumeroFechas() {
+		val nroDts = listaParticipantes.size
+		if(nroDts % 2 == 0) nroDts - 1 else nroDts
 	}
 
 	def List<Partido> getFecha(int entero) {
 		listaPartidos.filter[numeroFecha == entero].toList
 	}
 
-	def Integer getNumeroFechas() {
-		val nroDts = listaParticipantes.size
-		if(nroDts % 2 == 0) nroDts - 1 else nroDts
-	}
-
 	def List<Jugador> getListaJugadores() {
 		listaParticipantes.map[jugadores].flatten.toList
+	}
+
+	def List<Jugador> getListaTransferibles() {
+		listaJugadores.filter[precioVenta != 0].toList
+	}
+
+	def List<DT> getListaPosiciones() {
+		listaParticipantes.sortBy[puntos].reverse
 	}
 
 	def List<Jugador> getListaGoleadores() {
 		listaJugadores.filter[goles != 0].sortBy[goles].reverse
 	}
 
-	def List<DT> getListaPosiciones() {
-		listaParticipantes.sortBy[puntos].reverse
-	}
-	
-	def int getPuntos(DT dt) {
-		listaPartidos.filter[getJugoPartido(dt)].fold(0)[acum, partido|acum + partido.getPuntos(dt)]
+	def List<DT> getListaFairPlay() {
+		listaParticipantes.sortBy[puntosFairPlay]
 	}
 
 	def int getGoles(Jugador jugador) {
-		val listaGoles = listaPartidos.fold(newArrayList) [ lista, partido |
-			lista.addAll(partido.golesLocal)
-			lista.addAll(partido.golesVisitante)
-			lista
-		]
+		val listaGoles = listaPartidos.map[golesLocal + golesVisitante].flatten.toList
+		Collections.frequency(listaGoles, jugador)
+	}
 
-		listaGoles.filter[equals(jugador)].size
+	def int getAmarillas(Jugador jugador) {
+		val listaRojas = listaPartidos.map[listaAmarillas].flatten.toList
+		Collections.frequency(listaRojas, jugador)
+	}
+
+	def int getRojas(Jugador jugador) {
+		val listaRojas = listaPartidos.map[listaRojas].flatten.toList
+		Collections.frequency(listaRojas, jugador)
+	}
+
+	def int getPuntos(DT dt) {
+		listaPartidos.filter[getJugoPartido(dt)].fold(0)[acum, partido|acum + partido.getPuntos(dt)]
 	}
 
 	def DT getPropietario(Jugador jugador) {
 		listaParticipantes.findFirst[jugadores.contains(jugador)]
 	}
-	
-	def void addDT(DT dt){
+
+	def void addDT(DT dt) {
 		dt.torneo = this
 		listaParticipantes.add(dt)
 	}
-	
-	def void configTorneo(){
-		listaParticipantes.forEach[ torneo = this ]
+
+	def void configTorneo() {
+		listaParticipantes.forEach[torneo = this]
 		listaJugadores.forEach[torneo = this]
 	}
 

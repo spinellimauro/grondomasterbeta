@@ -4,6 +4,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.ObservableUtils
+import java.util.Collections
 
 @Observable
 @Accessors
@@ -13,12 +14,8 @@ class Partido {
 	DT dtVisitante = new DT
 	List<Jugador> golesLocal = newArrayList
 	List<Jugador> golesVisitante = newArrayList
-
-	override toString() {
-		numeroFecha + "," + dtLocal.nombreDT + "," + dtVisitante.nombreDT + "," + golesLocal.fold(":") [ acum, jugador |
-			acum + jugador.id + ":"
-		] + "," + golesVisitante.fold(":")[acum, jugador|acum + jugador.id + ":"]
-	}
+	List<Jugador> listaAmarillas = newArrayList
+	List<Jugador> listaRojas = newArrayList
 
 	def int getPuntos(DT dt) {
 		if (dt.equals(dtLocal)) {
@@ -40,10 +37,30 @@ class Partido {
 		if(dtLocal.jugadores.contains(jugador)) golesLocal.add(jugador) else golesVisitante.add(jugador)
 		ObservableUtils.firePropertyChanged(this, "score")
 	}
-	
+
 	def void removeGol(Jugador jugador) {
 		if(dtLocal.jugadores.contains(jugador)) golesLocal.remove(jugador) else golesVisitante.remove(jugador)
 		ObservableUtils.firePropertyChanged(this, "score")
+	}
+
+	def void addAmarilla(Jugador jugador) {
+		val nroTarjetasAmarillas = Collections.frequency(listaAmarillas, jugador)
+		val nroTarjetasRojas = Collections.frequency(listaRojas, jugador)
+		if(nroTarjetasAmarillas < 2 && nroTarjetasRojas < 1) listaAmarillas.add(jugador)
+	}
+
+	def void removeAmarilla(Jugador jugador) {
+		listaAmarillas.remove(jugador)
+	}
+
+	def void addRoja(Jugador jugador) {
+		val nroTarjetasAmarillas = Collections.frequency(listaAmarillas, jugador)
+		val nroTarjetasRojas = Collections.frequency(listaRojas, jugador)
+		if(nroTarjetasRojas < 1 && nroTarjetasAmarillas < 2) listaRojas.add(jugador)
+	}
+
+	def void removeRoja(Jugador jugador) {
+		listaRojas.remove(jugador)
 	}
 
 	def String getScore() {

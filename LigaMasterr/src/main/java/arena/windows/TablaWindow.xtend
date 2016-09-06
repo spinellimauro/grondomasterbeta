@@ -62,6 +62,39 @@ class TablaWindow extends Dialog<Torneo> {
 				fixedSize = 45
 			]
 		]
+		
+		val panelFairPlay = new Panel(panel)
+		new Label(panelFairPlay) => [
+			text = "Fair Play"
+			fontSize = 12
+		]
+		new Table(panelFairPlay, DT) => [
+			bindItemsToProperty("listaFairPlay")
+			numberVisibleRows = 8
+			new Column(it) => [
+				title = "Nombre"
+				bindContentsToProperty("nombreDT")
+				fixedSize = 85
+			]
+
+			new Column(it) => [
+				title = "Rojas"
+				bindContentsToProperty("rojas")
+				fixedSize = 40
+			]
+			
+			new Column(it) => [
+				title = "Amarillas"
+				bindContentsToProperty("amarillas")
+				fixedSize = 65
+			]
+			
+			new Column(it) => [
+				title = "Puntos"
+				bindContentsToProperty("puntosFairPlay")
+				fixedSize = 55
+			]
+		]
 	}
 
 	override protected createFormPanel(Panel mainPanel) {}

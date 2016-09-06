@@ -14,12 +14,28 @@ class PartidoModel {
 	new(Partido model) {
 		partido = model
 	}
-	
+
 	def void addGol() {
 		partido.addGol(jugadorSeleccionado)
 	}
 
 	def void removeGol() {
 		partido.removeGol(jugadorSeleccionado)
+	}
+
+	def void addAmarilla() {
+		partido.addAmarilla(jugadorSeleccionado)
+	}
+
+	def void removeAmarilla() {
+		partido.removeAmarilla(jugadorSeleccionado)
+	}
+
+	def void addRoja() {
+		partido.addRoja(jugadorSeleccionado)
+	}
+	
+	def void removeRoja() {
+		partido.removeRoja(jugadorSeleccionado)
 	}
 }
