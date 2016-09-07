@@ -52,6 +52,7 @@ final class JSONAdapter {
 			nombreTorneo = jsonTorneo.get("torneo").asString
 			jsonTorneo.get("dts").asArray.forEach[s|addDT(getDT(s.asString))]
 			listaPartidos.addAll( jsonTorneo.get("partidos").asArray.map[toPartido(asString)])
+			limiteAmarillas = jsonTorneo.get("limiteAmarillas").asInt
 			configTorneo
 		]
 	}

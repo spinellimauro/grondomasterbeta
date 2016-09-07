@@ -22,13 +22,13 @@ class TorneoConfigWindow extends Dialog<TorneoConfigModel> {
 	override createMainTemplate(Panel panel) {
 		new LabeledTextBox(panel) => [
 			text = "Nombre: "
-			bindValueToProperty("torneo.torneoSeleccionado.nombreTorneo")
+			bindValueToProperty("torneoON.nombreTorneo")
 			width = 150
 		]
 
 		new List(panel) => [
-			bindItemsToProperty("torneo.torneoSeleccionado.listaParticipantes").adapter = new PropertyAdapter(DT, "nombreDT")
-			bindValueToProperty("dtElegido")
+			bindItemsToProperty("torneoON.listaParticipantes").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindValueToProperty("dtON")
 			height = 100
 		]
 		
@@ -53,7 +53,7 @@ class TorneoConfigWindow extends Dialog<TorneoConfigModel> {
 		
 		new Button(panelNuevo) => [
 			caption = "Sortear Fixture"
-			onClick[|modelObject.torneo.sortearFixture]
+			onClick[|modelObject.model.sortearFechas]
 			fontSize = 10
 		]
 	}

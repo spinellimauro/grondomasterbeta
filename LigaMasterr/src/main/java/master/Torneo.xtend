@@ -13,10 +13,11 @@ class Torneo {
 	Precios precios = new Precios
 	List<DT> listaParticipantes = newArrayList
 	List<Partido> listaPartidos = newArrayList
+	int limiteAmarillas
 
 	def void sortearFechas() {
 		listaPartidos.clear
-		var listaMezclada = listaParticipantes.clone
+		var listaMezclada = listaParticipantes
 		Collections.shuffle(listaMezclada)
 		val libre = new DT
 
@@ -42,7 +43,8 @@ class Torneo {
 	}
 
 	def int getFechaActual() {
-		listaPartidos.filter[!terminado].minBy[numeroFecha].numeroFecha
+		val partidosNoTerminados = listaPartidos.filter[!terminado]
+		if(partidosNoTerminados.size > 0) partidosNoTerminados.minBy[numeroFecha].numeroFecha else numeroFechas
 	}
 
 	def Integer getNumeroFechas() {
@@ -67,7 +69,7 @@ class Torneo {
 	}
 
 	def List<Jugador> getListaGoleadores() {
-		listaJugadores.filter[goles != 0].sortBy[goles].reverse
+		listaJugadores.filter[getGoles(it) != 0].sortBy[getGoles(it)].reverse
 	}
 
 	def List<DT> getListaFairPlay() {
@@ -90,20 +92,27 @@ class Torneo {
 	}
 
 	def boolean estaSuspendido(Jugador jugador) {
-		getFecha(fechaActual - 1).exists[fueExpulsado(jugador)]
+		val fechaAnterior = getFecha(fechaActual - 1)
+
+		fechaAnterior.exists[fueExpulsado(jugador)] ||
+			( fechaAnterior.exists[fueAmonestado(jugador)] && (getAmarillas(jugador) % limiteAmarillas == 0))
 	}
 
 	def int getPuntos(DT dt) {
-		listaPartidos.filter[getJugoPartido(dt)].fold(0)[acum, partido|acum + partido.getPuntos(dt)]
+		listaPartidos.filter[terminado].filter[getJugoPartido(dt)].fold(0)[acum, partido|acum + partido.getPuntos(dt)]
 	}
 
 	def DT getPropietario(Jugador jugador) {
-		listaParticipantes.findFirst[getListaJugadores.contains(jugador)]
+		listaParticipantes.findFirst[listaJugadores.contains(jugador)]
 	}
 
 	def void addDT(DT dt) {
 		dt.torneo = this
 		listaParticipantes.add(dt)
+	}
+
+	def void removeDT(DT dt) {
+		listaParticipantes.remove(dt)
 	}
 
 	def void configTorneo() {

@@ -15,11 +15,12 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.CheckBox
+import arena.models.LoginModel
 
 class TorneoWindow extends SimpleWindow<TorneoModel> {
 
-	new(WindowOwner parent) {
-		super(parent, new TorneoModel)
+	new(WindowOwner parent, LoginModel model) {
+		super(parent, new TorneoModel(model))
 		title = "Liga Master"
 	}
 
@@ -34,7 +35,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			text = "\tFecha"
 			label.fontSize = 12
 			bindItemsToProperty("listaFechas")
-			bindValueToProperty("fechaSeleccionada")
+			bindValueToProperty("fechaON")
 		]
 
 		new Table(panel, Partido) => [
@@ -57,7 +58,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 				fixedSize = 80
 			]
 		]
-		
+
 		val buttonPanel = new Panel(panel).layout = new HorizontalLayout
 		new Label(buttonPanel) => [
 			text = "Terminado"
@@ -68,7 +69,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			height = 25
 			width = 15
 		]
-		
+
 		new Button(buttonPanel) => [
 			caption = "Editar Partido"
 			onClick[new PartidoWindow(this, modelObject.partido).open]
@@ -78,8 +79,8 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 
 	def void createTorneoPanel(Panel panel) {
 		new Selector(panel) => [
-			bindItemsToProperty("grondomaster.listaTorneos").adapter = new PropertyAdapter(Torneo, "nombreTorneo")
-			bindValueToProperty("torneoSeleccionado")
+			bindItemsToProperty("ligaMaster.listaTorneos").adapter = new PropertyAdapter(Torneo, "nombreTorneo")
+			bindValueToProperty("torneoON")
 			height = 50
 			width = 100
 		]
@@ -111,13 +112,22 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 
 		new Button(panel) => [
 			caption = "Estadisticas"
-			onClick[new TablaWindow(this, modelObject.torneoSeleccionado).open]
+			onClick[new TablaWindow(this, modelObject.torneoON).open]
 			fontSize = 10
 		]
 
 		new Button(panel) => [
 			caption = "Guardar"
-			onClick[modelObject.grondomaster.guardarBase]
+			onClick[modelObject.ligaMaster.guardarBase]
+			fontSize = 10
+		]
+
+		new Button(panel) => [
+			caption = "Salir"
+			onClick[
+				close
+				new LoginWindow(this).open
+			]
 			fontSize = 10
 		]
 	}

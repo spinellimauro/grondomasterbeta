@@ -12,7 +12,7 @@ class Partido {
 	int numeroFecha = 0
 	DT dtLocal
 	DT dtVisitante
-	boolean terminado = true
+	boolean terminado = false
 	List<Jugador> golesLocal = newArrayList
 	List<Jugador> golesVisitante = newArrayList
 	List<Jugador> listaAmarillas = newArrayList

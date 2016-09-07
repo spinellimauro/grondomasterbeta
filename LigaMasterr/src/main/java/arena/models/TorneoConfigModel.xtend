@@ -1,26 +1,29 @@
 package arena.models
 
 import master.DT
+import master.Torneo
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 
 @Observable
 @Accessors
 class TorneoConfigModel {
-	TorneoModel torneo
-	DT dtElegido
-	String nombreIngresado = ""
+	TorneoModel model
+	Torneo torneoON
+	DT dtON
+	String nombreIngresado
 
-	new(TorneoModel model) {
-		torneo = model
+	new(TorneoModel torneoModel) {
+		model = torneoModel
+		torneoON = torneoModel.torneoON
 	}
 
 	def void addDT() {
-		val dtNuevo = new DT => [nombreDT = nombreIngresado]
-		torneo.torneoSeleccionado.addDT(dtNuevo)
+		torneoON.addDT(new DT => [nombreDT = nombreIngresado])
+		nombreIngresado = ""
 	}
 
 	def void getRemoveDT() {
-		torneo.torneoSeleccionado.listaParticipantes.remove(dtElegido)
+		torneoON.removeDT(dtON)
 	}
 }

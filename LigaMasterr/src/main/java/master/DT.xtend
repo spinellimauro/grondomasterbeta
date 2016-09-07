@@ -18,18 +18,18 @@ class DT {
 	Torneo torneo
 
 	int fechasDisponibles = 3
-	
-	def Set<Jugador> getJugadores(){
-		listaJugadores.filter[!torneo.estaSuspendido(it) ].toSet
+
+	def Set<Jugador> getJugadores() {
+		listaJugadores.filter[!torneo.estaSuspendido(it)].toSet
 	}
-	
+
 	def void venderJugador(Jugador jugador) {
 		incPlata(jugador.precioVenta)
 		removeJugador(jugador)
 	}
 
-	def void comprarJugador(Jugador jugador) {
-		decPlata(jugador.precioVenta)
+	def void comprarJugador(Jugador jugador, Double precio) {
+		decPlata(precio)
 		addJugador(jugador)
 		jugador.precioVenta = 0
 	}
@@ -91,30 +91,21 @@ class DT {
 	def int getRojas() {
 		listaJugadores.fold(0)[acum, jugador|acum + jugador.rojas]
 	}
-	
-	def int getPuntosFairPlay(){
+
+	def int getPuntosFairPlay() {
 		amarillas * 4 + rojas * 12
 	}
 
-	def void ofertar(Jugador _jugadorOfertado, Double valorOfertado) {
-		_jugadorOfertado.propietario.ofertasRecibidas.add(
-			new Oferta => [
-				dtOfertante = this
-				dtReceptor = _jugadorOfertado.propietario
-				monto = valorOfertado
-				jugadorOfertado = _jugadorOfertado
-			]
-		)
-	}
-
-	override toString() {
-		nombreDT + ";" + nombreEquipo + ";" + plata + ";" + fechasDisponibles + ";" + slots + ";" + listaJugadores.fold("-") [ acum, jugador |
-			acum + jugador.id + "-"
-		]
+	def void addOferta(Oferta oferta) {
+		ofertasRecibidas.add(oferta)
 	}
 
 	def List<Oferta> getOfertas(Jugador jugador) {
 		ofertasRecibidas.filter[jugadorOfertado.equals(jugador)].toList
+	}
+
+	def boolean hayOfertas() {
+		ofertasRecibidas.nullOrEmpty
 	}
 
 }

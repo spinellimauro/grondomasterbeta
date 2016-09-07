@@ -10,6 +10,6 @@ class LigaApplication extends Application {
 	}
 
 	override protected Window<?> createMainWindow() {
-		new TorneoWindow(this)
+		new LoginWindow(this)
 	}
 }

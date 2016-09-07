@@ -39,6 +39,10 @@ class LigaMaster {
 	def Set<Jugador> getListaJugadores() {
 		listaTorneos.map[listaJugadores].flatten.toSet
 	}
+	
+	def Set<Jugador> getListaTransferibles() {
+		listaJugadores.filter[precioVenta > 0].toSet
+	}
 
 	def void crearBase() {
 		new File(dirDTs).createNewFile
@@ -53,7 +57,6 @@ class LigaMaster {
 	}
 
 	def void guardarBase() {
-		crearBase
 		val PrintWriter writerDTs = new PrintWriter(dirDTs)
 		listaDTs.forEach[writerDTs.println(toJSON)]
 		writerDTs.close
@@ -65,5 +68,13 @@ class LigaMaster {
 		val PrintWriter writerTorneo = new PrintWriter(dirTorneos)
 		listaTorneos.forEach[writerTorneo.println(toJSON)]
 		writerTorneo.close
+	}
+
+	def void addTorneo(Torneo torneo) {
+		listaTorneos.add(torneo)
+	}
+	
+	def void removeTorneo(Torneo torneo) {
+		listaTorneos.remove(torneo)
 	}
 }
