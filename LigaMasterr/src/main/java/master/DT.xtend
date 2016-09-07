@@ -107,5 +107,13 @@ class DT {
 	def boolean hayOfertas() {
 		ofertasRecibidas.nullOrEmpty
 	}
+	
+	def restarTorneoDisponible(){
+		fechasDisponibles--
+	}
+	
+	def tieneQuePagar(){
+		fechasDisponibles == 0
+	}
 
 }

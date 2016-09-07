@@ -91,6 +91,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			caption = "+"
 			width = 30
 			height = 30
+			onClick[modelObject.crearTorneo()]
 		]
 		new Button(panelHorizontal) => [
 			caption = "-"

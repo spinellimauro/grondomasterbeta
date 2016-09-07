@@ -38,6 +38,7 @@ class TorneoModel {
 	@Dependencies("fechaON")
 	def List<Partido> getFecha() {
 		torneoON.getFecha(fechaON)
+		
 	}
 	
 	def List<Integer> getListaFechas() {
@@ -52,5 +53,9 @@ class TorneoModel {
 
 	def void borrarTorneo() {
 		ligaMaster.removeTorneo(torneoON)
+	}
+	
+	def crearTorneo(){
+		ligaMaster.addTorneo(new Torneo=>[nombreTorneo = "torneoNuevo"])
 	}
 }

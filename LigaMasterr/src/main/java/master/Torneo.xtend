@@ -5,6 +5,7 @@ import java.util.Collections
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import datos.PremiosTorneos
 
 @Observable
 @Accessors
@@ -14,7 +15,8 @@ class Torneo {
 	List<DT> listaParticipantes = newArrayList
 	List<Partido> listaPartidos = newArrayList
 	int limiteAmarillas
-
+	PremiosTorneos premios = new PremiosTorneos
+	
 	def void sortearFechas() {
 		listaPartidos.clear
 		var listaMezclada = listaParticipantes
@@ -118,6 +120,18 @@ class Torneo {
 	def void configTorneo() {
 		listaParticipantes.forEach[torneo = this]
 		listaJugadores.forEach[torneo = this]
+	}
+	
+	def terminarTorneo(){
+		var i = 0
+		if (listaPartidos.forall[terminado]){
+			for(i=0;i<4;i++){     // pondriamos i<cantPremios Y que en premios haya un put(posicion,premio) etc
+				listaPosiciones.get(i).plata = premios.getPremio(i)
+			}
+			listaParticipantes.forEach[restarTorneoDisponible]	
+		}
+		
+//		grondomaster.guardarBase()
 	}
 
 }

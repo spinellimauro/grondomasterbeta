@@ -1,5 +1,0 @@
-package datos
-
-class PreciosTorneos {
-	
-}

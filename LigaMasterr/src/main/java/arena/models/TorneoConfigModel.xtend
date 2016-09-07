@@ -26,4 +26,12 @@ class TorneoConfigModel {
 	def void getRemoveDT() {
 		torneoON.removeDT(dtON)
 	}
+	
+	def DT getDTByNombre(){
+		torneoON.listaParticipantes.findFirst[dt|dt.nombreDT == nombreIngresado]
+	}
+	
+	def boolean dtTieneQuePagar(){
+		getDTByNombre.tieneQuePagar
+	}
 }
