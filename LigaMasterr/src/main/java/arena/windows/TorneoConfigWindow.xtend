@@ -41,10 +41,9 @@ class TorneoConfigWindow extends Dialog<TorneoConfigModel> {
 		new Button(panelNuevo) => [
 			caption = "+"
 			onClick[
-				modelObject.addDT
 				if (modelObject.dtTieneQuePagar){
-					new ImpuestosWindow().open
-				}
+					new ImpuestosWindow(this, modelObject).open
+				}else modelObject.addDT
 			]
 			fontSize = 10
 			width = 30

@@ -12,7 +12,8 @@ class TorneoConfigModel {
 	Torneo torneoON
 	DT dtON
 	String nombreIngresado
-
+	DT dt
+	
 	new(TorneoModel torneoModel) {
 		model = torneoModel
 		torneoON = torneoModel.torneoON
@@ -28,7 +29,7 @@ class TorneoConfigModel {
 	}
 	
 	def DT getDTByNombre(){
-		torneoON.listaParticipantes.findFirst[dt|dt.nombreDT == nombreIngresado]
+		torneoON.listaParticipantes.findFirst[nombreDT.equals(nombreIngresado)]
 	}
 	
 	def boolean dtTieneQuePagar(){
