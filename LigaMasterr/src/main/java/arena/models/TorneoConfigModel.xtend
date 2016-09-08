@@ -4,6 +4,7 @@ import master.DT
 import master.Torneo
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import master.LigaMaster
 
 @Observable
 @Accessors
@@ -12,11 +13,12 @@ class TorneoConfigModel {
 	Torneo torneoON
 	DT dtON
 	String nombreIngresado
-	DT dt
-	
+	LigaMaster liga
+	DT dt = new DT => [nombreDT = nombreIngresado]
 	new(TorneoModel torneoModel) {
 		model = torneoModel
 		torneoON = torneoModel.torneoON
+		liga = torneoModel.ligaMaster
 	}
 
 	def void addDT() {
@@ -28,11 +30,7 @@ class TorneoConfigModel {
 		torneoON.removeDT(dtON)
 	}
 	
-	def DT getDTByNombre(){
-		torneoON.listaParticipantes.findFirst[nombreDT.equals(nombreIngresado)]
-	}
-	
 	def boolean dtTieneQuePagar(){
-		getDTByNombre.tieneQuePagar
+		dt.tieneQuePagar
 	}
 }
