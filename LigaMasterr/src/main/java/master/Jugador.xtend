@@ -18,8 +18,7 @@ class Jugador {
 	int vecesNoPagadas = 0
 
 	def double getImpuesto() {
-		val precios = torneo.precios
-		precios.getPrecio(this) * (precios.getPrecio("Impuesto") / 100)
+		Precios.instance.getPrecio(this) * (Precios.instance.getPrecio("Impuesto") / 100)
 	}
 
 	def getPrecioMaquina() {

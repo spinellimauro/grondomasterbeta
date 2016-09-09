@@ -50,7 +50,7 @@ class DT {
 	}
 
 	def getJugadoresConImpuesto() {
-		listaJugadores.filter[pagaImpuesto]
+		listaJugadores.filter[pagaImpuesto].toList
 	}
 
 	def boolean getTieneSlots() {

@@ -31,7 +31,7 @@ class MercadoWindow extends SimpleWindow<MercadoModel> {
 
 	def createMaquinaWindowPanel(Panel panel) {
 		new Label(panel) => [
-			text = "Lista Transferibles"
+			text = "Lista Exterior"
 			fontSize = 12
 		]
 		new Table(panel, Jugador) => [
@@ -85,7 +85,7 @@ class MercadoWindow extends SimpleWindow<MercadoModel> {
 
 	def void createTransferiblesPanel(Panel panel) {
 		new Label(panel) => [
-			text = "Lista Exterior"
+			text = "Lista Transferibles"
 			fontSize = 12
 		]
 		new Table(panel, Jugador) => [
