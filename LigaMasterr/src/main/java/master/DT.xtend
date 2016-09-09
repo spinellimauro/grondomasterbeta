@@ -37,7 +37,8 @@ class DT {
 	def void pagarImpuesto(List<Jugador> jugadoresAPagar) {
 		jugadoresAPagar.forEach[pagarImpuesto]
 
-		var jugadoresNoPagados = listaJugadores
+		var jugadoresNoPagados = newArrayList
+		jugadoresNoPagados.addAll(listaJugadores)
 		jugadoresNoPagados.removeAll(jugadoresAPagar)
 		jugadoresNoPagados.forEach[noSePago]
 

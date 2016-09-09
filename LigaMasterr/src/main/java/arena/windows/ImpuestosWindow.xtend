@@ -109,6 +109,7 @@ class ImpuestosWindow extends Dialog<ImpuestoModel> {
 			onClick[
 				modelObject.pagarImpuestos()
 				modelObject.deshabilitar()
+				modelObject.modelo.addDT
 			]
 			bindEnabledToProperty("habilitado")
 		]

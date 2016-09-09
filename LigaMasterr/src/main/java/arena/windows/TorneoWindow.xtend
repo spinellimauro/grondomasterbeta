@@ -116,6 +116,13 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			onClick[new TablaWindow(this, modelObject.torneoON).open]
 			fontSize = 10
 		]
+		
+		new Button(panel) => [
+			caption = "Reglas"
+			onClick[new ReglasWindow(this, modelObject).open]
+			fontSize = 10
+		]
+		
 
 		new Button(panel) => [
 			caption = "Guardar"

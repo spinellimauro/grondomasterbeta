@@ -18,10 +18,12 @@ class ImpuestoModel {
 	List<Jugador> jugadores = newArrayList
 	double suma = 0
 	boolean habilitado = true
+	TorneoConfigModel modelo
 	
 	new(TorneoConfigModel model) {
 		dtAgregado = model.dt
 		agregarJugadores
+		modelo = model
 	}
 	
 	
