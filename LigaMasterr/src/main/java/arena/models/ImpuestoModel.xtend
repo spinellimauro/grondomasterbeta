@@ -16,32 +16,48 @@ class ImpuestoModel {
 	Jugador jugadorSeleccionadoAPagar
 	List<Jugador> jugadoresAPagar = newArrayList
 	List<Jugador> jugadores = newArrayList
-	Double suma
+	double suma = 0
+	boolean habilitado = true
 	
 	new(TorneoConfigModel model) {
 		dtAgregado = model.dt
+		agregarJugadores
 	}
 	
 	
-	def getJugadores(){
-		dtAgregado.jugadoresConImpuesto
+	def agregarJugadores(){
+		jugadores = dtAgregado.jugadoresConImpuesto
 	}
 	
 	def void agregarAPagar(){
 		jugadoresAPagar.add(jugadorSeleccionado)
 		jugadores.remove(jugadorSeleccionado)
-		ObservableUtils.firePropertyChanged(this,"jugadores")
-		ObservableUtils.firePropertyChanged(this,"jugadoresAPagar")
+		actualizar
 	}
 	
 	def void removerAPagar(){
-		jugadoresAPagar.remove(jugadorSeleccionadoAPagar)
 		jugadores.add(jugadorSeleccionadoAPagar)
-		ObservableUtils.firePropertyChanged(this,"jugadores")
-		ObservableUtils.firePropertyChanged(this,"jugadoresAPagar")
+		jugadoresAPagar.remove(jugadorSeleccionadoAPagar)
+		actualizar
 	}
 	
 	def pagarImpuestos(){
-		
+		dtAgregado.pagarImpuesto(jugadoresAPagar)
 	}
+	
+	def actualizar(){
+		sumaImpuestos
+		ObservableUtils.firePropertyChanged(this,"suma")
+		ObservableUtils.firePropertyChanged(this,"jugadoresAPagar")
+		ObservableUtils.firePropertyChanged(this,"jugadores")
+	}
+	
+	def sumaImpuestos(){
+		suma = jugadoresAPagar.fold(0d)[acum , Jugador| acum + Jugador.getImpuesto]
+	}
+	
+	def deshabilitar(){
+		habilitado = false
+	}
+	
 }

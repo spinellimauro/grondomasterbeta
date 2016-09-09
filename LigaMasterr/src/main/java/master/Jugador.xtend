@@ -12,7 +12,8 @@ class Jugador {
 	String nombre
 	int nivel
 	int potencial
-
+	boolean habilitado = true
+	
 	Torneo torneo
 	double precioVenta = 0
 	int vecesNoPagadas = 0
@@ -27,10 +28,12 @@ class Jugador {
 
 	def void noSePago() {
 		vecesNoPagadas++
+		habilitado = false
 	}
 
 	def void pagar() {
 		vecesNoPagadas = 0
+		habilitado = true
 	}
 
 	def boolean getPagaImpuesto() {

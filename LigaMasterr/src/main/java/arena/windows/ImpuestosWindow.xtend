@@ -11,6 +11,7 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.layout.VerticalLayout
 
 class ImpuestosWindow extends Dialog<ImpuestoModel> {
 	new(WindowOwner owner, TorneoConfigModel model  ) {
@@ -19,11 +20,11 @@ class ImpuestosWindow extends Dialog<ImpuestoModel> {
 	}
 	override createMainTemplate(Panel panel) {
 		panel.layout = new HorizontalLayout
-		
 		new Label(panel) => [
 			text = "No Pagar"
 			fontSize = 12
 		]
+		
 		new Table(panel, Jugador) => [
 				bindItemsToProperty("jugadores")
 				bindValueToProperty("jugadorSeleccionado")
@@ -80,21 +81,41 @@ class ImpuestosWindow extends Dialog<ImpuestoModel> {
 					fixedSize = 80
 				]
 			]
+			val panel2 = new Panel(panel)
+		panel2.layout = new VerticalLayout
 		
-		
-		new Label(panel) => [
+		new Label(panel2) => [
 			text = "Plata Disponible"
 			fontSize = 12
 		]
 		
-		new Label(panel) => [
+		new Label(panel2) => [
 			bindValueToProperty("dtAgregado.plata")
 			fontSize = 12	
 		]
+	
+		new Label(panel2) => [
+			text = "Suma Impuestos"
+			fontSize = 12
+		]
 		
-		new Button(panel)=>[
+		new Label(panel2) => [
+			bindValueToProperty("suma")
+			fontSize = 12	
+		]
+		
+		new Button(panel2)=>[
 			caption = "Pagar Impuestos"
-			onClick[modelObject.pagarImpuestos()]
+			onClick[
+				modelObject.pagarImpuestos()
+				modelObject.deshabilitar()
+			]
+			bindEnabledToProperty("habilitado")
+		]
+		
+		new Button(panel2)=>[
+			caption = "Cerrar"
+			onClick[this.close]
 		]
 		
 	}
