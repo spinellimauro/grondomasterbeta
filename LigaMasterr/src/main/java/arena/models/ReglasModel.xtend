@@ -7,9 +7,12 @@ import datos.Precios
 @Observable
 @Accessors
 class ReglasModel {
-	
-	Precios val77 
+	Integer nivel
+	Double precio
 	new(TorneoModel model) {
 	}
 	
+	def modificarPrecio(){
+		Precios.instance.setPrecio(nivel,precio)
+	}
 }

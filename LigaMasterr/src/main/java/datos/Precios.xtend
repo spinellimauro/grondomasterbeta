@@ -46,4 +46,8 @@ final class Precios {
 	def static getInstance() {
 		instance
 	}
+	
+	def setPrecio(Integer nivel, Double precio){
+		mapaNiveles.replace(nivel,precio)
+	}
 }
