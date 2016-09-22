@@ -15,10 +15,11 @@ import master.DT
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.Label
+import arena.models.TorneoModel
 
 class MercadoWindow extends SimpleWindow<MercadoModel> {
 
-	new(WindowOwner owner, EquipoModel model) {
+	new(WindowOwner owner, TorneoModel model) {
 		super(owner, new MercadoModel(model))
 		title = "Mercado"
 	}

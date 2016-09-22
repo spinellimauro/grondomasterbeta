@@ -49,17 +49,17 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			width = 95
 		]
 
-		new Button(panel) => [
-			caption = "Mercado"
-			onClick[new MercadoWindow(this, modelObject).open]
-			fontSize = 10
-		]
+//		new Button(panel) => [
+//			caption = "Mercado"
+//			onClick[new MercadoWindow(this, modelObject).open]
+//			fontSize = 10
+//		]
 		
-		new Button(panel) => [
-			caption = "Ver Ofertas"
-			onClick[new OfertasWindow(this, modelObject.dtON).open]
-			fontSize = 10
-		]
+//		new Button(panel) => [
+//			caption = "Ver Ofertas"
+//			onClick[new OfertasWindow(this, modelObject.dtON).open]
+//			fontSize = 10
+//		]
 	}
 
 	def void createEquipoPanel(Panel panel) {

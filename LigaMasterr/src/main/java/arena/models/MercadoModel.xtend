@@ -22,7 +22,7 @@ class MercadoModel {
 
 	List<Jugador> listaMaquina = newArrayList
 
-	new(EquipoModel model) {
+	new(TorneoModel model) {
 		dtON = model.dtON
 		ligaMaster = model.ligaMaster
 	}

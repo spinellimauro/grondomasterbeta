@@ -123,6 +123,17 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			fontSize = 10
 		]
 		
+		new Button(panel) => [
+			caption = "Mercado"
+			onClick[new MercadoWindow(this, modelObject).open]
+			fontSize = 10
+		]
+		
+		new Button(panel) => [
+			caption = "Ofertas"
+			onClick[new OfertasWindow(this, modelObject.dtON).open]
+			fontSize = 10
+		]
 
 		new Button(panel) => [
 			caption = "Guardar"
