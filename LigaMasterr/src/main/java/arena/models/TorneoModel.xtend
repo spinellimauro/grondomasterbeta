@@ -18,7 +18,8 @@ class TorneoModel {
 	DT dtON
 	Integer fechaON = 1
 	Torneo torneoON
-
+	String nombreNuevoTorneo
+	
 	Partido partido
 	String nombreIngresado
 
@@ -56,6 +57,6 @@ class TorneoModel {
 	}
 	
 	def crearTorneo(){
-		ligaMaster.addTorneo(new Torneo=>[nombreTorneo = "torneoNuevo"])
+		ligaMaster.addTorneo(new Torneo=>[nombreTorneo = nombreNuevoTorneo])
 	}
 }

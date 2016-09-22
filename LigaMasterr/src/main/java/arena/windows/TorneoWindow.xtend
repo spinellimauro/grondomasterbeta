@@ -16,6 +16,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.CheckBox
 import arena.models.LoginModel
+import org.uqbar.arena.widgets.TextBox
 
 class TorneoWindow extends SimpleWindow<TorneoModel> {
 
@@ -42,7 +43,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			bindItemsToProperty("fecha")
 			bindValueToProperty("partido")
 			numberVisibleRows = 8
-
+			
 			new Column(it) => [
 				title = "Local"
 				bindContentsToProperty("dtLocal.nombreDT")
@@ -87,15 +88,18 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 
 		val panelHorizontal = new Panel(panel).layout = new HorizontalLayout
 		new Label(panelHorizontal).text = "        "
+		new TextBox(panelHorizontal) => [
+			bindValueToProperty("nombreNuevoTorneo")
+		]
 		new Button(panelHorizontal) => [
-			caption = "+"
-			width = 30
+			caption = "Crear"
+			width = 50
 			height = 30
 			onClick[modelObject.crearTorneo()]
 		]
 		new Button(panelHorizontal) => [
-			caption = "-"
-			width = 30
+			caption = "Eliminar"
+			width = 50
 			height = 30
 		]
 
