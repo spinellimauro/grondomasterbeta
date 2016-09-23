@@ -10,7 +10,7 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.TextBox
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-
+import org.uqbar.arena.widgets.Button
 
 class ReglasWindow extends SimpleWindow<ReglasModel>{
 	
@@ -19,20 +19,54 @@ class ReglasWindow extends SimpleWindow<ReglasModel>{
 	new(WindowOwner owner, TorneoModel model) {
 		super(owner, new ReglasModel(model))
 		title = "Equipos"
+		modelObject.traerTodo
 	}
 	
 	override createMainTemplate(Panel panel){
 		
 		panel.layout = new ColumnLayout(2)
-		
-		for(i=77;i<95;i++){
+		// Niveles
+		for(i=76;i<95;i++){
 			new Label(panel)=>[
 				text = "=" + i
 			]
 			new TextBox(panel) => [
-				value <=> "precio"
+				value <=> "precio" + i
 			]
 		}	
+		// Impuesto
+		new Label(panel)=>[
+			text = "Nivel Minimo Impuesto" 
+		]
+		new TextBox(panel) => [
+			value <=> "nivelImpuesto"
+		]
+		new Label(panel)=>[
+			text = "Porcentaje Impuesto" 
+			
+		]
+		new TextBox(panel) => [
+			value <=> "porcentajeImpuesto"
+		]
+		// Slots
+		new Label(panel)=>[
+			text = "Cantidad Maxima Slots" 
+		]
+		new TextBox(panel) => [
+			value <=> "slotsDisponibles"
+		]
+		
+		new Label(panel)=>[
+			text = "Valor Slot" 
+		]
+		new TextBox(panel) => [
+			value <=> "slotPrecio"
+		]
+		
+		new Button(panel)=>[
+			caption = "Guardar Todo"
+			onClick[modelObject.guardarTodo]
+		]
 	}
 	
 	override protected addActions(Panel actionsPanel) {

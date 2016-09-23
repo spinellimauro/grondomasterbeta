@@ -6,6 +6,7 @@ import master.Jugador
 final class Precios {
 	static Precios instance = new Precios
 	Map<Integer, Double> mapaNiveles = newHashMap(
+		76 -> 10000.0,
 		77 -> 10000.0,
 		78 -> 20000.0,
 		79 -> 30000.0,
@@ -36,11 +37,19 @@ final class Precios {
 
 	def double getPrecio(Jugador jugador) {
 		if (jugador.nivel > 76) mapaNiveles.get(jugador.nivel)
-		else 10000	
+		else mapaNiveles.get(76)	
 	}
 
 	def double getPrecio(String string) {
 		mapaPrecios.get(string)
+	}
+	
+	def double getPrecio(Integer nivel) {
+		mapaNiveles.get(nivel)
+	}
+	
+	def double setPrecio(String string, Double valor) {
+		mapaPrecios.replace(string,valor)
 	}
 	
 	def static getInstance() {

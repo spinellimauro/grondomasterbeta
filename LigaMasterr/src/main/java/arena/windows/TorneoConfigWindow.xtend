@@ -12,6 +12,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.arena.widgets.Selector
 
 class TorneoConfigWindow extends Dialog<TorneoConfigModel> {
 
@@ -33,11 +34,15 @@ class TorneoConfigWindow extends Dialog<TorneoConfigModel> {
 		]
 		
 		val panelNuevo = new Panel(panel).layout = new HorizontalLayout
-		new TextBox(panelNuevo) => [
-			bindValueToProperty("nombreIngresado")
-			fontSize = 10
-			width = 80
+		new Selector(panelNuevo)=>[	
+			bindItemsToProperty("liga.listaDTs").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindValueToProperty("dtIngresado")
 		]
+//		new TextBox(panelNuevo) => [
+//			bindValueToProperty("nombreIngresado")
+//			fontSize = 10
+//			width = 80
+//		]
 		new Button(panelNuevo) => [
 			caption = "+"
 			onClick[

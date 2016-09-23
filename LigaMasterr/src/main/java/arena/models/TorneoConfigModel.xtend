@@ -13,7 +13,7 @@ class TorneoConfigModel {
 	TorneoModel model
 	Torneo torneoON
 	DT dtON
-	String nombreIngresado
+	DT dtIngresado
 	LigaMaster liga
 	new(TorneoModel torneoModel) {
 		model = torneoModel
@@ -23,7 +23,6 @@ class TorneoConfigModel {
 
 	def void addDT() {
 		torneoON.addDT(dt)
-		nombreIngresado = ""
 	}
 
 	def void getRemoveDT() {
@@ -35,6 +34,6 @@ class TorneoConfigModel {
 	}
 	
 	def getDt(){
-		JSONAdapter.getDT(nombreIngresado)
+		JSONAdapter.getDT(dtIngresado.nombreDT)
 	}
 }
