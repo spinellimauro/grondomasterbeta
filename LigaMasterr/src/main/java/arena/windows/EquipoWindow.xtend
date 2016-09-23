@@ -48,7 +48,24 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			bindValueToProperty("dtON.plata")
 			width = 95
 		]
-
+		
+		new LabeledTextBox(panel) => [
+			text = "Torneos Restantes: "
+			bindValueToProperty("dtON.fechasDisponibles")
+			width = 95
+		]
+		
+		new LabeledTextBox(panel) => [
+			text = "Slots: "
+			bindValueToProperty("dtON.slots")
+			width = 95
+		]
+		
+		new Button(panel)=>[
+			caption = "Comprar Slot"
+			onClick[modelObject.dtON.comprarSlot]
+		]
+	
 //		new Button(panel) => [
 //			caption = "Mercado"
 //			onClick[new MercadoWindow(this, modelObject).open]
