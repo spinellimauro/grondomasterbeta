@@ -9,6 +9,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.arena.layout.HorizontalLayout
 
 class ReglasWindow extends SimpleWindow<ReglasModel> {
 	new(WindowOwner owner) {
@@ -19,14 +20,16 @@ class ReglasWindow extends SimpleWindow<ReglasModel> {
 	override protected addActions(Panel actionsPanel) {}
 
 	override protected createFormPanel(Panel mainPanel) {
+		mainPanel.layout = new HorizontalLayout
 		new Table(mainPanel, PrecioNivel) => [
 			bindItemsToProperty("listaNiveles")
 			bindValueToProperty("nivelON")
-			numberVisibleRows = 8
+			numberVisibleRows = 20
 
 			new Column(it) => [
 				title = "Nivel"
 				bindContentsToProperty("nivel")
+				fixedSize = 40
 			]
 			
 			new Column(it) => [
