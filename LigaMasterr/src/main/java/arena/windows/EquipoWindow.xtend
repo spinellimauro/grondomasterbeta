@@ -47,6 +47,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			text = "Plata: "
 			bindValueToProperty("dtON.plata")
 			width = 95
+			
 		]
 		
 		new LabeledTextBox(panel) => [
@@ -63,7 +64,10 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 		
 		new Button(panel)=>[
 			caption = "Comprar Slot"
-			onClick[modelObject.dtON.comprarSlot]
+			onClick[
+				modelObject.dtON.comprarSlot
+				modelObject.ligaMaster.guardarBase
+			]
 		]
 	
 //		new Button(panel) => [

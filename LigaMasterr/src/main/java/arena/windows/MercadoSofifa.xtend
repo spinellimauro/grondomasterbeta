@@ -2,7 +2,6 @@ package arena.windows
 
 import arena.models.MercadoModel
 import arena.models.TorneoModel
-import master.DT
 import master.Jugador
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
@@ -14,9 +13,7 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-
-class MercadoWindow extends SimpleWindow<MercadoModel> {
+class MercadoSofifa extends SimpleWindow<MercadoModel> {
 
 	new(WindowOwner owner, TorneoModel model) {
 		super(owner, new MercadoModel(model))
@@ -25,18 +22,17 @@ class MercadoWindow extends SimpleWindow<MercadoModel> {
 
 	override createMainTemplate(Panel panel) {
 		panel.layout = new HorizontalLayout
-		createTransferiblesPanel(new Panel(panel))
+		createMaquinaWindowPanel(new Panel(panel))
 	}
 
-
-	def void createTransferiblesPanel(Panel panel) {
+	def createMaquinaWindowPanel(Panel panel) {
 		new Label(panel) => [
-			text = "Lista Transferibles"
+			text = "Lista Exterior"
 			fontSize = 12
 		]
 		new Table(panel, Jugador) => [
-			items <=> "listaTransferibles"
-			value <=> "jugadorON"
+			bindItemsToProperty("listaMaquina")
+			bindValueToProperty("jugadorON")
 			numberVisibleRows = 8
 
 			new Column(it) => [
@@ -54,26 +50,34 @@ class MercadoWindow extends SimpleWindow<MercadoModel> {
 				bindContentsToProperty("potencial")
 				fixedSize = 65
 			]
+
 			new Column(it) => [
 				title = "Precio"
-				bindContentsToProperty("precioVenta")
+				bindContentsToProperty("precioMaquina")
 				fixedSize = 65
 			]
-			new Column(it) => [
-				title = "Propietario"
-				bindContentsToProperty("propietario").transformer = [DT dt|dt.nombreDT]
-				fixedSize = 80
-			]
+
 		]
 
-		new Button(panel) => [
-			caption = "Comprar"
+		val panelHorizontal = new Panel(panel).layout = new HorizontalLayout
+		new TextBox(panelHorizontal) => [
+			bindValueToProperty("valorIngresado")
+			width = 180
+			fontSize = 12
+		]
+
+		new Button(panelHorizontal) => [
+			caption = "Buscar"
+			onClick[modelObject.buscar]
 			fontSize = 10
-			onClick[modelObject.comprarJugador]
-			width = 100
+		]
+
+		new Button(panelHorizontal) => [
+			caption = "Comprar"
+			onClick[modelObject.comprarJugadorALaMaquina]
+			fontSize = 10
 		]
 	}
-
 	override protected createFormPanel(Panel mainPanel) {}
 
 	override protected addActions(Panel actionsPanel) {}
