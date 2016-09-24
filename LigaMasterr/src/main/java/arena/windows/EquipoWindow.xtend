@@ -52,7 +52,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 		
 		new LabeledTextBox(panel) => [
 			text = "Torneos Restantes: "
-			bindValueToProperty("dtON.fechasDisponibles")
+			bindValueToProperty("dtON.torneosDisponibles")
 			width = 95
 		]
 		

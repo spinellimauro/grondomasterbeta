@@ -6,6 +6,7 @@ import master.DT
 import master.Jugador
 import master.Partido
 import master.Torneo
+import master.Oferta
 
 final class JSONTransformer {
 	def static String toJSON(Jugador jugador) {
@@ -27,10 +28,23 @@ final class JSONTransformer {
 			add("equipo", dt.nombreEquipo)
 			add("plata", dt.plata)
 			add("slots", dt.slots)
+			add("ofertas", new JsonArray => [dt.ofertasRecibidas.map[toJSON].forEach[oferta|add(oferta)]])
 			add("jugadores", new JsonArray => [dt.getListaJugadores.forEach[jugador|add(jugador.id)]])
-			add("fechas", dt.fechasDisponibles)
+			add("torneos", dt.torneosDisponibles)
 		]
 
+		json.toString
+	}
+
+	def static String toJSON(Oferta oferta) {
+		val json = new JsonObject => [
+			add("ofertante", oferta.dtOfertante.nombreDT)
+			add("receptor", oferta.dtReceptor.nombreDT)
+			add("monto", oferta.monto)
+			add("jugador", oferta.jugadorOfertado.id)
+			add("jugadoresOfertados", new JsonArray => [oferta.jugadoresOfrecidos.map[id].forEach[id|add(id)]])
+		]
+		
 		json.toString
 	}
 

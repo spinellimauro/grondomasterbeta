@@ -4,6 +4,7 @@ import java.util.List
 import java.util.Set
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import datos.Precios
 
 @Observable
 @Accessors
@@ -17,7 +18,7 @@ class DT {
 
 	Torneo torneo
 
-	int fechasDisponibles = 3
+	int torneosDisponibles = 3
 
 	def Set<Jugador> getJugadores() {
 		listaJugadores.filter[!torneo.estaSuspendido(it)].toSet
@@ -42,7 +43,7 @@ class DT {
 		jugadoresNoPagados.removeAll(jugadoresAPagar)
 		jugadoresNoPagados.forEach[noSePago]
 
-		if(jugadoresNoPagados.size != 0) fechasDisponibles--
+		if(jugadoresNoPagados.size != 0) torneosDisponibles--
 	}
 
 	def void pagarImpuesto(Jugador jugador) {
@@ -60,7 +61,7 @@ class DT {
 
 	def void comprarSlot() {
 		slots++
-		decPlata(torneo.precios.getPrecio("Slot"))
+		decPlata(Precios.instance.getPrecio("Slot"))
 	}
 
 	def void incPlata(Double monto) {
@@ -110,11 +111,11 @@ class DT {
 	}
 	
 	def restarTorneoDisponible(){
-		fechasDisponibles--
+		torneosDisponibles--
 	}
 	
 	def tieneQuePagar(){
-		fechasDisponibles == 0
+		torneosDisponibles == 0
 	}
 
 }

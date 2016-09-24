@@ -29,9 +29,9 @@ class TorneoModel {
 		dtON = loginModel.dtON
 	}
 
-	def void setTorneoSeleccionado(Torneo torneo) {
-		fechaON = torneo.fechaActual
-		torneoSeleccionado = torneo
+	def void setTorneoON(Torneo torneo) {
+		fechaON = 1
+		torneoON = torneo
 		ObservableUtils.firePropertyChanged(this, "fecha")
 		ObservableUtils.firePropertyChanged(this, "listaFechas")
 	}

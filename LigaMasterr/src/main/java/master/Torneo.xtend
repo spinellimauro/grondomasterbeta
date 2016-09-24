@@ -1,17 +1,15 @@
 package master
 
-import datos.Precios
+import datos.PremiosTorneos
 import java.util.Collections
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import datos.PremiosTorneos
 
 @Observable
 @Accessors
 class Torneo {
 	String nombreTorneo = ""
-	Precios precios = new Precios
 	List<DT> listaParticipantes = newArrayList
 	List<Partido> listaPartidos = newArrayList
 	int limiteAmarillas

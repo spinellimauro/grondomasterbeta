@@ -1,62 +1,83 @@
 package datos
 
-import java.util.Map
+import java.util.List
 import master.Jugador
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
+@Observable
+@Accessors
 final class Precios {
 	static Precios instance = new Precios
-	Map<Integer, Double> mapaNiveles = newHashMap(
-		76 -> 10000.0,
-		77 -> 10000.0,
-		78 -> 20000.0,
-		79 -> 30000.0,
-		80 -> 40000.0,
-		81 -> 55000.0,
-		82 -> 70000.0,
-		83 -> 85000.0,
-		84 -> 95000.0,
-		85 -> 115000.0,
-		86 -> 130000.0,
-		87 -> 150000.0,
-		88 -> 180000.0,
-		89 -> 220000.0,
-		90 -> 250000.0,
-		91 -> 300000.0,
-		92 -> 400000.0,
-		93 -> 500000.0,
-		94 -> 550000.0
+	
+	List<PrecioNivel> listaNiveles = newArrayList(
+		new PrecioNivel(76, 10000.0),
+		new PrecioNivel(77, 10000.0),
+		new PrecioNivel(78, 20000.0),
+		new PrecioNivel(79, 30000.0),
+		new PrecioNivel(80, 40000.0),
+		new PrecioNivel(81, 55000.0),
+		new PrecioNivel(82, 70000.0),
+		new PrecioNivel(83, 85000.0),
+		new PrecioNivel(84, 95000.0),
+		new PrecioNivel(85, 115000.0),
+		new PrecioNivel(86, 130000.0),
+		new PrecioNivel(87, 150000.0),
+		new PrecioNivel(88, 180000.0),
+		new PrecioNivel(89, 220000.0),
+		new PrecioNivel(90, 250000.0),
+		new PrecioNivel(91, 300000.0),
+		new PrecioNivel(92, 400000.0),
+		new PrecioNivel(93, 500000.0),
+		new PrecioNivel(94, 550000.0)
 	)
 
-	Map<String, Double> mapaPrecios = newHashMap(
-		"Slot" -> 10000.0,
-		"Victoria" -> 2000.0,
-		"Gol" -> 1000.0,
-		"Empate" -> 1000.0,
-		"Impuesto" -> 10.0
+	List<PrecioEvento> listaEventos = newArrayList(
+		new PrecioEvento("Slot", 10000.0),
+		new PrecioEvento("Victoria", 2000.0),
+		new PrecioEvento("Gol", 1000.0),
+		new PrecioEvento("Empate", 1000.0),
+		new PrecioEvento("Impuesto", 10.0)
 	)
 
 	def double getPrecio(Jugador jugador) {
-		if (jugador.nivel > 76) mapaNiveles.get(jugador.nivel)
-		else mapaNiveles.get(76)	
+		val nivelJugador = jugador.nivel
+		if(nivelJugador > 76) getPrecio(nivelJugador) else getPrecio(76)
+	}
+
+	def double getPrecio(int integer) {
+		listaNiveles.findFirst[nivel == integer].precio
 	}
 
 	def double getPrecio(String string) {
-		mapaPrecios.get(string)
+		listaEventos.findFirst[evento.equals(string)].precio
 	}
-	
-	def double getPrecio(Integer nivel) {
-		mapaNiveles.get(nivel)
-	}
-	
-	def double setPrecio(String string, Double valor) {
-		mapaPrecios.replace(string,valor)
-	}
-	
+
 	def static getInstance() {
 		instance
 	}
-	
-	def setPrecio(Integer nivel, Double precio){
-		mapaNiveles.replace(nivel,precio)
+}
+
+@Observable
+@Accessors
+class PrecioNivel{
+	int nivel
+	double precio
+
+	new(int integer, double valor) {
+		nivel = integer
+		precio = valor
+	}
+}
+
+@Observable
+@Accessors
+class PrecioEvento{
+	String evento
+	double precio
+
+	new(String string, double valor) {
+		evento = string
+		precio = valor
 	}
 }

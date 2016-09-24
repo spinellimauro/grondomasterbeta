@@ -39,7 +39,7 @@ final class JSONAdapter {
 					plata = jsonDT.get("plata").asDouble
 					slots = jsonDT.get("slots").asInt
 					jsonDT.get("jugadores").asArray.forEach[s|addJugador(getJugador(s.asInt))]
-					fechasDisponibles = jsonDT.get("fechas").asInt
+					torneosDisponibles= jsonDT.get("torneos").asInt
 				]
 			)
 		]

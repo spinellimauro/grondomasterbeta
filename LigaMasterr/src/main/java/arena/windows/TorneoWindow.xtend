@@ -25,11 +25,10 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 		title = "Liga Master"
 	}
 
-	override protected createMainTemplate(Panel mainPanel) {
+	override createMainTemplate(Panel mainPanel) {
 		mainPanel.layout = new HorizontalLayout
 		createTorneoPanel(new Panel(mainPanel))
 		createFechaPanel(new Panel(mainPanel))
-		
 	}
 
 	def createFechaPanel(Panel panel) {
@@ -125,7 +124,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 		
 		new Button(panel) => [
 			caption = "Reglas"
-			onClick[new ReglasWindow(this, modelObject).open]
+			onClick[new ReglasWindow(this).open]
 			fontSize = 10
 		]
 		

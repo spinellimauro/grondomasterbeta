@@ -29,7 +29,7 @@ class LigaMaster {
 	}
 
 	def List<DT> getDTsQuePagan() {
-		listaDTs.filter[fechasDisponibles == 0].toList
+		listaDTs.filter[torneosDisponibles == 0].toList
 	}
 
 	def List<DT> getListaDTs() {
@@ -39,7 +39,7 @@ class LigaMaster {
 	def Set<Jugador> getListaJugadores() {
 		listaTorneos.map[listaJugadores].flatten.toSet
 	}
-	
+
 	def Set<Jugador> getListaTransferibles() {
 		listaJugadores.filter[precioVenta > 0].toSet
 	}
@@ -73,7 +73,7 @@ class LigaMaster {
 	def void addTorneo(Torneo torneo) {
 		listaTorneos.add(torneo)
 	}
-	
+
 	def void removeTorneo(Torneo torneo) {
 		listaTorneos.remove(torneo)
 	}

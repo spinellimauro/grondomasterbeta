@@ -28,4 +28,8 @@ class LabeledTextBox extends AbstractLabeledWidget {
 		this
 	}
 	
+	def void bindTextToProperty(String property) {
+		label.bindValueToProperty(property)
+	}
+	
 }
