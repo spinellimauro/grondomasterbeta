@@ -16,7 +16,7 @@ import org.uqbar.commons.utils.Observable
 class MercadoModel {
 	DT dtON
 	LigaMaster ligaMaster
-
+	
 	Jugador jugadorON
 	String valorIngresado = ""
 
@@ -61,5 +61,12 @@ class MercadoModel {
 		listaMaquina.remove(jugadorON)
 
 		ObservableUtils.firePropertyChanged(this, "dtON")
+	}
+	
+	def boolean getHabilitado(){
+		if(dtON.nombreDT == "Master"){ 
+		 true
+		}
+		else{false}
 	}
 }

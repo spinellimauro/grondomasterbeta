@@ -12,6 +12,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class MercadoSofifa extends SimpleWindow<MercadoModel> {
 
@@ -76,6 +77,13 @@ class MercadoSofifa extends SimpleWindow<MercadoModel> {
 			caption = "Comprar"
 			onClick[modelObject.comprarJugadorALaMaquina]
 			fontSize = 10
+		]
+		
+		new Button(panelHorizontal) => [
+			caption = "Agregar"
+			onClick[modelObject.comprarJugadorALaMaquina]
+			fontSize = 10
+			enabled <=> "habilitado"
 		]
 	}
 	override protected createFormPanel(Panel mainPanel) {}
