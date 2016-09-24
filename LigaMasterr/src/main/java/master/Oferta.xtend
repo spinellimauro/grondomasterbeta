@@ -14,16 +14,18 @@ class Oferta {
 	List<Jugador> jugadoresOfrecidos = newArrayList
 	
 	def void aceptar(){
-		dtOfertante.addJugador(jugadorOfertado)
-		dtOfertante.decPlata(monto)
-		
 		dtReceptor.removeJugador(jugadorOfertado)
 		dtReceptor.incPlata(monto)
+
+		dtOfertante.addJugador(jugadorOfertado)
+		dtOfertante.decPlata(monto)
 		
 		if( jugadoresOfrecidos.size > 0){
 			jugadoresOfrecidos.forEach[ dtOfertante.removeJugador(it) ]
 			jugadoresOfrecidos.forEach[ dtReceptor.addJugador(it) ]
 		}
+		
+		rechazar
 	}
 	
 	def void rechazar(){
