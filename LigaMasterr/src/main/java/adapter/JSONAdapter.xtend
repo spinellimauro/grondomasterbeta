@@ -29,7 +29,7 @@ final class JSONAdapter {
 		]
 	}
 
-	def static void setListaDT(List<String> listaString) {
+	def static List<DT> setListaDT(List<String> listaString) {
 		listaString.forEach [
 			val jsonDT = Json.parse(it).asObject
 
@@ -45,6 +45,7 @@ final class JSONAdapter {
 				]
 			)
 		]
+		listaDT
 	}
 
 	def static toOferta(String string) {

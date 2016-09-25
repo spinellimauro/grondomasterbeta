@@ -17,6 +17,7 @@ import static extension com.google.common.io.CharStreams.*
 class LigaMaster {
 	String nombreLiga
 	List<Torneo> listaTorneos = newArrayList
+	List<DT> listaDTs = newArrayList
 	String dirDTs
 	String dirJugadores
 	String dirTorneos
@@ -32,9 +33,9 @@ class LigaMaster {
 		listaDTs.filter[torneosDisponibles == 0].toList
 	}
 
-	def List<DT> getListaDTs() {
-		listaTorneos.map[listaParticipantes].flatten.toList
-	}
+//	def List<DT> getListaDTs() {
+//		listaTorneos.map[listaParticipantes].flatten.toList
+//	}
 
 	def Set<Jugador> getListaJugadores() {
 		listaTorneos.map[listaJugadores].flatten.toSet
@@ -52,7 +53,7 @@ class LigaMaster {
 
 	def void leerBase() {
 		setListaJugador(new FileReader(dirJugadores).readLines)
-		setListaDT(new FileReader(dirDTs).readLines)
+		listaDTs = setListaDT(new FileReader(dirDTs).readLines)
 		listaTorneos.addAll( new FileReader(dirTorneos).readLines.map[toTorneo])
 	}
 
