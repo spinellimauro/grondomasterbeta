@@ -60,8 +60,12 @@ class DT {
 	}
 
 	def void comprarSlot() {
-		slots++
-		decPlata(Precios.instance.getPrecio("Slot"))
+		if(plata >= Precios.instance.getPrecio("Slot")){
+			slots++ 
+			decPlata(Precios.instance.getPrecio("Slot"))
+		}else{
+			throw new Exception() 	
+		}
 	}
 
 	def void incPlata(Double monto) {

@@ -1,5 +1,5 @@
-{"nombre":"NicoR","equipo":"Rotterham","plata":670000,"slots":30,"ofertas":[],"jugadores":[192227,216594,161648,228080],"torneos":1}
+{"nombre":"NicoR","equipo":"Rotterham","plata":0,"slots":87,"ofertas":[],"jugadores":[192227,216594,161648,228080],"torneos":1}
 {"nombre":"Alejandro","equipo":"Dortmund","plata":670000,"slots":30,"ofertas":[],"jugadores":[179944,193301],"torneos":0}
 {"nombre":"Latta","equipo":"Palermo","plata":655000,"slots":30,"ofertas":[],"jugadores":[207494,200145,211300],"torneos":0}
 {"nombre":"Mauro","equipo":"Bourdeaux","plata":92000,"slots":30,"ofertas":[],"jugadores":[178562,192985,184881,197853,231677],"torneos":0}
-{"nombre":"NicoR","equipo":"Rotterham","plata":670000,"slots":30,"ofertas":[],"jugadores":[192227,216594,161648,228080],"torneos":1}
+{"nombre":"Master","equipo":"","plata":0,"slots":0,"ofertas":[],"jugadores":[],"torneos":0}

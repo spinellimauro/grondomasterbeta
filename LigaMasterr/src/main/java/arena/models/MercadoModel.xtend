@@ -15,6 +15,7 @@ import org.uqbar.commons.utils.Observable
 @Observable
 class MercadoModel {
 	DT dtON
+	DT dtElegido
 	LigaMaster ligaMaster
 	
 	Jugador jugadorON
@@ -58,6 +59,16 @@ class MercadoModel {
 			throw new UserException("Ese jugador no es de la Máquina")
 
 		dtON.comprarJugador(jugadorON, jugadorON.precioMaquina)
+		listaMaquina.remove(jugadorON)
+
+		ObservableUtils.firePropertyChanged(this, "dtON")
+	}
+	
+	def void agregarJugador() {
+		if (!listaMaquina.contains(jugadorON))
+			throw new UserException("Ese jugador no es de la Máquina")
+
+		dtElegido.addJugador(jugadorON) 
 		listaMaquina.remove(jugadorON)
 
 		ObservableUtils.firePropertyChanged(this, "dtON")

@@ -7,13 +7,14 @@ import org.uqbar.commons.utils.Observable
 import java.util.List
 import master.DT
 import master.Oferta
+import master.LigaMaster
 
 @Observable
 @Accessors
 class OfertaModel {
 	DT dtON
 	Jugador jugadorON
-
+	LigaMaster ligaMaster
 	Double montoOfertado = 0.0
 	Jugador jugadorElegido
 	List<Jugador> listaJugadores = newArrayList
@@ -43,5 +44,7 @@ class OfertaModel {
 				jugadoresOfrecidos = listaJugadores
 			]
 		)
+		
+		
 	}
 }

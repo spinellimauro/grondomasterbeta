@@ -13,6 +13,10 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Selector
+import org.uqbar.arena.bindings.PropertyAdapter
+import master.DT
 
 class MercadoSofifa extends SimpleWindow<MercadoModel> {
 
@@ -78,12 +82,16 @@ class MercadoSofifa extends SimpleWindow<MercadoModel> {
 			onClick[modelObject.comprarJugadorALaMaquina]
 			fontSize = 10
 		]
-		
-		new Button(panelHorizontal) => [
+		val panelVertical = new Panel(panel).layout = new VerticalLayout
+		new Button(panelVertical) => [
 			caption = "Agregar"
-			onClick[modelObject.comprarJugadorALaMaquina]
+			onClick[modelObject.agregarJugador]
 			fontSize = 10
 			enabled <=> "habilitado"
+		]
+		new Selector(panelVertical)=>[	
+			bindItemsToProperty("ligaMaster.listaDTs").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindValueToProperty("dtElegido")
 		]
 	}
 	override protected createFormPanel(Panel mainPanel) {}
