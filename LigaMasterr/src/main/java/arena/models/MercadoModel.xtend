@@ -48,7 +48,7 @@ class MercadoModel {
 	def void buscar() {
 		listaMaquina.clear
 		listaMaquina.addAll(SoFifa.instance.getJugadores(valorIngresado))
-		listaMaquina.removeAll(ligaMaster.listaJugadores)
+		listaMaquina.removeAll(ligaMaster.listaJugador)
 	}
 
 	def void comprarJugadorALaMaquina() {

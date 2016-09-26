@@ -122,7 +122,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 
 	def void createTransferPanel(Panel panel) {
 		new Selector(panel) => [
-			bindItemsToProperty("ligaMaster.listaDTs").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindItemsToProperty("ligaMaster.listaDT").adapter = new PropertyAdapter(DT, "nombreDT")
 			bindValueToProperty("dtElegido")
 			height = 80
 		]

@@ -90,7 +90,7 @@ class MercadoSofifa extends SimpleWindow<MercadoModel> {
 			enabled <=> "habilitado"
 		]
 		new Selector(panelVertical)=>[	
-			bindItemsToProperty("ligaMaster.listaDTs").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindItemsToProperty("ligaMaster.listaDT").adapter = new PropertyAdapter(DT, "nombreDT")
 			bindValueToProperty("dtElegido")
 		]
 	}

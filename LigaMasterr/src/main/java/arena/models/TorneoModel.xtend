@@ -17,7 +17,7 @@ class TorneoModel {
 
 	DT dtON
 	Integer fechaON = 1
-	Torneo torneoON
+	Torneo torneoON = new Torneo
 	String nombreNuevoTorneo
 	
 	Partido partido
@@ -25,7 +25,6 @@ class TorneoModel {
 
 	new(LoginModel loginModel) {
 		ligaMaster = loginModel.ligaMaster
-		torneoON = ligaMaster.listaTorneos.get(0)
 		dtON = loginModel.dtON
 	}
 

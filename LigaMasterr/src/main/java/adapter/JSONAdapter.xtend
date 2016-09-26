@@ -1,101 +1,103 @@
 package adapter
 
 import com.eclipsesource.json.Json
-import java.util.List
+import com.eclipsesource.json.JsonValue
+import java.io.FileReader
 import master.DT
 import master.Jugador
+import master.LigaMaster
+import master.Oferta
 import master.Partido
 import master.Torneo
-import master.Oferta
 
 final class JSONAdapter {
-	static List<Jugador> listaJugador = newArrayList
-	static List<DT> listaDT = newArrayList
+	def static void leerBase() {
+		val jsonJugadores = Json.parse(new FileReader("data/jugadores.txt")).asArray
+		LigaMaster.instance.listaJugador.addAll(jsonJugadores.map[toJugador])
 
-	def static void setListaJugador(List<String> listaString) {
-		listaJugador.clear
+		val jsonDTs = Json.parse(new FileReader("data/dts.txt")).asArray
+		LigaMaster.instance.listaDT.addAll(jsonDTs.map[toDT])
+
+		val jsonTorneos = Json.parse(new FileReader("data/torneos.txt")).asArray
+		LigaMaster.instance.listaTorneos.addAll(jsonTorneos.map[toTorneo])
+	}
+
+	def static Jugador toJugador(JsonValue jsonValue) {
+		val jsonJugador = jsonValue.asObject
 		
-		listaString.forEach [
-			val jsonJugador = Json.parse(it).asObject
-
-			listaJugador.add(
-				new Jugador => [
-					id = jsonJugador.get("id").asInt
-					nombre = jsonJugador.get("nombre").asString
-					nivel = jsonJugador.get("nivel").asInt
-					potencial = jsonJugador.get("potencial").asInt
-					precioVenta = jsonJugador.get("precio").asDouble
-					vecesNoPagadas = jsonJugador.get("noPagadas").asInt
-				]
-			)
+		new Jugador => [
+			id = jsonJugador.get("id").asInt
+			nombre = jsonJugador.get("nombre").asString
+			nivel = jsonJugador.get("nivel").asInt
+			potencial = jsonJugador.get("potencial").asInt
+			precioVenta = jsonJugador.get("precio").asDouble
+			vecesNoPagadas = jsonJugador.get("noPagadas").asInt
 		]
 	}
 
-	def static List<DT> setListaDT(List<String> listaString) {
-		listaDT.clear
+	def static DT toDT(JsonValue jsonValue) {
+		val jsonDT = jsonValue.asObject
 		
-		listaString.forEach [
-			val jsonDT = Json.parse(it).asObject
+		new DT => [
+			nombreDT = jsonDT.get("nombre").asString
+			nombreEquipo = jsonDT.get("equipo").asString
+			plata = jsonDT.get("plata").asDouble
+			slots = jsonDT.get("slots").asInt
+			torneosDisponibles = jsonDT.get("torneos").asInt
 
-			listaDT.add(
-				new DT => [
-					nombreDT = jsonDT.get("nombre").asString
-					nombreEquipo = jsonDT.get("equipo").asString
-					plata = jsonDT.get("plata").asDouble
-					slots = jsonDT.get("slots").asInt
-					jsonDT.get("jugadores").asArray.forEach[s|addJugador(getJugador(s.asInt))]
-					torneosDisponibles = jsonDT.get("torneos").asInt
-					ofertasRecibidas.addAll(jsonDT.get("ofertas").asArray.map[toOferta(asString)])
-				]
-			)
+			listaJugadores.addAll(jsonDT.get("jugadores").asArray.map[getJugador(asInt)])
+			ofertasRecibidas.addAll(jsonDT.get("ofertas").asArray.map[toOferta])
 		]
-		listaDT
 	}
 
-	def static toOferta(String string) {
-		val jsonOferta = Json.parse(string).asObject
+	def static toOferta(JsonValue jsonValue) {
+		val jsonOferta = jsonValue.asObject
 
 		new Oferta => [
 			dtOfertante = getDT(jsonOferta.get("ofertante").asString)
 			dtReceptor = getDT(jsonOferta.get("receptor").asString)
 			monto = jsonOferta.get("monto").asDouble
 			jugadorOfertado = getJugador(jsonOferta.get("jugador").asInt)
-			jugadoresOfrecidos.addAll( jsonOferta.get("jugadoresOfertados").asArray.map[getJugador(it.asInt)])
+
+			jugadoresOfrecidos.addAll(jsonOferta.get("jugadoresOfertados").asArray.map[getJugador(asInt)])
 		]
 	}
 
-	def static Torneo toTorneo(String string) {
-		val jsonTorneo = Json.parse(string).asObject
+	def static Torneo toTorneo(JsonValue jsonValue) {
+		val jsonTorneo = jsonValue.asObject
 
 		new Torneo => [
 			nombreTorneo = jsonTorneo.get("torneo").asString
-			jsonTorneo.get("dts").asArray.forEach[s|addDT(getDT(s.asString))]
-			listaPartidos.addAll( jsonTorneo.get("partidos").asArray.map[toPartido(asString)])
 			limiteAmarillas = jsonTorneo.get("limiteAmarillas").asInt
+
+			listaParticipantes.addAll( jsonTorneo.get("dts").asArray.map[getDT(asString)])
+			listaPartidos.addAll( jsonTorneo.get("partidos").asArray.map[toPartido])
+
 			configTorneo
 		]
 	}
 
-	def static toPartido(String string) {
-		val jsonPartido = Json.parse(string).asObject
+	def static toPartido(JsonValue jsonValue) {
+		val jsonPartido = jsonValue.asObject
 
 		new Partido => [
 			numeroFecha = jsonPartido.get("fecha").asInt
 			dtLocal = getDT(jsonPartido.get("local").asString)
 			dtVisitante = getDT(jsonPartido.get("visitante").asString)
+			terminado = jsonPartido.get("terminado").asBoolean
+			
 			golesLocal.addAll( jsonPartido.get("golesLocal").asArray.map[getJugador(asInt)])
 			golesVisitante.addAll( jsonPartido.get("golesVisitante").asArray.map[getJugador(asInt)])
 			listaAmarillas.addAll(jsonPartido.get("amarillas").asArray.map[getJugador(asInt)])
 			listaRojas.addAll(jsonPartido.get("rojas").asArray.map[getJugador(asInt)])
-			terminado = jsonPartido.get("terminado").asBoolean
 		]
 	}
 
 	def static getJugador(Integer integer) {
-		listaJugador.findFirst[id == integer] ?: new Jugador
+		LigaMaster.instance.listaJugador.findFirst[id == integer]
 	}
 
 	def static getDT(String string) {
-		listaDT.findFirst[nombreDT.equals(string)] ?: new DT
+		LigaMaster.instance.listaDT.findFirst[nombreDT.equals(string)]
 	}
 }

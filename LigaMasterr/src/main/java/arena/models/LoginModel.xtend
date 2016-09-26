@@ -8,12 +8,10 @@ import org.uqbar.commons.utils.Observable
 @Observable
 @Accessors
 class LoginModel {
-	LigaMaster ligaMaster
+	LigaMaster ligaMaster = LigaMaster.instance
 	DT dtON
 	
 	new() {
-		ligaMaster = new LigaMaster("test")
-		ligaMaster.leerBase
-		dtON = ligaMaster.listaDTs.get(0)
+		LigaMaster.instance.leerBase
 	}
 }

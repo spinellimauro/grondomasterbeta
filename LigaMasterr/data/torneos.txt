@@ -1,0 +1,26 @@
+[
+  {
+    "torneo": "torneoTest",
+    "dts": [
+      "NicoR",
+      "Alejandro",
+      "Latta"
+    ],
+    "partidos": [
+      
+    ],
+    "limiteAmarillas": 3
+  },
+  {
+    "torneo": "torneoNuevo",
+    "dts": [
+      "Mauro",
+      "NicoR",
+      "Master"
+    ],
+    "partidos": [
+      
+    ],
+    "limiteAmarillas": 0
+  }
+]

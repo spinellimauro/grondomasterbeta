@@ -17,6 +17,7 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.CheckBox
 import arena.models.LoginModel
 import org.uqbar.arena.widgets.TextBox
+import master.LigaMaster
 
 class TorneoWindow extends SimpleWindow<TorneoModel> {
 
@@ -148,7 +149,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 
 		new Button(panel) => [
 			caption = "Guardar"
-			onClick[modelObject.ligaMaster.guardarBase]
+			onClick[LigaMaster.instance.guardarBase]
 			fontSize = 10
 		]
 

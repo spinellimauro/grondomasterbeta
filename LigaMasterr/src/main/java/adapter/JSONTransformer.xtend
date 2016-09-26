@@ -2,15 +2,48 @@ package adapter
 
 import com.eclipsesource.json.JsonArray
 import com.eclipsesource.json.JsonObject
+import com.eclipsesource.json.WriterConfig
+import java.io.PrintWriter
 import master.DT
 import master.Jugador
+import master.LigaMaster
+import master.Oferta
 import master.Partido
 import master.Torneo
-import master.Oferta
+import org.uqbar.commons.utils.Observable
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Observable
+@Accessors
 final class JSONTransformer {
-	def static String toJSON(Jugador jugador) {
-		val json = new JsonObject => [
+	def static void guardarBase() {
+		var jsonTorneos = new JsonArray
+		for (torneo : LigaMaster.instance.listaTorneos)
+			jsonTorneos.add(torneo.toJSON)
+		
+		var PrintWriter printer = new PrintWriter("data/torneos.txt")
+		jsonTorneos.writeTo(printer,WriterConfig.PRETTY_PRINT)
+		printer.close
+
+		var jsonJugadores = new JsonArray
+		for (jugador : LigaMaster.instance.listaJugador)
+			jsonJugadores.add(jugador.toJSON)
+			
+		printer = new PrintWriter("data/jugadores.txt")
+		jsonJugadores.writeTo(printer,WriterConfig.PRETTY_PRINT)
+		printer.close
+
+		var jsonDts = new JsonArray
+		for (dt : LigaMaster.instance.listaDT)
+			jsonDts.add(dt.toJSON)
+			
+		printer = new PrintWriter("data/dts.txt")
+		jsonDts.writeTo(printer,WriterConfig.PRETTY_PRINT)
+		printer.close
+	}
+
+	def static toJSON(Jugador jugador) {
+		new JsonObject => [
 			add("id", jugador.id)
 			add("nombre", jugador.nombre)
 			add("nivel", jugador.nivel)
@@ -18,12 +51,10 @@ final class JSONTransformer {
 			add("precio", jugador.precioVenta)
 			add("noPagadas", jugador.vecesNoPagadas)
 		]
-
-		json.toString
 	}
 
-	def static String toJSON(DT dt) {
-		val json = new JsonObject => [
+	def static toJSON(DT dt) {
+		new JsonObject => [
 			add("nombre", dt.nombreDT)
 			add("equipo", dt.nombreEquipo)
 			add("plata", dt.plata)
@@ -32,35 +63,29 @@ final class JSONTransformer {
 			add("jugadores", new JsonArray => [dt.getListaJugadores.forEach[jugador|add(jugador.id)]])
 			add("torneos", dt.torneosDisponibles)
 		]
-
-		json.toString
 	}
 
-	def static String toJSON(Oferta oferta) {
-		val json = new JsonObject => [
+	def static toJSON(Oferta oferta) {
+		new JsonObject => [
 			add("ofertante", oferta.dtOfertante.nombreDT)
 			add("receptor", oferta.dtReceptor.nombreDT)
 			add("monto", oferta.monto)
 			add("jugador", oferta.jugadorOfertado.id)
 			add("jugadoresOfertados", new JsonArray => [oferta.jugadoresOfrecidos.map[id].forEach[id|add(id)]])
 		]
-		
-		json.toString
 	}
 
-	def static String toJSON(Torneo torneo) {
-		val json = new JsonObject => [
+	def static toJSON(Torneo torneo) {
+		new JsonObject => [
 			add("torneo", torneo.nombreTorneo)
 			add("dts", new JsonArray => [torneo.listaParticipantes.forEach[dt|add(dt.nombreDT)]])
 			add("partidos", new JsonArray => [torneo.listaPartidos.forEach[partido|add(partido.toJSON)]])
 			add("limiteAmarillas", torneo.limiteAmarillas)
 		]
-
-		json.toString
 	}
 
-	def static String toJSON(Partido partido) {
-		val json = new JsonObject => [
+	def static toJSON(Partido partido) {
+		new JsonObject => [
 			add("fecha", partido.numeroFecha)
 			add("local", partido.dtLocal.nombreDT)
 			add("visitante", partido.dtVisitante.nombreDT)
@@ -70,7 +95,5 @@ final class JSONTransformer {
 			add("rojas", new JsonArray => [partido.listaRojas.forEach[jugador|add(jugador.id)]])
 			add("terminado", partido.terminado)
 		]
-
-		json.toString
 	}
 }
