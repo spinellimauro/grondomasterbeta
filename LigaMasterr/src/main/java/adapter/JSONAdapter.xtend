@@ -13,6 +13,8 @@ final class JSONAdapter {
 	static List<DT> listaDT = newArrayList
 
 	def static void setListaJugador(List<String> listaString) {
+		listaJugador.clear
+		
 		listaString.forEach [
 			val jsonJugador = Json.parse(it).asObject
 
@@ -30,6 +32,8 @@ final class JSONAdapter {
 	}
 
 	def static List<DT> setListaDT(List<String> listaString) {
+		listaDT.clear
+		
 		listaString.forEach [
 			val jsonDT = Json.parse(it).asObject
 

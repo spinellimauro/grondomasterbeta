@@ -1,6 +1,5 @@
 package arena.models
 
-import java.util.List
 import master.DT
 import master.Jugador
 import master.LigaMaster
@@ -24,7 +23,6 @@ class EquipoModel {
 		ligaMaster = model.ligaMaster
 		torneoON = model.torneoON
 		dtON = model.dtON
-		dtElegido = listaEquipos.get(0)
 	}
 
 	def validar() {
@@ -33,11 +31,5 @@ class EquipoModel {
 
 		if (jugadorON == null)
 			throw new UserException("Debe seleccionar un jugador")
-	}
-
-	def List<DT> getListaEquipos() {
-		val listaDTs = ligaMaster.listaDTs
-		listaDTs.remove(dtON)
-		listaDTs
 	}
 }
