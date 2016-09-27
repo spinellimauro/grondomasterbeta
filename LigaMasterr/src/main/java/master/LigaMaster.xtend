@@ -60,4 +60,13 @@ class LigaMaster {
 			nombreDT = "Libre"
  		]
 	}
+	
+	def crearDT(String dtNuevo,String dtEquipo) {
+		listaDT.add(new DT => [
+			nombreDT = dtNuevo
+			nombreEquipo = dtEquipo
+		])
+		guardarBase
+	}
+	
 }

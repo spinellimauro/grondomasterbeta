@@ -9,6 +9,8 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.arena.widgets.TextBox
+import arena.components.LabeledTextBox
 
 class LoginWindow extends Dialog<LoginModel> {
 
@@ -32,6 +34,23 @@ class LoginWindow extends Dialog<LoginModel> {
 			onClick[
 				close
 				new TorneoWindow(this, modelObject).open
+			]
+		]
+		
+		new LabeledTextBox(panel) =>[
+			text = "Nombre DT"
+			bindValueToProperty("dtNuevo")
+		]
+		
+		new LabeledTextBox(panel) =>[
+			text = "Equipo"
+			bindValueToProperty("dtEquipo")
+		]
+		
+		new Button(panel) => [
+			caption = "CrearDT"
+			onClick[
+				modelObject.crearDT
 			]
 		]
 	}

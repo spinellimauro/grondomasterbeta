@@ -73,5 +73,31 @@
       
     ],
     "torneos": 0
+  },
+  {
+    "nombre": "Martin",
+    "equipo": "Manchester",
+    "plata": 0,
+    "slots": 30,
+    "ofertas": [
+      
+    ],
+    "jugadores": [
+      
+    ],
+    "torneos": 3
+  },
+  {
+    "nombre": "Juan",
+    "equipo": "Roma",
+    "plata": 0,
+    "slots": 30,
+    "ofertas": [
+      
+    ],
+    "jugadores": [
+      
+    ],
+    "torneos": 3
   }
 ]

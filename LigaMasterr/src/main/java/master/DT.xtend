@@ -11,7 +11,7 @@ import datos.Precios
 class DT {
 	String nombreDT
 	String nombreEquipo
-	double plata
+	double plata = 0.0
 	int slots = 30
 	Set<Jugador> listaJugadores = newHashSet
 	List<Oferta> ofertasRecibidas = newArrayList
