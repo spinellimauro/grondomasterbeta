@@ -48,4 +48,16 @@ class LigaMaster {
 		if(instance == null) instance = new LigaMaster
 		instance
 	}
+	
+	def getPropietario(Jugador jugador){
+		val dt = listaDT.findFirst[listaJugadores.contains(jugador)]
+		if (dt == null) dtNulo
+		else dt
+	}
+	
+	def dtNulo(){
+		new DT =>[
+			nombreDT = "Libre"
+ 		]
+	}
 }

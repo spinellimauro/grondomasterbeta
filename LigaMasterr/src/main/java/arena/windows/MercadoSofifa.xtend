@@ -61,6 +61,12 @@ class MercadoSofifa extends SimpleWindow<MercadoModel> {
 				bindContentsToProperty("precioMaquina")
 				fixedSize = 65
 			]
+			
+			new Column(it) => [
+				title = "Precio"
+				bindContentsToProperty("propietario.nombreDT")
+				fixedSize = 65
+			]
 
 		]
 

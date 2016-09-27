@@ -13,7 +13,6 @@ class Jugador {
 	int nivel
 	int potencial
 	boolean habilitado = true
-	
 	Torneo torneo
 	double precioVenta = 0
 	int vecesNoPagadas = 0
@@ -53,7 +52,7 @@ class Jugador {
 	}
 
 	def DT getPropietario() {
-		torneo.getPropietario(this)
+		LigaMaster.instance.getPropietario(this)	
 	}
 
 	def void update() {

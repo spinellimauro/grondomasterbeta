@@ -32,4 +32,8 @@ class EquipoModel {
 		if (jugadorON == null)
 			throw new UserException("Debe seleccionar un jugador")
 	}
+	
+	def void venderJugadorALaMaquina(){
+		dtON.venderJugadorALaMaquina(jugadorON)
+	}
 }

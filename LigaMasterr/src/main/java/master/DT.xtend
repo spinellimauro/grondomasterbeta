@@ -121,5 +121,10 @@ class DT {
 	def tieneQuePagar(){
 		torneosDisponibles == 0
 	}
+	
+	def venderJugadorALaMaquina(Jugador jugador) {
+		removeJugador(jugador)
+		plata += (Precios.instance.getPrecio(jugador)/Precios.instance.getPrecio("PrecioMaquina")) // PrecioMaquina (cuarta Parte del valor del jugador)
+	}
 
 }

@@ -48,7 +48,7 @@ class MercadoModel {
 	def void buscar() {
 		listaMaquina.clear
 		listaMaquina.addAll(SoFifa.instance.getJugadores(valorIngresado))
-		listaMaquina.removeAll(ligaMaster.listaJugador)
+//		listaMaquina.removeAll(ligaMaster.listaJugador)    Asi muestra todos los jugadores de sofifa y sabe si alguno tiene dueño (para posibles Ofertas)
 	}
 
 	def void comprarJugadorALaMaquina() {
@@ -57,7 +57,10 @@ class MercadoModel {
 
 		if (!listaMaquina.contains(jugadorON))
 			throw new UserException("Ese jugador no es de la MÃ¡quina")
-
+	
+		if (jugadorON.propietario.nombreDT != "Libre"){
+			throw new UserException("Ese jugador es de otro DT")
+		}
 		dtON.comprarJugador(jugadorON, jugadorON.precioMaquina)
 		listaMaquina.remove(jugadorON)
 
@@ -73,6 +76,8 @@ class MercadoModel {
 
 		ObservableUtils.firePropertyChanged(this, "dtON")
 	}
+	
+
 	
 	def boolean getHabilitado(){
 		if(dtON.nombreDT == "Master"){ 

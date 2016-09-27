@@ -37,7 +37,8 @@ final class Precios {
 		new PrecioEvento("Victoria", 2000.0),
 		new PrecioEvento("Gol", 1000.0),
 		new PrecioEvento("Empate", 1000.0),
-		new PrecioEvento("Impuesto", 10.0)
+		new PrecioEvento("Impuesto", 10.0),
+		new PrecioEvento("PrecioMaquina", 4)	
 	)
 
 	def double getPrecio(Jugador jugador) {

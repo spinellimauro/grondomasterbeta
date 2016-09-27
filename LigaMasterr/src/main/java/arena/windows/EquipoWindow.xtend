@@ -117,6 +117,11 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			bindValueToProperty("jugadorON.precioVenta")
 			width = 100
 		]
+		
+		new Button(panel) =>[
+			caption = "Vender A La Maquina"
+			onClick[modelObject.venderJugadorALaMaquina]
+		]
 
 	}
 

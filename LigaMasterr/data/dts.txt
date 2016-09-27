@@ -47,8 +47,8 @@
   {
     "nombre": "Mauro",
     "equipo": "Bourdeaux",
-    "plata": 92000,
-    "slots": 30,
+    "plata": 2000,
+    "slots": 39,
     "ofertas": [
       
     ],
