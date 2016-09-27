@@ -146,6 +146,12 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			onClick[new OfertasWindow(this, modelObject.dtON).open]
 			fontSize = 10
 		]
+		
+		new Button(panel) => [
+			caption = "Historial"
+			onClick[new HistorialWindow(this, modelObject.dtON).open]
+			fontSize = 10
+		]
 
 		new Button(panel) => [
 			caption = "Guardar"

@@ -17,11 +17,15 @@ class ReglasWindow extends SimpleWindow<ReglasModel> {
 		title = "Reglas"
 	}
 
-	override protected addActions(Panel actionsPanel) {}
+	override createMainTemplate(Panel panel) {
+		panel.layout = new HorizontalLayout
+		createPreciosPanel(new Panel(panel))
+		createEventosPanel(new Panel(panel))
+	}
 
-	override protected createFormPanel(Panel mainPanel) {
-		mainPanel.layout = new HorizontalLayout
-		new Table(mainPanel, PrecioNivel) => [
+	def void createPreciosPanel(Panel panel) {
+
+		new Table(panel, PrecioNivel) => [
 			bindItemsToProperty("listaNiveles")
 			bindValueToProperty("nivelON")
 			numberVisibleRows = 20
@@ -31,7 +35,7 @@ class ReglasWindow extends SimpleWindow<ReglasModel> {
 				bindContentsToProperty("nivel")
 				fixedSize = 40
 			]
-			
+
 			new Column(it) => [
 				title = "Precio"
 				bindContentsToProperty("precio")
@@ -39,32 +43,38 @@ class ReglasWindow extends SimpleWindow<ReglasModel> {
 			]
 		]
 
-		new LabeledTextBox(mainPanel) => [
+		new LabeledTextBox(panel) => [
 			bindTextToProperty("nivelON.nivel")
 			bindValueToProperty("nivelON.precio")
 			width = 50
 		]
+	}
 
-		new Table(mainPanel, PrecioEvento) => [
+	def void createEventosPanel(Panel panel) {
+		new Table(panel, PrecioEvento) => [
 			bindItemsToProperty("listaEventos")
 			bindValueToProperty("eventoON")
-			numberVisibleRows = 6
+			numberVisibleRows = 7
 
 			new Column(it) => [
 				title = "Evento"
 				bindContentsToProperty("evento")
 			]
-			
+
 			new Column(it) => [
 				title = "Precio"
 				bindContentsToProperty("precio")
 			]
 		]
 
-		new LabeledTextBox(mainPanel) => [
+		new LabeledTextBox(panel) => [
 			bindTextToProperty("eventoON.evento")
 			bindValueToProperty("eventoON.precio")
 			width = 50
 		]
 	}
+	
+	override protected addActions(Panel actionsPanel) { }
+	
+	override protected createFormPanel(Panel mainPanel) { }
 }

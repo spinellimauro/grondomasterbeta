@@ -12,7 +12,7 @@ class Torneo {
 	String nombreTorneo = ""
 	List<DT> listaParticipantes = newArrayList
 	List<Partido> listaPartidos = newArrayList
-	int limiteAmarillas
+	int limiteAmarillas = 3
 	PremiosTorneos premios = new PremiosTorneos
 	
 	def void sortearFechas() {
@@ -69,7 +69,7 @@ class Torneo {
 	}
 
 	def List<Jugador> getListaGoleadores() {
-		listaJugadores.filter[getGoles(it) != 0].sortBy[getGoles(it)].reverse
+		listaJugadores.filter[goles != 0].sortBy[goles].reverse
 	}
 
 	def List<DT> getListaFairPlay() {

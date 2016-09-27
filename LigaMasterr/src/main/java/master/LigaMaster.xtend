@@ -15,7 +15,8 @@ class LigaMaster {
 	List<DT> listaDT = newArrayList
 	List<Jugador> listaJugador = newArrayList
 
-	private new() {}
+	private new() {
+	}
 
 	def Set<DT> getDTsQuePagan() {
 		listaDT.filter[torneosDisponibles == 0].toSet
@@ -48,25 +49,49 @@ class LigaMaster {
 		if(instance == null) instance = new LigaMaster
 		instance
 	}
-	
-	def getPropietario(Jugador jugador){
+
+	def getPropietario(Jugador jugador) {
 		val dt = listaDT.findFirst[listaJugadores.contains(jugador)]
-		if (dt == null) dtNulo
-		else dt
+		if(dt == null) dtNulo else dt
 	}
-	
-	def dtNulo(){
-		new DT =>[
+
+	def dtNulo() {
+		new DT => [
 			nombreDT = "Libre"
- 		]
+		]
 	}
-	
-	def crearDT(String dtNuevo,String dtEquipo) {
+
+	def crearDT(String dtNuevo, String dtEquipo) {
 		listaDT.add(new DT => [
 			nombreDT = dtNuevo
 			nombreEquipo = dtEquipo
 		])
 		guardarBase
 	}
+
+	def List<Partido> getPartidosJugados(DT dt, DT otroDT) {
+		listaTorneos.map[listaPartidos].flatten.filter[getJugoPartido(dt) && getJugoPartido(otroDT) && terminado].toList
+	}
+
+	def int getPartidosGanados(DT dt, DT otroDT) {
+		var nPartidos = 0
+		for (partido : getPartidosJugados(dt, otroDT))
+			if(partido.getPuntos(dt) == 3) nPartidos++
+		nPartidos
+	}
 	
+	
+	def int getPartidosEmpatados(DT dt, DT otroDT) {
+		var nPartidos = 0
+		for (partido : getPartidosJugados(dt, otroDT))
+			if(partido.getPuntos(dt) == 1) nPartidos++
+		nPartidos
+	}
+	
+	def int getPartidosPerdidos(DT dt, DT otroDT) {
+		var nPartidos = 0
+		for (partido : getPartidosJugados(dt, otroDT))
+			if(partido.getPuntos(dt) == 0) nPartidos++
+		nPartidos
+	}
 }

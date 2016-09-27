@@ -77,7 +77,7 @@
     "nivel": 81,
     "potencial": 81,
     "precio": 0,
-    "noPagadas": 1
+    "noPagadas": 2
   },
   {
     "id": 192985,
@@ -93,7 +93,7 @@
     "nivel": 81,
     "potencial": 83,
     "precio": 20000,
-    "noPagadas": 1
+    "noPagadas": 2
   },
   {
     "id": 197853,
@@ -101,7 +101,7 @@
     "nivel": 81,
     "potencial": 86,
     "precio": 0,
-    "noPagadas": 1
+    "noPagadas": 2
   },
   {
     "id": 231677,
@@ -109,6 +109,6 @@
     "nivel": 69,
     "potencial": 85,
     "precio": 0,
-    "noPagadas": 1
+    "noPagadas": 2
   }
 ]

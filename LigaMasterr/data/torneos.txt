@@ -1,25 +1,195 @@
 [
   {
-    "torneo": "torneoTest",
+    "torneo": "torneoPar",
     "dts": [
-      "NicoR",
       "Alejandro",
-      "Latta"
+      "Latta",
+      "Mauro",
+      "NicoR"
     ],
     "partidos": [
-      
+      {
+        "fecha": 1,
+        "local": "Alejandro",
+        "visitante": "NicoR",
+        "golesLocal": [
+          193301,
+          193301
+        ],
+        "golesVisitante": [
+          216594
+        ],
+        "amarillas": [
+          228080,
+          193301
+        ],
+        "rojas": [
+          
+        ],
+        "terminado": true
+      },
+      {
+        "fecha": 1,
+        "local": "Latta",
+        "visitante": "Mauro",
+        "golesLocal": [
+          211300
+        ],
+        "golesVisitante": [
+          192985,
+          178562
+        ],
+        "amarillas": [
+          200145
+        ],
+        "rojas": [
+          197853
+        ],
+        "terminado": true
+      },
+      {
+        "fecha": 2,
+        "local": "Latta",
+        "visitante": "NicoR",
+        "golesLocal": [
+          211300,
+          211300
+        ],
+        "golesVisitante": [
+          
+        ],
+        "amarillas": [
+          
+        ],
+        "rojas": [
+          207494,
+          161648
+        ],
+        "terminado": true
+      },
+      {
+        "fecha": 2,
+        "local": "Mauro",
+        "visitante": "Alejandro",
+        "golesLocal": [
+          192985,
+          192985
+        ],
+        "golesVisitante": [
+          179944
+        ],
+        "amarillas": [
+          178562,
+          179944
+        ],
+        "rojas": [
+          
+        ],
+        "terminado": true
+      },
+      {
+        "fecha": 3,
+        "local": "Mauro",
+        "visitante": "NicoR",
+        "golesLocal": [
+          
+        ],
+        "golesVisitante": [
+          216594
+        ],
+        "amarillas": [
+          197853,
+          228080
+        ],
+        "rojas": [
+          
+        ],
+        "terminado": true
+      },
+      {
+        "fecha": 3,
+        "local": "Alejandro",
+        "visitante": "Latta",
+        "golesLocal": [
+          
+        ],
+        "golesVisitante": [
+          211300,
+          211300
+        ],
+        "amarillas": [
+          
+        ],
+        "rojas": [
+          193301
+        ],
+        "terminado": true
+      }
     ],
     "limiteAmarillas": 3
   },
   {
-    "torneo": "torneoNuevo",
+    "torneo": "torneoImpar",
     "dts": [
-      "Mauro",
-      "NicoR",
-      "Master"
+      "Juan",
+      "Master",
+      "Martin"
     ],
     "partidos": [
-      
+      {
+        "fecha": 1,
+        "local": "Master",
+        "visitante": "Martin",
+        "golesLocal": [
+          
+        ],
+        "golesVisitante": [
+          
+        ],
+        "amarillas": [
+          
+        ],
+        "rojas": [
+          
+        ],
+        "terminado": false
+      },
+      {
+        "fecha": 2,
+        "local": "Martin",
+        "visitante": "Juan",
+        "golesLocal": [
+          
+        ],
+        "golesVisitante": [
+          
+        ],
+        "amarillas": [
+          
+        ],
+        "rojas": [
+          
+        ],
+        "terminado": false
+      },
+      {
+        "fecha": 3,
+        "local": "Juan",
+        "visitante": "Master",
+        "golesLocal": [
+          
+        ],
+        "golesVisitante": [
+          
+        ],
+        "amarillas": [
+          
+        ],
+        "rojas": [
+          
+        ],
+        "terminado": false
+      }
     ],
     "limiteAmarillas": 0
   }
