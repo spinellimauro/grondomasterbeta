@@ -5,23 +5,27 @@ import master.DT
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.ObservableUtils
+import java.util.List
 
 @Observable
 @Accessors
 class LoginModel {
-	LigaMaster ligaMaster = LigaMaster.instance
 	DT dtON
-	String dtNuevo
-	String dtEquipo
+	String dtNuevo = ""
+	String dtEquipo = ""
 	
 	new() {
 		LigaMaster.instance.leerBase
-		dtON = LigaMaster.instance.listaDT.get(0)
+		dtON = listaDT.get(0)
 	}
 	
-	def crearDT() {
+	def List<DT> getListaDT(){
+		LigaMaster.instance.listaDT.sortBy[nombreDT]
+	}
+	
+	def void crearDT() {
 		LigaMaster.instance.crearDT(dtNuevo,dtEquipo)
-		ObservableUtils.firePropertyChanged(this, "ligaMaster")
+		ObservableUtils.firePropertyChanged(this, "listaDT")
 	}
 	
 }

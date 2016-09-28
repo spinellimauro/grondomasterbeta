@@ -23,7 +23,7 @@ class LoginWindow extends Dialog<LoginModel> {
 			text  = "LOGIN"
 		] 
 		new Selector(panel) => [
-			bindItemsToProperty("ligaMaster.listaDT").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindItemsToProperty("listaDT").adapter = new PropertyAdapter(DT, "nombreDT")
 			bindValueToProperty("dtON")
 			width = 100
 		]

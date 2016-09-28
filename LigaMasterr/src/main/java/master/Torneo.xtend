@@ -17,7 +17,9 @@ class Torneo {
 
 	def void sortearFechas() {
 		listaPartidos.clear
-		var listaMezclada = listaParticipantes
+		
+		var listaMezclada = newArrayList
+		listaMezclada.addAll(listaParticipantes)
 		Collections.shuffle(listaMezclada)
 		val libre = new DT
 
@@ -27,8 +29,8 @@ class Torneo {
 
 			for (var partido = 0; partido < (listaParticipantes.size) / 2; partido++) {
 
-				var int local = (fecha + partido) % numeroFechas
-				var int visitante = if(partido == 0) numeroFechas else (numeroFechas - partido + fecha) % numeroFechas
+				var local = (fecha + partido) % numeroFechas
+				var visitante = if(partido == 0) numeroFechas else (numeroFechas - partido + fecha) % numeroFechas
 
 				val partidoNuevo = new Partido
 				partidoNuevo.numeroFecha = fecha + 1

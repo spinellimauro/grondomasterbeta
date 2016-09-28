@@ -33,15 +33,12 @@ class TorneoConfigWindow extends Dialog<TorneoConfigModel> {
 		]
 		
 		val panelNuevo = new Panel(panel).layout = new HorizontalLayout
+		
 		new Selector(panelNuevo)=>[	
-			bindItemsToProperty("liga.listaDT").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindItemsToProperty("listaDT").adapter = new PropertyAdapter(DT, "nombreDT")
 			bindValueToProperty("dtIngresado")
 		]
-//		new TextBox(panelNuevo) => [
-//			bindValueToProperty("nombreIngresado")
-//			fontSize = 10
-//			width = 80
-//		]
+
 		new Button(panelNuevo) => [
 			caption = "+"
 			onClick[

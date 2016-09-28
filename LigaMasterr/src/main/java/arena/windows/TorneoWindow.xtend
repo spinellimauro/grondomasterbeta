@@ -51,7 +51,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 		]
 		
 		new Selector(panel) => [
-			bindItemsToProperty("ligaMaster.listaTorneos").adapter = new PropertyAdapter(Torneo, "nombreTorneo")
+			bindItemsToProperty("listaTorneos").adapter = new PropertyAdapter(Torneo, "nombreTorneo")
 			bindValueToProperty("torneoON")
 			height = 50
 			width = 100

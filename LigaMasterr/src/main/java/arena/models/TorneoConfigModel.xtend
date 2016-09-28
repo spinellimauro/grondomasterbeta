@@ -6,6 +6,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import master.LigaMaster
 import adapter.JSONAdapter
+import java.util.List
 
 @Observable
 @Accessors
@@ -14,11 +15,14 @@ class TorneoConfigModel {
 	Torneo torneoON
 	DT dtON
 	DT dtIngresado
-	LigaMaster liga
+	
 	new(TorneoModel torneoModel) {
 		model = torneoModel
 		torneoON = torneoModel.torneoON
-		liga = torneoModel.ligaMaster
+	}
+	
+	def List<DT> getListaDT(){
+		LigaMaster.instance.listaDT
 	}
 
 	def void addDT() {

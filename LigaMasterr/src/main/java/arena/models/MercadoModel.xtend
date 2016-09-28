@@ -2,7 +2,6 @@ package arena.models
 
 import datos.SoFifa
 import java.util.List
-import java.util.Set
 import master.DT
 import master.Jugador
 import master.LigaMaster
@@ -16,7 +15,6 @@ import org.uqbar.commons.utils.Observable
 class MercadoModel {
 	DT dtON
 	DT dtElegido
-	LigaMaster ligaMaster
 	
 	Jugador jugadorON
 	String valorIngresado = ""
@@ -25,14 +23,18 @@ class MercadoModel {
 
 	new(TorneoModel model) {
 		dtON = model.dtON
-		ligaMaster = model.ligaMaster
+		dtElegido = listaDT.get(0)
 	}
 
-	def Set<Jugador> getListaTransferibles() {
-		val listaCompleta = newHashSet
-		listaCompleta.addAll(ligaMaster.listaTransferibles)
+	def List<Jugador> getListaTransferibles() {
+		val listaCompleta = newArrayList
+		listaCompleta.addAll(LigaMaster.instance.listaTransferibles)
 		listaCompleta.removeAll(dtON.getListaJugadores)
 		listaCompleta
+	}
+	
+	def List<DT> getListaDT(){
+		LigaMaster.instance.listaDT.sortBy[nombreDT]
 	}
 
 	def void comprarJugador() {

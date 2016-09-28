@@ -13,7 +13,6 @@ import org.uqbar.commons.utils.Dependencies
 @Observable
 @Accessors
 class TorneoModel {
-	LigaMaster ligaMaster
 
 	DT dtON
 	Integer fechaON = 1
@@ -24,9 +23,12 @@ class TorneoModel {
 	String nombreIngresado
 
 	new(LoginModel loginModel) {
-		ligaMaster = loginModel.ligaMaster
 		dtON = loginModel.dtON
-		torneoON = ligaMaster.listaTorneos.get(0)
+		torneoON = listaTorneos.get(0)
+	}
+	
+	def List<Torneo> getListaTorneos(){
+		LigaMaster.instance.listaTorneos
 	}
 
 	def void setTorneoON(Torneo torneo) {
@@ -53,10 +55,10 @@ class TorneoModel {
 	}
 
 	def void borrarTorneo() {
-		ligaMaster.removeTorneo(torneoON)
+		LigaMaster.instance.removeTorneo(torneoON)
 	}
 	
 	def crearTorneo(){
-		ligaMaster.addTorneo(new Torneo=>[nombreTorneo = nombreNuevoTorneo])
+		LigaMaster.instance.addTorneo(new Torneo=>[nombreTorneo = nombreNuevoTorneo])
 	}
 }
