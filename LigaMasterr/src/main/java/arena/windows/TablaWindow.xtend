@@ -10,11 +10,14 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import java.util.List
+import org.uqbar.commons.utils.Observable
+import org.eclipse.xtend.lib.annotations.Accessors
 
-class TablaWindow extends Dialog<Torneo> {
+class TablaWindow extends Dialog<TablaModel> {
 
 	new(WindowOwner owner, Torneo model) {
-		super(owner, model)
+		super(owner, new TablaModel(model))
 		title = "Estadisticas"
 	}
 
@@ -26,7 +29,7 @@ class TablaWindow extends Dialog<Torneo> {
 			text = "Posiciones"
 			fontSize = 12
 		]
-		new Table(panelPosiciones, DT) => [
+		new Table(panelPosiciones, EstadisticaDT) => [
 			bindItemsToProperty("listaPosiciones")
 			numberVisibleRows = 8
 			new Column(it) => [
@@ -47,7 +50,7 @@ class TablaWindow extends Dialog<Torneo> {
 			text = "Goleadores"
 			fontSize = 12
 		]
-		new Table(panelGoleadores, Jugador) => [
+		new Table(panelGoleadores, EstadisticaJugador) => [
 			bindItemsToProperty("listaGoleadores")
 			numberVisibleRows = 8
 			new Column(it) => [
@@ -62,13 +65,13 @@ class TablaWindow extends Dialog<Torneo> {
 				fixedSize = 45
 			]
 		]
-		
+
 		val panelFairPlay = new Panel(panel)
 		new Label(panelFairPlay) => [
 			text = "Fair Play"
 			fontSize = 12
 		]
-		new Table(panelFairPlay, DT) => [
+		new Table(panelFairPlay, EstadisticaDT) => [
 			bindItemsToProperty("listaFairPlay")
 			numberVisibleRows = 8
 			new Column(it) => [
@@ -82,13 +85,13 @@ class TablaWindow extends Dialog<Torneo> {
 				bindContentsToProperty("rojas")
 				fixedSize = 40
 			]
-			
+
 			new Column(it) => [
 				title = "Amarillas"
 				bindContentsToProperty("amarillas")
 				fixedSize = 65
 			]
-			
+
 			new Column(it) => [
 				title = "Puntos"
 				bindContentsToProperty("puntosFairPlay")
@@ -98,4 +101,54 @@ class TablaWindow extends Dialog<Torneo> {
 	}
 
 	override protected createFormPanel(Panel mainPanel) {}
+}
+
+@Observable
+@Accessors
+class TablaModel {
+	List<EstadisticaDT> listaPosiciones = newArrayList
+	List<EstadisticaDT> listaFairPlay = newArrayList
+	List<EstadisticaJugador> listaGoleadores = newArrayList
+
+	new(Torneo torneo) {
+		torneo.listaPosiciones.forEach [
+			listaPosiciones.add(new EstadisticaDT(it, torneo))
+		]
+
+		torneo.listaGoleadores.forEach [
+			listaGoleadores.add(new EstadisticaJugador(it, torneo))
+		]
+		
+		listaFairPlay = listaPosiciones.sortBy[puntosFairPlay]
+	}
+}
+
+@Observable
+@Accessors
+class EstadisticaDT {
+	String nombreDT
+	int puntos
+	int amarillas
+	int rojas
+	int puntosFairPlay
+
+	new(DT dt, Torneo torneo) {
+		nombreDT = dt.nombreDT
+		puntos = torneo.getPuntos(dt)
+		amarillas = torneo.getAmarillas(dt)
+		rojas = torneo.getRojas(dt)
+		puntosFairPlay = torneo.getPuntosFairPlay(dt)
+	}
+}
+
+@Observable
+@Accessors
+class EstadisticaJugador {
+	String nombre
+	int goles
+
+	new(Jugador jugador, Torneo torneo) {
+		nombre = jugador.nombre
+		goles = torneo.getGoles(jugador)
+	}
 }

@@ -2,11 +2,8 @@
   {
     "nombre": "NicoR",
     "equipo": "Rotterham",
-    "plata": 0,
+    "plata": 135000,
     "slots": 87,
-    "ofertas": [
-      
-    ],
     "jugadores": [
       192227,
       216594,
@@ -18,11 +15,8 @@
   {
     "nombre": "Alejandro",
     "equipo": "Dortmund",
-    "plata": 670000,
+    "plata": 535000,
     "slots": 30,
-    "ofertas": [
-      
-    ],
     "jugadores": [
       179944,
       193301
@@ -34,9 +28,6 @@
     "equipo": "Palermo",
     "plata": 655000,
     "slots": 30,
-    "ofertas": [
-      
-    ],
     "jugadores": [
       207494,
       200145,
@@ -49,9 +40,6 @@
     "equipo": "Bourdeaux",
     "plata": 0,
     "slots": 39,
-    "ofertas": [
-      
-    ],
     "jugadores": [
       178562,
       192985,
@@ -66,9 +54,6 @@
     "equipo": "",
     "plata": 0,
     "slots": 0,
-    "ofertas": [
-      
-    ],
     "jugadores": [
       
     ],
@@ -79,9 +64,6 @@
     "equipo": "Manchester",
     "plata": 0,
     "slots": 30,
-    "ofertas": [
-      
-    ],
     "jugadores": [
       
     ],
@@ -92,9 +74,6 @@
     "equipo": "Roma",
     "plata": 0,
     "slots": 30,
-    "ofertas": [
-      
-    ],
     "jugadores": [
       
     ],

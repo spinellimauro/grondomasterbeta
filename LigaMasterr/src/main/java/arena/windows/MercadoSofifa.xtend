@@ -63,9 +63,9 @@ class MercadoSofifa extends SimpleWindow<MercadoModel> {
 			]
 			
 			new Column(it) => [
-				title = "Precio"
+				title = "Propietario"
 				bindContentsToProperty("propietario.nombreDT")
-				fixedSize = 65
+				fixedSize = 80
 			]
 
 		]

@@ -1,0 +1,29 @@
+[
+  {
+    "ofertante": "Latta",
+    "receptor": "Alejandro",
+    "monto": 30000,
+    "jugador": 193301,
+    "jugadoresOfertados": [
+      207494
+    ]
+  },
+  {
+    "ofertante": "NicoR",
+    "receptor": "Alejandro",
+    "monto": 10000,
+    "jugador": 179944,
+    "jugadoresOfertados": [
+      
+    ]
+  },
+  {
+    "ofertante": "Alejandro",
+    "receptor": "Mauro",
+    "monto": 25000,
+    "jugador": 197853,
+    "jugadoresOfertados": [
+      
+    ]
+  }
+]

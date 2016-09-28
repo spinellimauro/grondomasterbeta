@@ -16,6 +16,7 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Label
+import master.LigaMaster
 
 class EquipoWindow extends SimpleWindow<EquipoModel> {
 	new(WindowOwner owner, TorneoModel model) {
@@ -66,21 +67,10 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			caption = "Comprar Slot"
 			onClick[
 				modelObject.dtON.comprarSlot
-				modelObject.ligaMaster.guardarBase
+				LigaMaster.instance.guardarBase
 			]
 		]
 	
-//		new Button(panel) => [
-//			caption = "Mercado"
-//			onClick[new MercadoWindow(this, modelObject).open]
-//			fontSize = 10
-//		]
-		
-//		new Button(panel) => [
-//			caption = "Ver Ofertas"
-//			onClick[new OfertasWindow(this, modelObject.dtON).open]
-//			fontSize = 10
-//		]
 	}
 
 	def void createEquipoPanel(Panel panel) {
@@ -127,7 +117,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 
 	def void createTransferPanel(Panel panel) {
 		new Selector(panel) => [
-			bindItemsToProperty("ligaMaster.listaDT").adapter = new PropertyAdapter(DT, "nombreDT")
+			bindItemsToProperty("otrosDT").adapter = new PropertyAdapter(DT, "nombreDT")
 			bindValueToProperty("dtElegido")
 			height = 80
 		]

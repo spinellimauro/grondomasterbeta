@@ -1,5 +1,6 @@
 package arena.windows
 
+import arena.components.LabeledTextBox
 import arena.models.LoginModel
 import master.DT
 import org.uqbar.arena.bindings.PropertyAdapter
@@ -9,8 +10,6 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.TextBox
-import arena.components.LabeledTextBox
 
 class LoginWindow extends Dialog<LoginModel> {
 

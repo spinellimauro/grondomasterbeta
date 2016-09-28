@@ -1,5 +1,6 @@
 package arena.models
 
+import java.util.Set
 import master.DT
 import master.Jugador
 import master.LigaMaster
@@ -11,7 +12,6 @@ import org.uqbar.commons.utils.Observable
 @Observable
 @Accessors
 class EquipoModel {
-	LigaMaster ligaMaster
 	Torneo torneoON
 	DT dtON
 
@@ -20,9 +20,9 @@ class EquipoModel {
 	String valorIngresado
 
 	new(TorneoModel model) {
-		ligaMaster = model.ligaMaster
 		torneoON = model.torneoON
 		dtON = model.dtON
+		dtElegido = otrosDT.get(0)
 	}
 
 	def validar() {
@@ -35,5 +35,12 @@ class EquipoModel {
 	
 	def void venderJugadorALaMaquina(){
 		dtON.venderJugadorALaMaquina(jugadorON)
+	}
+	
+	def Set<DT> getOtrosDT(){
+		val lista = newHashSet
+		lista.addAll(LigaMaster.instance.listaDT)
+		lista.remove(dtON)
+		lista.sortBy[nombreDT].toSet
 	}
 }

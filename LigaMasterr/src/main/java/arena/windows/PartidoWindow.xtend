@@ -1,8 +1,9 @@
 package arena.windows
 
 import arena.models.PartidoModel
+import arena.models.TorneoModel
+import java.awt.Color
 import master.Jugador
-import master.Partido
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
@@ -11,28 +12,27 @@ import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import java.awt.Color
 
 class PartidoWindow extends SimpleWindow<PartidoModel> {
-	new(WindowOwner parent, Partido model) {
+	new(WindowOwner parent, TorneoModel model) {
 		super(parent, new PartidoModel(model))
 	}
 
 	override createMainTemplate(Panel panel) {
 		panel.layout = new HorizontalLayout
-		createEquipoPanel(new Panel(panel), "dtLocal")
+		createEquipoPanel(new Panel(panel), "Local")
 		createPartidoPanel(new Panel(panel))
-		createEquipoPanel(new Panel(panel), "dtVisitante")
+		createEquipoPanel(new Panel(panel), "Visitante")
 		createAmonestadosPanel(new Panel(panel))
 	}
 
 	def createEquipoPanel(Panel panel, String dt) {
 		new Label(panel) => [
-			bindValueToProperty("partido." + dt + ".nombreDT")
+			bindValueToProperty("nombre" + dt)
 			fontSize = 12
 		]
 		new List(panel) => [
-			bindItemsToProperty("partido." + dt + ".jugadores").adapter = new PropertyAdapter(Jugador, "nombre")
+			bindItemsToProperty("equipo" + dt).adapter = new PropertyAdapter(Jugador, "nombre")
 			bindValueToProperty("jugadorSeleccionado")
 			height = 215
 			width = 85

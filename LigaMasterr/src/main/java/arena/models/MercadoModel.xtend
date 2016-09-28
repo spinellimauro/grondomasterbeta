@@ -29,7 +29,8 @@ class MercadoModel {
 	}
 
 	def Set<Jugador> getListaTransferibles() {
-		val listaCompleta = ligaMaster.listaTransferibles
+		val listaCompleta = newHashSet
+		listaCompleta.addAll(ligaMaster.listaTransferibles)
 		listaCompleta.removeAll(dtON.getListaJugadores)
 		listaCompleta
 	}
@@ -48,7 +49,6 @@ class MercadoModel {
 	def void buscar() {
 		listaMaquina.clear
 		listaMaquina.addAll(SoFifa.instance.getJugadores(valorIngresado))
-//		listaMaquina.removeAll(ligaMaster.listaJugador)    Asi muestra todos los jugadores de sofifa y sabe si alguno tiene dueño (para posibles Ofertas)
 	}
 
 	def void comprarJugadorALaMaquina() {
@@ -61,6 +61,7 @@ class MercadoModel {
 		if (jugadorON.propietario.nombreDT != "Libre"){
 			throw new UserException("Ese jugador es de otro DT")
 		}
+		
 		dtON.comprarJugador(jugadorON, jugadorON.precioMaquina)
 		listaMaquina.remove(jugadorON)
 

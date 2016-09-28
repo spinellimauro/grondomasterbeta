@@ -13,7 +13,6 @@ class Jugador {
 	int nivel
 	int potencial
 	boolean habilitado = true
-	Torneo torneo
 	double precioVenta = 0
 	int vecesNoPagadas = 0
 
@@ -39,18 +38,6 @@ class Jugador {
 		nivel > 82
 	}
 
-	def int getAmarillas() {
-		torneo.getAmarillas(this)
-	}
-
-	def int getRojas() {
-		torneo.getRojas(this)
-	}
-
-	def int getGoles() {
-		torneo.getGoles(this)
-	}
-
 	def DT getPropietario() {
 		LigaMaster.instance.getPropietario(this)	
 	}
@@ -68,10 +55,8 @@ class Jugador {
 			return false
 
 		val otroJugador = obj as Jugador
-		if (id != otroJugador.id)
-			return false
-		else
-			true
+		
+		id == otroJugador.id
 	}
 
 	override hashCode() {

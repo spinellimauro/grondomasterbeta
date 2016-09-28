@@ -14,7 +14,7 @@ class Torneo {
 	List<Partido> listaPartidos = newArrayList
 	int limiteAmarillas = 3
 	PremiosTorneos premios = new PremiosTorneos
-	
+
 	def void sortearFechas() {
 		listaPartidos.clear
 		var listaMezclada = listaParticipantes
@@ -76,6 +76,18 @@ class Torneo {
 		listaParticipantes.sortBy[puntosFairPlay]
 	}
 
+	def int getAmarillas(DT dt) {
+		dt.listaJugadores.fold(0)[acum, jugador|acum + getAmarillas(jugador)]
+	}
+	
+	def int getRojas(DT dt) {
+		dt.listaJugadores.fold(0)[acum, jugador|acum + getRojas(jugador)]
+	}
+
+	def int getPuntosFairPlay(DT dt) {
+		getAmarillas(dt) * 4 + getRojas(dt) * 12
+	}
+
 	def int getGoles(Jugador jugador) {
 		val listaGoles = listaPartidos.map[golesLocal + golesVisitante].flatten.toList
 		Collections.frequency(listaGoles, jugador)
@@ -107,7 +119,6 @@ class Torneo {
 	}
 
 	def void addDT(DT dt) {
-		dt.torneo = this
 		listaParticipantes.add(dt)
 	}
 
@@ -115,20 +126,15 @@ class Torneo {
 		listaParticipantes.remove(dt)
 	}
 
-	def void configTorneo() {
-		listaParticipantes.forEach[torneo = this]
-		listaJugadores.forEach[torneo = this]
-	}
-	
-	def terminarTorneo(){
+	def terminarTorneo() {
 		var i = 0
-		if (listaPartidos.forall[terminado]){
-			for(i=0;i<4;i++){     // pondriamos i<cantPremios Y que en premios haya un put(posicion,premio) etc
+		if (listaPartidos.forall[terminado]) {
+			for (i = 0; i < 4; i++) { // pondriamos i<cantPremios Y que en premios haya un put(posicion,premio) etc
 				listaPosiciones.get(i).plata = premios.getPremio(i)
 			}
-			listaParticipantes.forEach[restarTorneoDisponible]	
+			listaParticipantes.forEach[restarTorneoDisponible]
 		}
-		
+
 //		grondomaster.guardarBase()
 	}
 

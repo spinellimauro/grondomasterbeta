@@ -1,28 +1,39 @@
 package arena.models
 
+import datos.Mercado
+import java.util.List
 import master.DT
 import master.Oferta
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
-import master.LigaMaster
+import org.uqbar.commons.model.ObservableUtils
 
 @Observable
 @Accessors
 class OfertasModel {
 	DT dtON
 	Oferta ofertaON
-	LigaMaster ligaMaster
+	
 	new(DT dt) {
 		dtON = dt
 	}
 	
+	def List<Oferta> getOfertasRecibidas(){
+		Mercado.instance.getOfertasRecibidas(dtON)
+	}
+	
+	def List<Oferta> getOfertasEnviadas(){
+		Mercado.instance.getOfertasEnviadas(dtON)
+	}
+	
 	def void aceptarOferta(){
 		ofertaON.aceptar
-		ligaMaster.guardarBase	
+		ObservableUtils.firePropertyChanged(this ,"ofertasRecibidas")
 	}
 	
 	def void rechazarOferta(){
 		ofertaON.rechazar
-		ligaMaster.guardarBase
+		ObservableUtils.firePropertyChanged(this ,"ofertasRecibidas")
+		ObservableUtils.firePropertyChanged(this ,"ofertasEnviadas")
 	}
 }

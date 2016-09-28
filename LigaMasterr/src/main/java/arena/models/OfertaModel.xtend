@@ -8,6 +8,7 @@ import java.util.List
 import master.DT
 import master.Oferta
 import master.LigaMaster
+import datos.Mercado
 
 @Observable
 @Accessors
@@ -33,12 +34,10 @@ class OfertaModel {
 	}
 	
 	def void enviarOferta() {
-		val propietario = jugadorON.propietario
-		
-		propietario.addOferta(
+		Mercado.instance.listaOfertas.add(
 			new Oferta => [
 				dtOfertante = dtON
-				dtReceptor = propietario
+				dtReceptor = LigaMaster.instance.getPropietario( jugadorON)	
 				monto = montoOfertado
 				jugadorOfertado = jugadorON
 				jugadoresOfrecidos = listaJugadores

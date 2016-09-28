@@ -16,6 +16,7 @@ class LoginModel {
 	
 	new() {
 		LigaMaster.instance.leerBase
+		dtON = LigaMaster.instance.listaDT.get(0)
 	}
 	
 	def crearDT() {

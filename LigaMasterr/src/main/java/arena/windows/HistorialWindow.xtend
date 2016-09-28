@@ -23,9 +23,9 @@ class HistorialWindow extends Dialog<HistorialModel> {
 			numberVisibleRows = 15
 
 			new Column(it) => [
-				title = "DT"
+				title = "vs."
 				bindContentsToProperty("dt")
-				fixedSize = 100
+				fixedSize = 120
 			]
 		
 			new Column(it) => [

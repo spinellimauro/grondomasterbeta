@@ -1,7 +1,7 @@
 [
   {
     "id": 192227,
-    "nombre": "Shkodran Mustafi",
+    "nombre": "S. Mustafi",
     "nivel": 82,
     "potencial": 87,
     "precio": 0,
@@ -9,7 +9,7 @@
   },
   {
     "id": 216594,
-    "nombre": "Nabil Fekir",
+    "nombre": "N. Fekir",
     "nivel": 79,
     "potencial": 85,
     "precio": 0,
@@ -17,7 +17,7 @@
   },
   {
     "id": 161648,
-    "nombre": "Hatem Ben Arfa",
+    "nombre": "H. Ben Arfa",
     "nivel": 82,
     "potencial": 82,
     "precio": 0,
@@ -25,7 +25,7 @@
   },
   {
     "id": 228080,
-    "nombre": "Felix Passlack",
+    "nombre": "F. Passlack",
     "nivel": 62,
     "potencial": 81,
     "precio": 0,
@@ -33,7 +33,7 @@
   },
   {
     "id": 179944,
-    "nombre": "David Luiz Moreira Marinho",
+    "nombre": "David Luiz",
     "nivel": 83,
     "potencial": 83,
     "precio": 0,
@@ -41,7 +41,7 @@
   },
   {
     "id": 193301,
-    "nombre": "Alexandre Lacazette",
+    "nombre": "A. Lacazette",
     "nivel": 83,
     "potencial": 87,
     "precio": 0,
@@ -49,7 +49,7 @@
   },
   {
     "id": 207494,
-    "nombre": "Jesse Lingard",
+    "nombre": "J. Lingard",
     "nivel": 76,
     "potencial": 82,
     "precio": 0,
@@ -57,7 +57,7 @@
   },
   {
     "id": 200145,
-    "nombre": "Carlos Henrique Venancio Casimiro",
+    "nombre": "Casemiro",
     "nivel": 79,
     "potencial": 83,
     "precio": 0,
@@ -65,7 +65,7 @@
   },
   {
     "id": 211300,
-    "nombre": "Anthony Martial",
+    "nombre": "A. Martial",
     "nivel": 78,
     "potencial": 86,
     "precio": 0,
@@ -73,7 +73,7 @@
   },
   {
     "id": 178562,
-    "nombre": "Éver Banega",
+    "nombre": "E. Banega",
     "nivel": 81,
     "potencial": 81,
     "precio": 0,
@@ -81,7 +81,7 @@
   },
   {
     "id": 192985,
-    "nombre": "Kevin De Bruyne",
+    "nombre": "K. De Bruyne",
     "nivel": 86,
     "potencial": 89,
     "precio": 150000,
@@ -89,7 +89,7 @@
   },
   {
     "id": 184881,
-    "nombre": "Sofiane Feghouli",
+    "nombre": "S. Feghouli",
     "nivel": 81,
     "potencial": 83,
     "precio": 20000,
@@ -97,7 +97,7 @@
   },
   {
     "id": 197853,
-    "nombre": "Serge Aurier",
+    "nombre": "S. Aurier",
     "nivel": 81,
     "potencial": 86,
     "precio": 0,
@@ -105,7 +105,7 @@
   },
   {
     "id": 231677,
-    "nombre": "Marcus Rashford",
+    "nombre": "M. Rashford",
     "nivel": 69,
     "potencial": 85,
     "precio": 0,

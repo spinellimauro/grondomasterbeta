@@ -26,6 +26,7 @@ class TorneoModel {
 	new(LoginModel loginModel) {
 		ligaMaster = loginModel.ligaMaster
 		dtON = loginModel.dtON
+		torneoON = ligaMaster.listaTorneos.get(0)
 	}
 
 	def void setTorneoON(Torneo torneo) {

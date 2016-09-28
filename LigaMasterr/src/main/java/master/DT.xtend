@@ -14,15 +14,7 @@ class DT {
 	double plata = 0.0
 	int slots = 30
 	Set<Jugador> listaJugadores = newHashSet
-	List<Oferta> ofertasRecibidas = newArrayList
-
-	Torneo torneo
-
 	int torneosDisponibles = 3
-
-	def Set<Jugador> getJugadores() {
-		listaJugadores.filter[!torneo.estaSuspendido(it)].toSet
-	}
 
 	def void venderJugador(Jugador jugador) {
 		incPlata(jugador.precioVenta)
@@ -77,43 +69,13 @@ class DT {
 	}
 
 	def void addJugador(Jugador jugador) {
-		jugador.torneo = torneo
 		listaJugadores.add(jugador)
 	}
 
 	def void removeJugador(Jugador jugador) {
-		ofertasRecibidas.removeAll(getOfertas(jugador))
 		listaJugadores.remove(jugador)
 	}
 
-	def int getPuntos() {
-		torneo.getPuntos(this)
-	}
-
-	def int getAmarillas() {
-		listaJugadores.fold(0)[acum, jugador|acum + jugador.amarillas]
-	}
-
-	def int getRojas() {
-		listaJugadores.fold(0)[acum, jugador|acum + jugador.rojas]
-	}
-
-	def int getPuntosFairPlay() {
-		amarillas * 4 + rojas * 12
-	}
-
-	def void addOferta(Oferta oferta) {
-		ofertasRecibidas.add(oferta)
-	}
-
-	def List<Oferta> getOfertas(Jugador jugador) {
-		ofertasRecibidas.filter[jugadorOfertado.equals(jugador)].toList
-	}
-
-	def boolean hayOfertas() {
-		ofertasRecibidas.nullOrEmpty
-	}
-	
 	def restarTorneoDisponible(){
 		torneosDisponibles--
 	}

@@ -97,7 +97,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 
 		new Button(buttonPanel) => [
 			caption = "Editar Partido"
-			onClick[new PartidoWindow(this, modelObject.partido).open]
+			onClick[new PartidoWindow(this, modelObject).open]
 			fontSize = 10
 		]
 	}

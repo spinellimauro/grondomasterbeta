@@ -12,33 +12,28 @@ import master.Partido
 import master.Torneo
 import org.uqbar.commons.utils.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
+import datos.Mercado
 
 @Observable
 @Accessors
 final class JSONTransformer {
 	def static void guardarBase() {
-		var jsonTorneos = new JsonArray
-		for (torneo : LigaMaster.instance.listaTorneos)
-			jsonTorneos.add(torneo.toJSON)
-		
-		var PrintWriter printer = new PrintWriter("data/torneos.txt")
-		jsonTorneos.writeTo(printer,WriterConfig.PRETTY_PRINT)
-		printer.close
+		val jsonTorneos = LigaMaster.instance.listaTorneos.fold(new JsonArray)[array, torneo|array.add(torneo.toJSON)]
+		guardarArchivo(jsonTorneos, "torneos")
 
-		var jsonJugadores = new JsonArray
-		for (jugador : LigaMaster.instance.listaJugador)
-			jsonJugadores.add(jugador.toJSON)
-			
-		printer = new PrintWriter("data/jugadores.txt")
-		jsonJugadores.writeTo(printer,WriterConfig.PRETTY_PRINT)
-		printer.close
+		val jsonJugadores = LigaMaster.instance.listaJugador.fold(new JsonArray) [array, jugador|array.add(jugador.toJSON)]
+		guardarArchivo(jsonJugadores, "jugadores")
 
-		var jsonDts = new JsonArray
-		for (dt : LigaMaster.instance.listaDT)
-			jsonDts.add(dt.toJSON)
-			
-		printer = new PrintWriter("data/dts.txt")
-		jsonDts.writeTo(printer,WriterConfig.PRETTY_PRINT)
+		val jsonDts = LigaMaster.instance.listaDT.fold(new JsonArray)[array, dt|array.add(dt.toJSON)]
+		guardarArchivo(jsonDts, "dts")
+
+		val jsonMercado = Mercado.instance.listaOfertas.fold(new JsonArray)[array, oferta|array.add(oferta.toJSON)]
+		guardarArchivo(jsonMercado, "mercado")
+	}
+
+	def static guardarArchivo(JsonArray json, String nombreArchivo) {
+		var printer = new PrintWriter("data/" + nombreArchivo + ".json")
+		json.writeTo(printer, WriterConfig.PRETTY_PRINT)
 		printer.close
 	}
 
@@ -59,7 +54,6 @@ final class JSONTransformer {
 			add("equipo", dt.nombreEquipo)
 			add("plata", dt.plata)
 			add("slots", dt.slots)
-			add("ofertas", new JsonArray => [dt.ofertasRecibidas.map[toJSON].forEach[oferta|add(oferta)]])
 			add("jugadores", new JsonArray => [dt.getListaJugadores.forEach[jugador|add(jugador.id)]])
 			add("torneos", dt.torneosDisponibles)
 		]
