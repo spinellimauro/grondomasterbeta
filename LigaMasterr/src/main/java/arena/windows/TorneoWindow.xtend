@@ -30,9 +30,10 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 		mainPanel.layout = new HorizontalLayout
 		createTorneoPanel(new Panel(mainPanel))
 		createFechaPanel(new Panel(mainPanel))
+		createMenuPanel(new Panel(mainPanel))
 	}
-
-	def createFechaPanel(Panel panel) {
+	
+	def createMenuPanel(Panel panel) {
 		val panelHorizontal = new Panel(panel).layout = new HorizontalLayout
 		new Label(panelHorizontal).text = "        "
 		new TextBox(panelHorizontal) => [
@@ -50,6 +51,28 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			height = 30
 		]
 		
+		new Button(panel) => [
+			caption = "Editar Torneo"
+			onClick[new TorneoConfigWindow(this, modelObject).open]
+			fontSize = 10
+		]
+		
+		new Button(panel) => [
+			caption = "Premios Torneo Actual"
+			onClick[new PremiosTorneoWindow(this, modelObject).open]
+			fontSize = 10
+		]
+		
+		new Button(panel) => [
+			caption = "Estadisticas"
+			onClick[new TablaWindow(this, modelObject.torneoON).open]
+			fontSize = 10
+		]
+	}
+
+	def createFechaPanel(Panel panel) {
+		
+		
 		new Selector(panel) => [
 			bindItemsToProperty("listaTorneos").adapter = new PropertyAdapter(Torneo, "nombreTorneo")
 			bindValueToProperty("torneoON")
@@ -57,11 +80,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			width = 100
 		]
 		
-		new Button(panel) => [
-			caption = "Editar Torneo"
-			onClick[new TorneoConfigWindow(this, modelObject).open]
-			fontSize = 10
-		]
+		
 		
 		new LabeledSelector(panel) => [
 			text = "\tFecha"
@@ -108,11 +127,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			fontSize = 10
 		]
 		
-		new Button(panel) => [
-			caption = "Estadisticas"
-			onClick[new TablaWindow(this, modelObject.torneoON).open]
-			fontSize = 10
-		]
+		
 	}
 
 	def void createTorneoPanel(Panel panel) {
