@@ -35,7 +35,9 @@ class DT {
 		jugadoresNoPagados.removeAll(jugadoresAPagar)
 		jugadoresNoPagados.forEach[noSePago]
 
-		if(jugadoresNoPagados.size != 0) torneosDisponibles--
+		if(torneosDisponibles != 0) torneosDisponibles--
+		else torneosDisponibles = 3
+		
 	}
 
 	def void pagarImpuesto(Jugador jugador) {

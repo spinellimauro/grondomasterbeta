@@ -23,19 +23,19 @@
       184881,
       193301
     ],
-    "torneos": -1
+    "torneos": 0
   },
   {
     "nombre": "Latta",
     "equipo": "Palermo",
-    "plata": 655000,
-    "slots": 30,
+    "plata": 645000,
+    "slots": 31,
     "jugadores": [
       207494,
       200145,
       211300
     ],
-    "torneos": 0
+    "torneos": 3
   },
   {
     "nombre": "Mauro",
