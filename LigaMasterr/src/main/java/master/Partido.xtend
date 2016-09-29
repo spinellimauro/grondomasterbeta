@@ -83,4 +83,16 @@ class Partido {
 	def boolean fueExpulsado(Jugador jugador) {
 		getAmarillas(jugador) == 2 || getRojas(jugador) == 1
 	}
+	
+	def getGolesFavor(DT dt){
+		if(dt.equals(dtLocal)) golesLocal.size
+		else if(dt.equals(dtVisitante)) golesVisitante.size
+		else 0
+	}
+	
+	def getGolesContra(DT dt){
+		if(dt.equals(dtLocal)) golesVisitante.size
+		else if(dt.equals(dtVisitante)) golesLocal.size
+		else 0
+	}
 }

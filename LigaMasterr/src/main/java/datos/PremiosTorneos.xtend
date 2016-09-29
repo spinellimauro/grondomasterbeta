@@ -5,6 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class PremiosTorneos {
+	Integer cantPremios
 	Map<Integer, Double> mapaPosiciones = newHashMap(
 		1 -> 40000.0,
 		2 -> 30000.0,
@@ -15,4 +16,5 @@ class PremiosTorneos {
 	def double getPremio(Integer posicion) {
 		mapaPosiciones.get(posicion)
 	}
+	
 }

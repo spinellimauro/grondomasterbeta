@@ -5,6 +5,7 @@ import java.util.Collections
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.UserException
 
 @Observable
 @Accessors
@@ -121,6 +122,9 @@ class Torneo {
 	}
 
 	def void addDT(DT dt) {
+		if (listaParticipantes.contains(dt)){
+			throw new UserException("El DT ya esta en el torneo")
+		}
 		listaParticipantes.add(dt)
 	}
 
@@ -131,7 +135,7 @@ class Torneo {
 	def terminarTorneo() {
 		var i = 0
 		if (listaPartidos.forall[terminado]) {
-			for (i = 0; i < 4; i++) { // pondriamos i<cantPremios Y que en premios haya un put(posicion,premio) etc
+			for (i = 0; i < premios.cantPremios; i++) { // pondriamos i<cantPremios Y que en premios haya un put(posicion,premio) etc
 				listaPosiciones.get(i).plata = premios.getPremio(i)
 			}
 			listaParticipantes.forEach[restarTorneoDisponible]
@@ -139,5 +143,16 @@ class Torneo {
 
 //		grondomaster.guardarBase()
 	}
-
+	
+	def obtenerGolesFavor(DT dt){
+		listaPartidos.fold(0)[acum,partido|acum + partido.getGolesFavor(dt)]
+	}
+	
+	def obtenerGolesContra(DT dt){
+		listaPartidos.fold(0)[acum,partido|acum + partido.getGolesContra(dt)]
+	}
+	
+	def diferenciaGol(DT dt){
+		obtenerGolesFavor(dt) - obtenerGolesContra(dt)
+	}
 }

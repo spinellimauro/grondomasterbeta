@@ -37,7 +37,25 @@ class TablaWindow extends Dialog<TablaModel> {
 				bindContentsToProperty("nombreDT")
 				fixedSize = 85
 			]
-
+			
+			new Column(it) => [
+				title = "GF"
+				bindContentsToProperty("golesFavor")
+				fixedSize = 55
+			]
+			
+			new Column(it) => [
+				title = "GC"
+				bindContentsToProperty("golesContra")
+				fixedSize = 55
+			]
+			
+			new Column(it) => [
+				title = "Dif Gol"
+				bindContentsToProperty("difGol")
+				fixedSize = 55
+			]
+		
 			new Column(it) => [
 				title = "Puntos"
 				bindContentsToProperty("puntos")
@@ -131,13 +149,19 @@ class EstadisticaDT {
 	int amarillas
 	int rojas
 	int puntosFairPlay
-
+	int golesFavor
+	int golesContra
+	int difGol
+	
 	new(DT dt, Torneo torneo) {
 		nombreDT = dt.nombreDT
 		puntos = torneo.getPuntos(dt)
 		amarillas = torneo.getAmarillas(dt)
 		rojas = torneo.getRojas(dt)
 		puntosFairPlay = torneo.getPuntosFairPlay(dt)
+		golesFavor = torneo.obtenerGolesFavor(dt)
+		golesContra = torneo.obtenerGolesContra(dt)
+		difGol = torneo.diferenciaGol(dt)
 	}
 }
 
