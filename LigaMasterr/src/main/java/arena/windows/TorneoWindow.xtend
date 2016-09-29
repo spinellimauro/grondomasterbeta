@@ -24,6 +24,7 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 	new(WindowOwner parent, LoginModel model) {
 		super(parent, new TorneoModel(model))
 		title = "Liga Master"
+		
 	}
 
 	override createMainTemplate(Panel mainPanel) {

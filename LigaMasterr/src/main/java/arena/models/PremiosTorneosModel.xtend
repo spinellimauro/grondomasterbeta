@@ -5,6 +5,7 @@ import master.DT
 import master.Torneo
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import datos.PremioEvento
 
 @Observable
 @Accessors
@@ -12,6 +13,7 @@ class PremiosTorneosModel {
 	Torneo torneoON
 	DT dtON
 	PremioPosicion posicionON
+	PremioEvento eventoON
 	
 	new(TorneoModel model) {
 		torneoON = model.torneoON
