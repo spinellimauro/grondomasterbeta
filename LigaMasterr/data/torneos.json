@@ -192,5 +192,15 @@
       }
     ],
     "limiteAmarillas": 0
+  },
+  {
+    "torneo": "A",
+    "dts": [
+      
+    ],
+    "partidos": [
+      
+    ],
+    "limiteAmarillas": 3
   }
 ]

@@ -31,6 +31,7 @@ class TorneoConfigModel {
 
 	def void getRemoveDT() {
 		torneoON.removeDT(dtON)
+		dtON.torneosDisponibles = dtON.torneosDisponibles + 1
 	}
 	
 	def boolean dtTieneQuePagar(){

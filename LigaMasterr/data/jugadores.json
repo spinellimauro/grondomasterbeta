@@ -41,8 +41,8 @@
     "nivel": 83,
     "potencial": 83,
     "precio": 0,
-    "noPagadas": 0,
-    "habilitado": true
+    "noPagadas": 1,
+    "habilitado": false
   },
   {
     "id": 221896,
@@ -68,8 +68,8 @@
     "nivel": 83,
     "potencial": 87,
     "precio": 0,
-    "noPagadas": 0,
-    "habilitado": true
+    "noPagadas": 1,
+    "habilitado": false
   },
   {
     "id": 207494,

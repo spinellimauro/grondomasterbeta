@@ -16,7 +16,7 @@ class TorneoModel {
 
 	DT dtON
 	Integer fechaON = 1
-	Torneo torneoON = new Torneo
+	Torneo torneoON 
 	String nombreNuevoTorneo
 	
 	Partido partido
@@ -60,5 +60,6 @@ class TorneoModel {
 	
 	def crearTorneo(){
 		LigaMaster.instance.addTorneo(new Torneo=>[nombreTorneo = nombreNuevoTorneo])
+		ObservableUtils.firePropertyChanged(this,"listaTorneos")
 	}
 }

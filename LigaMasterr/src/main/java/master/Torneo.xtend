@@ -136,7 +136,7 @@ class Torneo {
 		var i = 0
 		if (listaPartidos.forall[terminado]) {
 			for (i = 0; i < premios.cantPremios; i++) { // pondriamos i<cantPremios Y que en premios haya un put(posicion,premio) etc
-				listaPosiciones.get(i).plata = premios.getPremio(i)
+				listaPosiciones.get(i).plata = listaPosiciones.get(i).plata + premios.getPremio(i)
 			}
 			listaParticipantes.forEach[restarTorneoDisponible]
 		}
