@@ -5,7 +5,8 @@
     "nivel": 82,
     "potencial": 87,
     "precio": 0,
-    "noPagadas": 1
+    "noPagadas": 1,
+    "habilitado": true
   },
   {
     "id": 216594,
@@ -13,7 +14,8 @@
     "nivel": 79,
     "potencial": 85,
     "precio": 0,
-    "noPagadas": 0
+    "noPagadas": 0,
+    "habilitado": true
   },
   {
     "id": 161648,
@@ -21,7 +23,8 @@
     "nivel": 82,
     "potencial": 82,
     "precio": 0,
-    "noPagadas": 1
+    "noPagadas": 1,
+    "habilitado": true
   },
   {
     "id": 228080,
@@ -29,7 +32,8 @@
     "nivel": 62,
     "potencial": 81,
     "precio": 0,
-    "noPagadas": 1
+    "noPagadas": 1,
+    "habilitado": true
   },
   {
     "id": 179944,
@@ -37,7 +41,26 @@
     "nivel": 83,
     "potencial": 83,
     "precio": 0,
-    "noPagadas": 0
+    "noPagadas": 0,
+    "habilitado": true
+  },
+  {
+    "id": 221896,
+    "nombre": "D. Avdijaj",
+    "nivel": 72,
+    "potencial": 81,
+    "precio": 0,
+    "noPagadas": 0,
+    "habilitado": true
+  },
+  {
+    "id": 184881,
+    "nombre": "S. Feghouli",
+    "nivel": 81,
+    "potencial": 83,
+    "precio": 0,
+    "noPagadas": 2,
+    "habilitado": true
   },
   {
     "id": 193301,
@@ -45,7 +68,8 @@
     "nivel": 83,
     "potencial": 87,
     "precio": 0,
-    "noPagadas": 0
+    "noPagadas": 0,
+    "habilitado": true
   },
   {
     "id": 207494,
@@ -53,7 +77,8 @@
     "nivel": 76,
     "potencial": 82,
     "precio": 0,
-    "noPagadas": 0
+    "noPagadas": 0,
+    "habilitado": true
   },
   {
     "id": 200145,
@@ -61,7 +86,8 @@
     "nivel": 79,
     "potencial": 83,
     "precio": 0,
-    "noPagadas": 0
+    "noPagadas": 0,
+    "habilitado": true
   },
   {
     "id": 211300,
@@ -69,7 +95,8 @@
     "nivel": 78,
     "potencial": 86,
     "precio": 0,
-    "noPagadas": 0
+    "noPagadas": 0,
+    "habilitado": true
   },
   {
     "id": 178562,
@@ -77,7 +104,8 @@
     "nivel": 81,
     "potencial": 81,
     "precio": 0,
-    "noPagadas": 2
+    "noPagadas": 2,
+    "habilitado": true
   },
   {
     "id": 192985,
@@ -85,15 +113,8 @@
     "nivel": 86,
     "potencial": 89,
     "precio": 150000,
-    "noPagadas": 0
-  },
-  {
-    "id": 184881,
-    "nombre": "S. Feghouli",
-    "nivel": 81,
-    "potencial": 83,
-    "precio": 20000,
-    "noPagadas": 2
+    "noPagadas": 1,
+    "habilitado": false
   },
   {
     "id": 197853,
@@ -101,7 +122,8 @@
     "nivel": 81,
     "potencial": 86,
     "precio": 0,
-    "noPagadas": 2
+    "noPagadas": 2,
+    "habilitado": true
   },
   {
     "id": 231677,
@@ -109,6 +131,7 @@
     "nivel": 69,
     "potencial": 85,
     "precio": 0,
-    "noPagadas": 2
+    "noPagadas": 2,
+    "habilitado": true
   }
 ]

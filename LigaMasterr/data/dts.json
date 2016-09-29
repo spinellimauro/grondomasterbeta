@@ -15,10 +15,12 @@
   {
     "nombre": "Alejandro",
     "equipo": "Dortmund",
-    "plata": 535000,
+    "plata": 495000,
     "slots": 30,
     "jugadores": [
       179944,
+      221896,
+      184881,
       193301
     ],
     "torneos": 0
@@ -38,16 +40,15 @@
   {
     "nombre": "Mauro",
     "equipo": "Bourdeaux",
-    "plata": 0,
+    "plata": 20000,
     "slots": 39,
     "jugadores": [
       178562,
       192985,
-      184881,
       197853,
       231677
     ],
-    "torneos": 0
+    "torneos": -1
   },
   {
     "nombre": "Master",

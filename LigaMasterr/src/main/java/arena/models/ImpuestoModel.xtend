@@ -6,6 +6,7 @@ import master.Jugador
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.utils.Observable
+import master.LigaMaster
 
 @Observable
 @Accessors
@@ -44,6 +45,7 @@ class ImpuestoModel {
 	
 	def pagarImpuestos(){
 		dtAgregado.pagarImpuesto(jugadoresAPagar)
+		LigaMaster.instance.guardarBase
 	}
 	
 	def actualizar(){

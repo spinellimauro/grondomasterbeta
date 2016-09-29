@@ -43,7 +43,7 @@ class MercadoModel {
 
 		jugadorON.propietario.venderJugador(jugadorON)
 		dtON.comprarJugador(jugadorON, jugadorON.precioVenta)
-
+		LigaMaster.instance.guardarBase
 		ObservableUtils.firePropertyChanged(this, "listaTransferibles")
 		ObservableUtils.firePropertyChanged(this, "dtON")
 	}
@@ -66,7 +66,8 @@ class MercadoModel {
 		
 		dtON.comprarJugador(jugadorON, jugadorON.precioMaquina)
 		listaMaquina.remove(jugadorON)
-
+		LigaMaster.instance.guardarBase
+		
 		ObservableUtils.firePropertyChanged(this, "dtON")
 	}
 	
@@ -76,7 +77,7 @@ class MercadoModel {
 
 		dtElegido.addJugador(jugadorON) 
 		listaMaquina.remove(jugadorON)
-
+		LigaMaster.instance.guardarBase
 		ObservableUtils.firePropertyChanged(this, "dtON")
 	}
 	
