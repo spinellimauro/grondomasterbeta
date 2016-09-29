@@ -17,6 +17,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Label
 import master.LigaMaster
+import java.awt.Color
 
 class EquipoWindow extends SimpleWindow<EquipoModel> {
 	new(WindowOwner owner, TorneoModel model) {
@@ -116,6 +117,21 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 	}
 
 	def void createTransferPanel(Panel panel) {
+		
+		new Label(panel).text = "Jugadores Deshabilitados"
+		new Table(panel, Jugador) => [
+			bindItemsToProperty("dtON.listaJugadoresDeshabilitados")
+			numberVisibleRows = 8
+			
+			
+			new Column(it) => [
+				title = "Nombre"
+				bindContentsToProperty("nombre")
+				fixedSize = 150
+				foreground = Color.red
+			]
+		]
+		
 		new Selector(panel) => [
 			bindItemsToProperty("otrosDT").adapter = new PropertyAdapter(DT, "nombreDT")
 			bindValueToProperty("dtElegido")
@@ -149,6 +165,8 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 			fontSize = 10
 			onClick[ new OfertaWindow(this, modelObject).open ]
 		]
+		
+		
 	}
 
 	override protected addActions(Panel actionsPanel) {}

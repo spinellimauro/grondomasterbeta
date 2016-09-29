@@ -9,14 +9,14 @@ import master.DT
 import master.Oferta
 import master.LigaMaster
 import datos.Mercado
-
+import org.uqbar.commons.model.UserException
 @Observable
 @Accessors
 class OfertaModel {
 	DT dtON
 	Jugador jugadorON
 	LigaMaster ligaMaster
-	Double montoOfertado = 0.0
+	double montoOfertado = 0.0
 	Jugador jugadorElegido
 	List<Jugador> listaJugadores = newArrayList
 
@@ -34,6 +34,9 @@ class OfertaModel {
 	}
 	
 	def void enviarOferta() {
+		
+//		if(montoOfertado > dtON.plata) throw new UserException("No tenes ese dinero disponible")
+
 		Mercado.instance.listaOfertas.add(
 			new Oferta => [
 				dtOfertante = dtON
@@ -43,6 +46,7 @@ class OfertaModel {
 				jugadoresOfrecidos = listaJugadores
 			]
 		)
+	
 		
 		
 	}

@@ -31,7 +31,7 @@ class DT {
 		jugadoresAPagar.forEach[pagarImpuesto]
 
 		var jugadoresNoPagados = newArrayList
-		jugadoresNoPagados.addAll(listaJugadores)
+		jugadoresNoPagados.addAll(jugadoresConImpuesto)
 		jugadoresNoPagados.removeAll(jugadoresAPagar)
 		jugadoresNoPagados.forEach[noSePago]
 
@@ -88,5 +88,8 @@ class DT {
 		removeJugador(jugador)
 		plata += (Precios.instance.getPrecio(jugador)/Precios.instance.getPrecio("PrecioMaquina")) // PrecioMaquina (cuarta Parte del valor del jugador)
 	}
-
+	
+	def Set<Jugador> getListaJugadoresDeshabilitados(){
+		listaJugadores.filter[habilitado == false].toSet
+	}
 }
