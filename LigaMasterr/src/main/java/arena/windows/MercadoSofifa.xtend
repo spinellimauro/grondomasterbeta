@@ -88,6 +88,12 @@ class MercadoSofifa extends SimpleWindow<MercadoModel> {
 			onClick[modelObject.comprarJugadorALaMaquina]
 			fontSize = 10
 		]
+		
+//		new Button(panelHorizontal) => [
+//			caption = "Ofertar"
+//			onClick[new OfertaWindow(this, ?? ).open]
+//			fontSize = 10
+//		]
 		val panelVertical = new Panel(panel).layout = new VerticalLayout
 		new Button(panelVertical) => [
 			caption = "Agregar"

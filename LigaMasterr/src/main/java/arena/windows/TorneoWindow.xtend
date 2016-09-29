@@ -56,6 +56,13 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			height = 50
 			width = 100
 		]
+		
+		new Button(panel) => [
+			caption = "Editar Torneo"
+			onClick[new TorneoConfigWindow(this, modelObject).open]
+			fontSize = 10
+		]
+		
 		new LabeledSelector(panel) => [
 			text = "\tFecha"
 			label.fontSize = 12
@@ -100,27 +107,21 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 			onClick[new PartidoWindow(this, modelObject).open]
 			fontSize = 10
 		]
+		
+		new Button(panel) => [
+			caption = "Estadisticas"
+			onClick[new TablaWindow(this, modelObject.torneoON).open]
+			fontSize = 10
+		]
 	}
 
 	def void createTorneoPanel(Panel panel) {
 
 		new Button(panel) => [
-			caption = "Editar Torneo"
-			onClick[new TorneoConfigWindow(this, modelObject).open]
-			fontSize = 10
-			width = 250
-		]
-
-		new Button(panel) => [
 			caption = "Equipos"
 			onClick[new EquipoWindow(this, modelObject).open]
 			fontSize = 10
-		]
-
-		new Button(panel) => [
-			caption = "Estadisticas"
-			onClick[new TablaWindow(this, modelObject.torneoON).open]
-			fontSize = 10
+			width = 250
 		]
 		
 		new Button(panel) => [
