@@ -25,8 +25,8 @@ class PremiosTorneoWindow extends Dialog<PremiosTorneosModel> {
 	def void createPreciosPanel(Panel panel) {
 
 		new Table(panel, PremioPosicion) => [
-			bindItemsToProperty("posiciones")
-//			bindValueToProperty("posicionON")
+			bindItemsToProperty("listaPosiciones")
+			bindValueToProperty("posicionON")
 			numberVisibleRows = 20
 
 			new Column(it) => [
@@ -42,11 +42,11 @@ class PremiosTorneoWindow extends Dialog<PremiosTorneosModel> {
 			]
 		]
 
-//		new LabeledTextBox(panel) => [
-//			bindTextToProperty("posicionON.posicion")
-//			bindValueToProperty("posicionON.premio")
-//			width = 50
-//		]
+		new LabeledTextBox(panel) => [
+			bindTextToProperty("posicionON.posicion")
+			bindValueToProperty("posicionON.premio")
+			width = 50
+		]
 	}
 	override protected createFormPanel(Panel mainPanel) {}
 }

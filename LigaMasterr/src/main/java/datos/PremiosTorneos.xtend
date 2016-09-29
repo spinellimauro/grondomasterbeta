@@ -1,10 +1,10 @@
 package datos
 
-import java.util.Map
-import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 
+@Observable
 @Accessors
 class PremiosTorneos {
 	List<PremioEvento> listaEventos = newArrayList(

@@ -1,15 +1,14 @@
 package arena.models
 
-import master.Jugador
-import arena.models.EquipoModel
-import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
+import datos.Mercado
 import java.util.List
 import master.DT
-import master.Oferta
+import master.Jugador
 import master.LigaMaster
-import datos.Mercado
-import org.uqbar.commons.model.UserException
+import master.Oferta
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
+
 @Observable
 @Accessors
 class OfertaModel {
