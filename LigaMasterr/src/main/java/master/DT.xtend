@@ -94,4 +94,8 @@ class DT {
 	def Set<Jugador> getListaJugadoresDeshabilitados(){
 		listaJugadores.filter[habilitado == false].toSet
 	}
+	
+	def getCantJugadores(){
+		listaJugadores.size
+	}
 }

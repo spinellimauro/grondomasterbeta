@@ -28,6 +28,10 @@ class OfertasModel {
 	}
 	
 	def void aceptarOferta(){
+		if (ofertaON.dtOfertante.slots < dtON.listaJugadores.size + 1){
+			throw new UserException("No posee suficiente Slots")
+		}
+		
 		if(ofertaON.monto <= ofertaON.dtOfertante.plata){
 			ofertaON.aceptar
 			ObservableUtils.firePropertyChanged(this ,"ofertasRecibidas")

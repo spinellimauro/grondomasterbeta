@@ -9,6 +9,7 @@ import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.utils.Observable
 import master.DT
 import org.uqbar.commons.utils.Dependencies
+import org.uqbar.commons.model.UserException
 
 @Observable
 @Accessors
@@ -59,6 +60,10 @@ class TorneoModel {
 	}
 	
 	def crearTorneo(){
+		if(LigaMaster.instance.listaTorneos.exists[t|t.nombreTorneo == nombreNuevoTorneo]){
+			throw new UserException("El Torneo con ese nombre ya existe")
+		}
+		
 		LigaMaster.instance.addTorneo(new Torneo=>[nombreTorneo = nombreNuevoTorneo])
 		ObservableUtils.firePropertyChanged(this,"listaTorneos")
 	}

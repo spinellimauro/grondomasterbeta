@@ -40,7 +40,10 @@ class MercadoModel {
 	def void comprarJugador() {
 		if (dtON.plata < jugadorON.precioVenta)
 			throw new UserException("Dinero Insuficiente")
-
+		if (dtON.slots < dtON.listaJugadores.size + 1){
+			throw new UserException("No posee suficiente Slots")
+		}
+		
 		jugadorON.propietario.venderJugador(jugadorON)
 		dtON.comprarJugador(jugadorON, jugadorON.precioVenta)
 		LigaMaster.instance.guardarBase
@@ -64,6 +67,10 @@ class MercadoModel {
 			throw new UserException("Ese jugador es de otro DT")
 		}
 		
+		if (dtON.slots < dtON.listaJugadores.size + 1){
+			throw new UserException("No posee suficiente Slots")
+		}
+		
 		dtON.comprarJugador(jugadorON, jugadorON.precioMaquina)
 		listaMaquina.remove(jugadorON)
 		LigaMaster.instance.guardarBase
@@ -74,7 +81,10 @@ class MercadoModel {
 	def void agregarJugador() {
 		if (!listaMaquina.contains(jugadorON))
 			throw new UserException("Ese jugador no es de la Máquina")
-
+		if (dtON.slots < dtON.listaJugadores.size + 1){
+			throw new UserException("No posee suficiente Slots")
+		}
+		
 		dtElegido.addJugador(jugadorON) 
 		listaMaquina.remove(jugadorON)
 		LigaMaster.instance.guardarBase

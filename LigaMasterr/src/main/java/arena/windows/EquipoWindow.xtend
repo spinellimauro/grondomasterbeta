@@ -59,6 +59,13 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 		]
 		
 		new LabeledTextBox(panel) => [
+			text = "Cantidad Jugadores: "
+			bindValueToProperty("dtON.cantJugadores")
+			width = 95
+		]
+		
+		
+		new LabeledTextBox(panel) => [
 			text = "Slots: "
 			bindValueToProperty("dtON.slots")
 			width = 95
