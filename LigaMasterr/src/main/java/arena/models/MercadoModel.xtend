@@ -79,15 +79,26 @@ class MercadoModel {
 	}
 	
 	def void agregarJugador() {
+		val dtViejo = jugadorON.propietario
+		
 		if (!listaMaquina.contains(jugadorON))
 			throw new UserException("Ese jugador no es de la Máquina")
 		if (dtElegido.slots < dtElegido.listaJugadores.size + 1){
 			throw new UserException("No posee suficiente Slots")
 		}
+		if (dtViejo != null){
+			dtViejo.listaJugadores.remove(jugadorON)
+			dtElegido.addJugador(jugadorON) 
+			listaMaquina.remove(jugadorON)
+			LigaMaster.instance.guardarBase
+		}else{
+			dtElegido.addJugador(jugadorON) 
+			listaMaquina.remove(jugadorON)
+			LigaMaster.instance.guardarBase
+		}
 		
-		dtElegido.addJugador(jugadorON) 
-		listaMaquina.remove(jugadorON)
-		LigaMaster.instance.guardarBase
+		
+		
 		ObservableUtils.firePropertyChanged(this, "dtON")
 	}
 	
