@@ -43,7 +43,7 @@ class Jugador {
 	}
 
 	def void update() {
-		val instance = Jsoup.connect("http://sofifa.com/player/199715").userAgent("Mozilla").post.select("td.text-center > span.label")
+		val instance = Jsoup.connect("http://sofifa.com/player/" + id).userAgent("Mozilla").post.select("td.text-center > span.label")
 		nivel = Integer.parseInt(instance.get(0).text)
 		potencial = Integer.parseInt(instance.get(1).text)
 	}

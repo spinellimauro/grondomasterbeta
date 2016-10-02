@@ -67,4 +67,10 @@ class TorneoModel {
 		LigaMaster.instance.addTorneo(new Torneo=>[nombreTorneo = nombreNuevoTorneo])
 		ObservableUtils.firePropertyChanged(this,"listaTorneos")
 	}
+	
+	def update() {
+		LigaMaster.instance.update
+		LigaMaster.instance.guardarBase
+	}
+	
 }

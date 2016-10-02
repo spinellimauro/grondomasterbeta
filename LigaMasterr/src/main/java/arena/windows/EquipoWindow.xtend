@@ -86,7 +86,7 @@ class EquipoWindow extends SimpleWindow<EquipoModel> {
 		new Table(panel, Jugador) => [
 			bindItemsToProperty("dtON.listaJugadores")
 			bindValueToProperty("jugadorON")
-			numberVisibleRows = 8
+			numberVisibleRows = 25
 
 			new Column(it) => [
 				title = "Nombre"

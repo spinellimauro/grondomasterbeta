@@ -171,8 +171,10 @@ class TorneoWindow extends SimpleWindow<TorneoModel> {
 		]
 
 		new Button(panel) => [
-			caption = "Guardar"
-			onClick[LigaMaster.instance.guardarBase]
+			caption = "Update"
+			onClick[
+				modelObject.update
+			]
 			fontSize = 10
 		]
 

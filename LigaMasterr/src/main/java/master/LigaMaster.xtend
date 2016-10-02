@@ -12,7 +12,7 @@ import java.util.List
 class LigaMaster {
 	static LigaMaster instance
 	List<Torneo> listaTorneos = newArrayList
-	List<DT> listaDT = newArrayList
+	List<DT> listaDT = newArrayList =>[new DT =>[nombreDT = "Master"]]
 	List<Jugador> listaJugador = newArrayList
 
 	private new() {
@@ -63,6 +63,10 @@ class LigaMaster {
 			nombreEquipo = dtEquipo
 		])
 		guardarBase
+	}
+	
+	def void update(){
+		listaDT.forEach[listaJugadores.forEach[update]]
 	}
 	
 	// Cálculo del Historial

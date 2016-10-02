@@ -81,7 +81,7 @@ class MercadoModel {
 	def void agregarJugador() {
 		if (!listaMaquina.contains(jugadorON))
 			throw new UserException("Ese jugador no es de la Máquina")
-		if (dtON.slots < dtON.listaJugadores.size + 1){
+		if (dtElegido.slots < dtElegido.listaJugadores.size + 1){
 			throw new UserException("No posee suficiente Slots")
 		}
 		

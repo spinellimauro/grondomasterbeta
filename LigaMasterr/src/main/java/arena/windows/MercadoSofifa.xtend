@@ -81,6 +81,7 @@ class MercadoSofifa extends SimpleWindow<MercadoModel> {
 			caption = "Buscar"
 			onClick[modelObject.buscar]
 			fontSize = 10
+			setAsDefault
 		]
 
 		new Button(panelHorizontal) => [
