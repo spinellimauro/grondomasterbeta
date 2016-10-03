@@ -61,6 +61,12 @@ class TorneoConfigWindow extends Dialog<TorneoConfigModel> {
 			onClick[|modelObject.model.sortearFechas]
 			fontSize = 10
 		]
+		
+		new Button(panelNuevo) => [
+			caption = "Cambiar Nombre"
+			onClick[|modelObject.guardar]
+			fontSize = 10
+		]
 	}
 
 	override protected createFormPanel(Panel mainPanel) {}

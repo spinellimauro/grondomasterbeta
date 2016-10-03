@@ -5,6 +5,7 @@ import master.Partido
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import java.util.List
+import master.LigaMaster
 
 @Observable
 @Accessors
@@ -27,25 +28,35 @@ class PartidoModel {
 
 	def void addGol() {
 		partido.addGol(jugadorSeleccionado)
+		guardar
 	}
 
 	def void removeGol() {
 		partido.removeGol(jugadorSeleccionado)
+		guardar
 	}
 
 	def void addAmarilla() {
 		partido.addAmarilla(jugadorSeleccionado)
+		guardar
 	}
 
 	def void removeAmarilla() {
 		partido.removeAmarilla(jugadorSeleccionado)
+		guardar
 	}
 
 	def void addRoja() {
 		partido.addRoja(jugadorSeleccionado)
+		guardar
 	}
 
 	def void removeRoja() {
 		partido.removeRoja(jugadorSeleccionado)
+		guardar
+	}
+	
+	def void guardar(){
+		LigaMaster.instance.guardarBase
 	}
 }

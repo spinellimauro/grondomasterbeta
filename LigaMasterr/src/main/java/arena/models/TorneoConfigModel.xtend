@@ -29,6 +29,7 @@ class TorneoConfigModel {
 	def void addDT() {
 		torneoON.addDT(dt)
 		dtIngresado.torneosDisponibles = dtIngresado.torneosDisponibles - 1
+		guardar
 	}
 
 	def void getRemoveDT() {
@@ -37,6 +38,7 @@ class TorneoConfigModel {
 		
 		torneoON.removeDT(dtON)
 		dtIngresado.torneosDisponibles = dtIngresado.torneosDisponibles + 1
+		guardar
 	}
 	
 	def boolean dtTieneQuePagar(){
@@ -46,4 +48,9 @@ class TorneoConfigModel {
 	def getDt(){
 		JSONAdapter.getDT(dtIngresado.nombreDT)
 	}
+
+	def void guardar(){
+		LigaMaster.instance.guardarBase
+	}
+
 }

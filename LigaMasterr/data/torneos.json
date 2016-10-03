@@ -1,11 +1,31 @@
 [
   {
-    "torneo": "torneoDefault",
+    "torneo": "A",
     "dts": [
-      
+      "Mauro",
+      "Alejandro"
     ],
     "partidos": [
-      
+      {
+        "fecha": 1,
+        "local": "Alejandro",
+        "visitante": "Mauro",
+        "golesLocal": [
+          207441,
+          207441
+        ],
+        "golesVisitante": [
+          199422
+        ],
+        "amarillas": [
+          199422,
+          199422
+        ],
+        "rojas": [
+          216594
+        ],
+        "terminado": false
+      }
     ],
     "limiteAmarillas": 3
   }

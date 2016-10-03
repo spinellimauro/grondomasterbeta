@@ -86,6 +86,10 @@ class MercadoModel {
 		if (dtElegido.slots < dtElegido.listaJugadores.size + 1){
 			throw new UserException("No posee suficiente Slots")
 		}
+		if (dtElegido.listaJugadores.contains(jugadorON)){
+			throw new UserException("Ya posee ese jugador")
+		}
+		
 		if (dtViejo != null){
 			dtViejo.listaJugadores.remove(jugadorON)
 			dtElegido.addJugador(jugadorON) 

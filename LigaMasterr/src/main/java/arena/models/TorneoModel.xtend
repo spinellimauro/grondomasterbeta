@@ -53,10 +53,12 @@ class TorneoModel {
 		torneoON.sortearFechas
 		ObservableUtils.firePropertyChanged(this,"fecha")
 		ObservableUtils.firePropertyChanged(this,"listaFechas")
+		guardar
 	}
 
 	def void borrarTorneo() {
 		LigaMaster.instance.removeTorneo(torneoON)
+		guardar
 	}
 	
 	def crearTorneo(){
@@ -66,11 +68,15 @@ class TorneoModel {
 		
 		LigaMaster.instance.addTorneo(new Torneo=>[nombreTorneo = nombreNuevoTorneo])
 		ObservableUtils.firePropertyChanged(this,"listaTorneos")
+		guardar
 	}
 	
 	def update() {
 		LigaMaster.instance.update
-		LigaMaster.instance.guardarBase
+		guardar
 	}
 	
+	def guardar(){
+		LigaMaster.instance.guardarBase
+	}
 }
