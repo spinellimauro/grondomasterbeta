@@ -1,8 +1,9 @@
 <div id="detalle" class="modal fade" role="dialog">
     <div class="modal-dialog modal-md">
-        <div class="modal-content">
+        <div class="modal-content" >
+            
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <center>
                     <img class="img-responsive" ng-src="http://cdn.sofifa.org/17/players/{{jugador.id}}.png" err-src="http://cdn.sofifa.org/player.png" />
                     <h3>{{jugador.nombre}}</h3>
@@ -16,12 +17,39 @@
                 <p ng-show="jugador.precioVenta > 0">Precio: $ {{jugador.precioVenta}}</p>
                 </h4>
             </div>
-            <div class="modal-footer text-center">
+            <div id='oculto' style='display:none;'>
+                <center>
+                <h4>¿Estás seguro que querés comprar a este jugador?</h4>
+                <button type="button" class="btn btn-success"
+                    ng-click="mainCtrl.comprarAOtroDT(jugador.id)"
+                    data-dismiss="modal"
+                    >Aceptar</button>
+                <button type="button" class="btn btn-danger"
+                    onclick="retroceder()">Cancelar</button>    
+                </center>
+                <h4> </h4>
+            </div>
+
+            <div id='ocultoVenta' style='display:none;'>
+                <center>
+                <h4>¿Estás seguro que querés vender a este jugador?</h4>
+                <button type="button" class="btn btn-success"
+                    ng-click="mainCtrl.venderALaMaquina(jugador.id)"
+                    data-dismiss="modal"
+                    >Aceptar</button>
+                <button type="button" class="btn btn-danger"
+                    onclick="retrocederVenta()">Cancelar</button>    
+                </center>
+                <h4> </h4>
+            </div>
+
+
+            <div class="modal-footer text-center" id="ver">
 
                     
 
                    <button type="button" class="btn btn-default"
-                    ng-click="mainCtrl.comprarAOtroDT(jugador.id)" 
+                    onclick="ocultar()"
                     ng-show="jugador.precioVenta > 0 && jugador.propietario != mainCtrl.DT.nombreDT">Comprar a {{jugador.propietario}}</button>
                     
                     <button type="button" class="btn btn-default"
@@ -41,20 +69,43 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
 
 
                     <button type="button" class="btn btn-default"
-                    ng-click="mainCtrl.venderALaMaquina(jugador.id)" ng-show="jugador.propietario == mainCtrl.DT.nombreDT">Vender a Máquina ({{(jugador.precioMaquina)/4}})</button>
+                    onclick="ocultarVenta()" ng-show="jugador.propietario == mainCtrl.DT.nombreDT">Vender a Máquina ({{(jugador.precioMaquina)/4}})</button>
                     
                     <button type="button" class="btn btn-default"
                     data-dismiss="modal"
                     ng-show="jugador.propietario != 'Libre' && jugador.propietario != mainCtrl.DT.nombreDT"
                     ng-click="listaCtrl.select(jugador);mainCtrl.ofertar()">Ofertar a {{jugador.propietario}}</button>
 
+
                   
                 </div>
+
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function ocultar(){
+    document.getElementById('ver').style.display = 'none';
+    document.getElementById('oculto').style.display = 'block';
+}
+    function retroceder(){
+    document.getElementById('oculto').style.display = 'none';
+    document.getElementById('ver').style.display = 'block';
+}
+
+    function ocultarVenta(){
+    document.getElementById('ver').style.display = 'none';
+    document.getElementById('ocultoVenta').style.display = 'block';
+}
+    function retrocederVenta(){
+    document.getElementById('ocultoVenta').style.display = 'none';
+    document.getElementById('ver').style.display = 'block';
+}
+
+</script>

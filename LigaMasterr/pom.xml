@@ -3,13 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>EjemploArena</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
-	<parent>
-		<groupId>org.uqbar-project</groupId>
-		<artifactId>arena-xtend-parent</artifactId>
-		<version>3.6.2</version>
-	</parent>
-
+	<packaging>war</packaging>
+ <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.6.RELEASE</version>
+    </parent>
 	<dependencies>
 		<dependency>
 			<groupId>org.jsoup</groupId>
@@ -21,6 +20,16 @@
 			<groupId>org.uqbar</groupId>
 			<artifactId>xtrest</artifactId>
 			<version>0.1.4</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		
 		<dependency>
@@ -28,10 +37,29 @@
 			<artifactId>xstream</artifactId>
 			<version>1.4.9</version>
 		</dependency>
-
-	</dependencies>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			
+			
+		</dependency>
+		
+		<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <version>1.4.1.RELEASE</version>
+</dependency>
+		</dependencies>
 
 	<build>
+		<resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
+    	
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -40,6 +68,18 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
+			</plugin>
+			<plugin>
+ 				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>0.5.1</version>
+				<configuration>
+					<appName>grondomaster</appName>
+				</configuration>
+			</plugin>
+			<plugin>
+  				<artifactId>maven-war-plugin</artifactId>
+ 				<version>3.0.0</version>
 			</plugin>
 		</plugins>
 	</build>

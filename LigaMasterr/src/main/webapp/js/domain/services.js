@@ -40,6 +40,10 @@ app.service("DTService", function($http) {
         $http.get('/ofertas/recibidas/' + this.usuarioActivo.nombreDT).then(callback);
     };
 
+    this.getTraspasos = function(callback) {
+        $http.get('/transferencias').then(callback);
+    };
+
 
 // PUTS
     this.venderJugadorALaMaquina = function(nombreDT, jugadorID){

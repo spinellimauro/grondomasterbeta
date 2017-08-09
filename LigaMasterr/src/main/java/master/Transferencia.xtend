@@ -6,8 +6,8 @@ import org.uqbar.commons.utils.Observable
 @Observable
 @Accessors
 class Transferencia {
-	String dtCompra
-	String dtVende
+	DT dtCompra
+	DT dtVende
 	double monto
-	String jugadorComprado
+	Jugador jugadorComprado
 }

@@ -1,0 +1,31 @@
+<table class="table table-responsive table-hover">
+   <tbody>
+            <tr>
+                <th >Vendedor</th>
+                <th ></th>
+                <th >Comprador</th>
+                <th class="col-sm-3">Jugador</th>
+                <th class="col-sm-3">Monto</th>
+            </tr>
+            <tr ng-repeat="traspaso in mainCtrl.listaTraspasos">
+                <td>
+                <img width="40" height="40" ng-src="http://cdn.sofifa.org/17/teams/{{traspaso.dtVende.id}}.png"
+                />
+                {{traspaso.dtVende.nombreDT}}
+                </td>
+                <td>
+                <span class="glyphicon glyphicon-arrow-right">
+                </td>
+                <td>
+                <img width="40" height="40" ng-src="http://cdn.sofifa.org/17/teams/{{traspaso.dtCompra.id}}.png"
+                />
+                {{traspaso.dtCompra.nombreDT}}
+                </td>
+                <td>
+                <img width="40" height="40" ng-src="http://cdn.sofifa.org/17/players/{{traspaso.jugadorComprado.id}}.png"/>{{traspaso.jugadorComprado.nombre}}
+                </td>
+                <td>{{traspaso.monto}}<td>
+            </tr>
+        </tbody>
+</table>
+

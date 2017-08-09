@@ -139,6 +139,13 @@ app.controller('mainController', function(DTService,JugadorService, TorneoServic
         });
     };
 
+    this.getListaTraspasos = function() {
+        DTService.getTraspasos(function(response) {
+            self.listaTraspasos = _.map(response.data, Transferencia.asTransferencia);
+        });
+    };
+    
+    self.getListaTraspasos();
     self.getListaOfertas();
     self.getTorneos();
     self.getDT();

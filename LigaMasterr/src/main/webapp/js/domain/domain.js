@@ -20,6 +20,10 @@ function DT() {
         this.plantel.put(jugador);
     };
 
+    this.agregarSlot = function(){
+        this.slots++;
+    }
+
 }
 
 DT.asDT = function(jsonDT) {
@@ -53,9 +57,15 @@ Torneo.asTorneo = function(jsonTorneo) {
 
 function Oferta() {}
 
-Partido.asOferta = function(jsonPartido) {
+Oferta.asOferta = function(jsonOferta) {
     var oferta = angular.extend(new Oferta(), jsonOferta);
     oferta.jugadoresOfrecidos = [];
     return oferta;
 
+};
+
+function Transferencia() {}
+
+Transferencia.asTransferencia = function(jsonTransferencia) {
+    return angular.extend(new Transferencia(), jsonTransferencia);
 };

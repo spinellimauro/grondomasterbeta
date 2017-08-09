@@ -516,7 +516,7 @@
                   <potencial>90</potencial>
                   <lesion>0</lesion>
                   <habilitado>true</habilitado>
-                  <precioVenta>15000.0</precioVenta>
+                  <precioVenta>0.0</precioVenta>
                   <vecesNoPagadas>0</vecesNoPagadas>
                 </master.Jugador>
                 <master.Jugador>
@@ -7784,6 +7784,12 @@
           <dtReceptor reference="../../../../../listaTorneos/master.Torneo[2]/listaParticipantes/data/master.DT[3]"/>
           <monto>100.0</monto>
           <jugadorOfertado reference="../../../../../listaTorneos/master.Torneo[2]/listaParticipantes/data/master.DT[3]/listaJugadores/data/master.Jugador[9]"/>
+        </master.Oferta>
+        <master.Oferta>
+          <dtOfertante reference="../../../../../listaTorneos/master.Torneo/listaParticipantes/data/master.DT"/>
+          <dtReceptor reference="../../../../../listaTorneos/master.Torneo[12]/listaParticipantes/data/master.DT[2]"/>
+          <monto>0.0</monto>
+          <jugadorOfertado reference="../../../../../listaTorneos/master.Torneo[12]/listaParticipantes/data/master.DT[2]/listaJugadores/data/master.Jugador[5]"/>
         </master.Oferta>
       </data>
     </listaOfertas>

@@ -76,6 +76,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'partials/mercado/buscador.html'
     })
 
+    .state('main.mercado.traspasos', {
+        templateUrl: 'partials/mercado/traspasos.html'
+    })
+
     .state('main.ofertar', {
         templateUrl: 'partials/ofertar.html',
         controller: 'mainController as mainCtrl'
