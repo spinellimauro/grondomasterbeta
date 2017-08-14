@@ -43,7 +43,7 @@ class MasterController {
 //	 def static void main(String[] args) {
 //        SpringApplication.run(MasterController, args);
 //    }
-	def static void main(String[] args) throws Exception {
-        SpringApplication.run(MasterController, args);
-    }
+//	def static void main(String[] args) throws Exception {
+//        SpringApplication.run(MasterController, args);
+//    }
 }
