@@ -3,9 +3,8 @@ package datos
 import master.Jugador
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.jsoup.Jsoup
-import org.uqbar.commons.utils.Observable
 
-@Observable
+//@Observable ARENA APP
 @Accessors
 final class SoFifa {
 	static SoFifa instance = new SoFifa

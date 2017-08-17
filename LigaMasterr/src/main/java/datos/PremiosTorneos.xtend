@@ -2,9 +2,8 @@ package datos
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
 
-@Observable
+//@Observable ARENA APP
 @Accessors
 class PremiosTorneos {
 	List<PremioEvento> listaEventos = newArrayList(
@@ -39,7 +38,7 @@ class PremiosTorneos {
 	
 }
 
-@Observable
+//@Observable ARENA APP
 @Accessors
 class PremioEvento{
 	String evento
@@ -51,7 +50,7 @@ class PremioEvento{
 	}
 }
 
-@Observable
+//@Observable ARENA APP
 @Accessors
 class PremioPosicion{
 	int posicion

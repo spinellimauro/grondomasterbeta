@@ -1,15 +1,13 @@
 package master
 
-import java.util.Set
-import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
-import java.util.List
 import com.thoughtworks.xstream.XStream
+import datos.Mercado
 import java.io.FileReader
 import java.io.PrintWriter
-import datos.Mercado
-
-@Observable
+import java.util.List
+import java.util.Set
+import org.eclipse.xtend.lib.annotations.Accessors
+//@Observable ARENA APP
 @Accessors
 class LigaMaster {
 	static LigaMaster instance = new LigaMaster

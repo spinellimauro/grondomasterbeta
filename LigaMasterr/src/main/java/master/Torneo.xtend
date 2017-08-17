@@ -1,13 +1,14 @@
 package master
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import datos.PremiosTorneos
 import java.util.Collections
 import java.util.List
+import java.util.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
-import com.fasterxml.jackson.annotation.JsonIgnore
 
-@Observable
+
+//@Observable ARENA APP
 @Accessors
 class Torneo {
 	String nombreTorneo = ""
@@ -168,7 +169,7 @@ class Torneo {
 	}
 }
 
-@Observable
+//@Observable
 @Accessors
 class EstadisticaTorneo {
 	String nombre
@@ -192,7 +193,7 @@ class EstadisticaTorneo {
 	}
 }
 
-@Observable
+//@Observable
 @Accessors
 class EstadisticaJugador {
 	int id
@@ -206,7 +207,7 @@ class EstadisticaJugador {
 	}
 }
 
-@Observable
+//@Observable
 @Accessors
 class EstadisticaFairPlay {
 	String nombre

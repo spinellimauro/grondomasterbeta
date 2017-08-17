@@ -1,14 +1,13 @@
 package master
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import datos.Precios
 import java.util.List
 import java.util.Set
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.UserException
-import org.uqbar.commons.utils.Observable
-import com.fasterxml.jackson.annotation.JsonIgnore
+import org.omg.CORBA.UserException
 
-@Observable
+//@Observable ARENA APP
 @Accessors
 class DT {
 	int id
@@ -113,7 +112,7 @@ class DT {
 			listaJugadores.removeAll(borrados)
 			var borradosNombres = borrados.map[nombre]
 			LigaMaster.instance.guardarBase
-			throw new UserException("Se han borrado los siguientes jugadores" + borradosNombres)
+//			throw new UserException("Se han borrado los siguientes jugadores" + borradosNombres)
 		}
 	}
 

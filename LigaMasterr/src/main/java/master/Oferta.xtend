@@ -2,9 +2,7 @@ package master
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
-
-@Observable
+//@Observable ARENA APP
 @Accessors
 class Oferta {
 	DT dtOfertante

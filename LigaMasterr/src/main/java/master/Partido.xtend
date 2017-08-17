@@ -1,13 +1,12 @@
 package master
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.Collections
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.model.ObservableUtils
-import com.fasterxml.jackson.annotation.JsonIgnore
 
-@Observable
+
+//@Observable ARENA APP
 @Accessors
 class Partido {
 	int numeroFecha = 0
@@ -40,12 +39,12 @@ class Partido {
 
 	def void addGol(Jugador jugador) {
 		if(dtLocal.getListaJugadores.contains(jugador)) golesLocal.add(jugador) else golesVisitante.add(jugador)
-		ObservableUtils.firePropertyChanged(this, "score")
+//		ObservableUtils.firePropertyChanged(this, "score") ARENA APP
 	}
 
 	def void removeGol(Jugador jugador) {
 		if(dtLocal.getListaJugadores.contains(jugador)) golesLocal.remove(jugador) else golesVisitante.remove(jugador)
-		ObservableUtils.firePropertyChanged(this, "score")
+//		ObservableUtils.firePropertyChanged(this, "score") ARENA APP
 	}
 
 	// Amonestaciones

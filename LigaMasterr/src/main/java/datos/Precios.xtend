@@ -3,9 +3,8 @@ package datos
 import java.util.List
 import master.Jugador
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
 
-@Observable
+//@Observable ARENA APP
 @Accessors
 final class Precios {
 	static Precios instance = new Precios
@@ -59,7 +58,7 @@ final class Precios {
 	}
 }
 
-@Observable
+//@Observable ARENA APP
 @Accessors
 class PrecioNivel{
 	int nivel
@@ -71,7 +70,7 @@ class PrecioNivel{
 	}
 }
 
-@Observable
+//@Observable ARENA APP
 @Accessors
 class PrecioEvento{
 	String evento

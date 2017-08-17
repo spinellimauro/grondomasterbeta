@@ -6,9 +6,8 @@ import master.Jugador
 import master.Oferta
 import master.Transferencia
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
 
-@Observable
+//@Observable ARENA APP
 @Accessors
 class Mercado {
 	List<Oferta> listaOfertas = newArrayList

@@ -5,9 +5,7 @@ import datos.Precios
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.jsoup.Jsoup
-import org.uqbar.commons.utils.Observable
-
-@Observable
+//@Observable ARENA APP
 @Accessors
 class Jugador {
 	
